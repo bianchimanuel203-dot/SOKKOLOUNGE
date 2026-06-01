@@ -4,16 +4,18 @@ import EventosSection from './components/EventosSection';
 import HorariosSection from './components/HorariosSection';
 import MenuSection from './components/MenuSection';
 import IslaGridCard from './components/IslaGridCard';
+import ContactoSection from './components/ContactoSection';
+import WhatsAppButton from './components/WhatsAppButton';
 
 const ISLAS = [
-  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Alma volcánica, fuego y calma',         imagen: '/islas/lanzarote.jpg' },
+  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Alma volcánica, fuego y calma',          imagen: '/islas/lanzarote.jpg' },
   { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Brisa atlántica, silencio del desierto', imagen: '/islas/Fuerteventura.jpg' },
-  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante, cosmopolita, viva',            imagen: '/islas/Gran canaria.jpg' },
-  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Alturas majestuosas, cielos íntimos',   imagen: '/islas/Tenerife.jpg' },
-  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Sueños verdes, luz dorada',              imagen: '/islas/la palma.jpg' },
-  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Niebla ancestral, esencia pura',         imagen: '/islas/La gomera.jpg' },
-  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje, remota, ancestral',             imagen: '/islas/el hierro.jpg' },
-  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serenidad en su máxima expresión',      imagen: '/islas/La graciosa.jpg' },
+  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante, cosmopolita, viva',             imagen: '/islas/Gran canaria.jpg' },
+  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Alturas majestuosas, cielos íntimos',    imagen: '/islas/Tenerife.jpg' },
+  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Sueños verdes, luz dorada',               imagen: '/islas/la palma.jpg' },
+  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Niebla ancestral, esencia pura',          imagen: '/islas/La gomera.jpg' },
+  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje, remota, ancestral',              imagen: '/islas/el hierro.jpg' },
+  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serenidad en su máxima expresión',       imagen: '/islas/La graciosa.jpg' },
 ];
 
 const NAV_LINKS = [
@@ -22,13 +24,14 @@ const NAV_LINKS = [
   { label: 'EVENTOS',   href: '#eventos' },
   { label: 'CARTA',     href: '#menu' },
   { label: 'HORARIOS',  href: '#horarios' },
+  { label: 'CONTACTO',  href: '#contacto' },
 ];
 
 export default async function Home() {
   return (
     <main style={{ background: '#1A1208', minHeight: '100vh' }}>
 
-      {/* ── NAVBAR ─────────────────────────────────────────── */}
+      {/* NAV */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '1.2rem 3rem',
@@ -45,7 +48,6 @@ export default async function Home() {
         }}>
           SOKKO LOUNGE
         </a>
-
         <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
           {NAV_LINKS.map(({ label, href }) => (
             <a key={label} href={href} style={{
@@ -57,20 +59,18 @@ export default async function Home() {
             </a>
           ))}
         </div>
-
         <a href="#terraza" style={{
           fontFamily: 'var(--font-raleway)', fontWeight: 400,
           fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
           color: '#C9A84C', textDecoration: 'none',
           border: '1px solid rgba(201,168,76,0.6)',
-          padding: '.6rem 1.5rem',
-          flexShrink: 0,
+          padding: '.6rem 1.5rem', flexShrink: 0,
         }}>
           RESERVAR
         </a>
       </nav>
 
-      {/* ── HERO ───────────────────────────────────────────── */}
+      {/* HERO */}
       <LampContainer>
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} style={{
@@ -80,36 +80,59 @@ export default async function Home() {
             pointerEvents: 'none',
           }} />
         ))}
+
         <h1 style={{
           fontFamily: 'var(--font-cinzel)',
-          fontSize: 'clamp(3rem, 8vw, 6rem)',
-          color: '#C9A84C', letterSpacing: '.1em', lineHeight: 1.05,
-          textShadow: '0 0 80px rgba(201,168,76,.25)',
+          fontSize: 'clamp(5rem, 14vw, 10rem)',
+          color: '#C9A84C', letterSpacing: '.12em', lineHeight: 1,
+          textShadow: '0 0 80px rgba(201,168,76,.3)',
           animation: 'fadeUp 1.4s .4s both', textAlign: 'center',
         }}>
-          RAW ELEGANCE.<br />VOLCANIC SOUL.
+          SOKKO
         </h1>
+
+        <p style={{
+          fontFamily: 'var(--font-cinzel)',
+          fontSize: '.75rem', letterSpacing: '.45em',
+          color: '#8A7560', marginTop: '.6rem',
+          animation: 'fadeUp 1.4s .5s both', textAlign: 'center',
+        }}>
+          · LOUNGE ·
+        </p>
+
+        <p style={{
+          fontFamily: 'var(--font-cinzel)',
+          fontSize: 'clamp(.9rem, 2vw, 1.3rem)',
+          color: '#B8956A', letterSpacing: '.1em',
+          marginTop: '1.5rem', animation: 'fadeUp 1.4s .6s both',
+          textAlign: 'center',
+        }}>
+          RAW ELEGANCE. VOLCANIC SOUL.
+        </p>
+
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.1rem', color: '#B8956A',
-          maxWidth: '520px', textAlign: 'center', lineHeight: '1.8',
-          marginTop: '2rem', animation: 'fadeUp 1.4s .65s both',
+          fontSize: '1.05rem', color: '#8A7560',
+          maxWidth: '480px', textAlign: 'center', lineHeight: '1.8',
+          marginTop: '1.2rem', animation: 'fadeUp 1.4s .75s both',
         }}>
           El refugio volcánico donde la naturaleza salvaje se encuentra con el lujo íntimo.
         </p>
+
         <a href="#espacios" style={{
           marginTop: '2.5rem',
           fontFamily: 'var(--font-raleway)', fontWeight: 400,
           fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
           color: '#C9A84C',
           border: '1px solid rgba(201,168,76,0.6)',
-          background: 'rgba(201,168,76,0.1)',
+          background: 'rgba(201,168,76,0.08)',
           padding: '1rem 3rem', textDecoration: 'none',
-          animation: 'fadeUp 1.4s .85s both',
+          animation: 'fadeUp 1.4s .9s both',
           display: 'inline-block',
         }}>
           EXPLORAR LA EXPERIENCIA
         </a>
+
         <a href="#espacios" style={{
           marginTop: '2.5rem', display: 'flex',
           flexDirection: 'column', alignItems: 'center', gap: '.6rem',
@@ -126,12 +149,12 @@ export default async function Home() {
         </a>
       </LampContainer>
 
-      {/* ── ZONAS ──────────────────────────────────────────── */}
+      {/* ZONAS */}
       <section id="espacios">
         <ZonasGallery />
       </section>
 
-      {/* ── FILOSOFÍA ──────────────────────────────────────── */}
+      {/* FILOSOFÍA */}
       <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A1208' }}>
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
@@ -143,16 +166,13 @@ export default async function Home() {
         <div style={{ width: '60px', height: '2px', background: '#C9A84C', margin: '2.5rem auto 0' }} />
       </section>
 
-      {/* ── ISLAS ──────────────────────────────────────────── */}
+      {/* ISLAS */}
       <section id="terraza" style={{
         background: '#1A1208', padding: '6rem 2rem',
         borderTop: '1px solid rgba(201,168,76,0.2)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <p style={{
-            fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560',
-            textTransform: 'uppercase', margin: 0,
-          }}>
+          <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560', textTransform: 'uppercase', margin: 0 }}>
             03 — Terraza
           </p>
           <h2 style={{
@@ -170,7 +190,6 @@ export default async function Home() {
             Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
           </p>
         </div>
-
         <div style={{
           maxWidth: '1280px', margin: '0 auto',
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2px',
@@ -181,24 +200,30 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── EVENTOS ────────────────────────────────────────── */}
+      {/* EVENTOS */}
       <EventosSection />
 
-      {/* ── CARTA ──────────────────────────────────────────── */}
+      {/* CARTA */}
       <MenuSection />
 
-      {/* ── HORARIOS ───────────────────────────────────────── */}
+      {/* HORARIOS */}
       <HorariosSection />
 
-      {/* ── FOOTER ─────────────────────────────────────────── */}
+      {/* CONTACTO */}
+      <ContactoSection />
+
+      {/* FOOTER */}
       <footer style={{
         background: '#1A1208',
         borderTop: '2px solid rgba(201,168,76,0.3)',
         padding: '5rem 3rem 3rem',
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          {/* Top row */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem' }}>
+          <div style={{
+            display: 'flex', justifyContent: 'space-between',
+            alignItems: 'flex-start', flexWrap: 'wrap',
+            gap: '2rem', marginBottom: '3rem',
+          }}>
             <div>
               <p style={{
                 fontFamily: 'var(--font-cinzel)', color: '#C9A84C',
@@ -208,9 +233,9 @@ export default async function Home() {
               </p>
               <p style={{
                 fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                fontSize: '1rem', color: '#8A7560', marginTop: '.5rem', margin: '.5rem 0 0',
+                fontSize: '1rem', color: '#8A7560', margin: '.5rem 0 0',
               }}>
-                El Resguardo del Viento · Lanzarote
+                El Resguardo del Viento · Fuerteventura
               </p>
             </div>
             <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -225,22 +250,21 @@ export default async function Home() {
               ))}
             </div>
           </div>
-
-          {/* Bottom */}
           <div style={{
             borderTop: '1px solid rgba(201,168,76,0.12)',
-            paddingTop: '1.5rem',
-            textAlign: 'center',
+            paddingTop: '1.5rem', textAlign: 'center',
           }}>
             <p style={{
               fontSize: '.55rem', letterSpacing: '.25em',
               color: '#8A7560', textTransform: 'uppercase', margin: 0,
             }}>
-              © 2026 SOKKO Lounge Lanzarote
+              © 2026 SOKKO Lounge Fuerteventura
             </p>
           </div>
         </div>
       </footer>
+
+      <WhatsAppButton />
 
     </main>
   );

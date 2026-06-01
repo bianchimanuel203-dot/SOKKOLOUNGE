@@ -3,78 +3,74 @@ import ZonasGallery from './components/ZonasGallery';
 import EventosSection from './components/EventosSection';
 import HorariosSection from './components/HorariosSection';
 import MenuSection from './components/MenuSection';
-import Link from 'next/link';
+import IslaGridCard from './components/IslaGridCard';
 
 const ISLAS = [
-  { slug: 'lanzarote',    nombre: 'Lanzarote',    subtitulo: 'Volcanic soul, fire and calm',      imagen: '/islas/lanzarote.jpg' },
-  { slug: 'fuerteventura',nombre: 'Fuerteventura', subtitulo: 'Atlantic breeze, desert silence',   imagen: '/islas/Fuerteventura.jpg' },
-  { slug: 'gran-canaria', nombre: 'Gran Canaria',  subtitulo: 'Vibrant, cosmopolitan, alive',      imagen: '/islas/Gran canaria.jpg' },
-  { slug: 'tenerife',     nombre: 'Tenerife',      subtitulo: 'Majestic heights, intimate skies',  imagen: '/islas/Tenerife.jpg' },
-  { slug: 'la-palma',     nombre: 'La Palma',      subtitulo: 'Green dreams, golden light',        imagen: '/islas/la palma.jpg' },
-  { slug: 'la-gomera',    nombre: 'La Gomera',     subtitulo: 'Ancient mist, pure essence',        imagen: '/islas/La gomera.jpg' },
-  { slug: 'el-hierro',    nombre: 'El Hierro',     subtitulo: 'Wild, remote, ancestral',           imagen: '/islas/el hierro.jpg' },
-  { slug: 'la-graciosa',  nombre: 'La Graciosa',   subtitulo: 'Serenity at its finest',            imagen: '/islas/La graciosa.jpg' },
+  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Alma volcánica, fuego y calma',         imagen: '/islas/lanzarote.jpg' },
+  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Brisa atlántica, silencio del desierto', imagen: '/islas/Fuerteventura.jpg' },
+  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante, cosmopolita, viva',            imagen: '/islas/Gran canaria.jpg' },
+  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Alturas majestuosas, cielos íntimos',   imagen: '/islas/Tenerife.jpg' },
+  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Sueños verdes, luz dorada',              imagen: '/islas/la palma.jpg' },
+  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Niebla ancestral, esencia pura',         imagen: '/islas/La gomera.jpg' },
+  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje, remota, ancestral',             imagen: '/islas/el hierro.jpg' },
+  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serenidad en su máxima expresión',      imagen: '/islas/La graciosa.jpg' },
 ];
 
-const NAV_ZONES = [
-  { label: 'ENTRANCE',      href: '#espacios' },
-  { label: 'BILLIARDS',     href: '#espacios' },
-  { label: 'GAMES TENT',    href: '#espacios' },
-  { label: 'FAMILY CHILL',  href: '#espacios' },
-  { label: 'DINING & SHOWS',href: '#eventos' },
-  { label: 'TERRACE',       href: '#terraza' },
+const NAV_LINKS = [
+  { label: 'ESPACIOS',  href: '#espacios' },
+  { label: 'TERRAZA',   href: '#terraza' },
+  { label: 'EVENTOS',   href: '#eventos' },
+  { label: 'CARTA',     href: '#menu' },
+  { label: 'HORARIOS',  href: '#horarios' },
 ];
 
 export default async function Home() {
   return (
     <main style={{ background: '#1A1208', minHeight: '100vh' }}>
 
-      {/* NAVBAR */}
+      {/* ── NAVBAR ─────────────────────────────────────────── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        padding: '1.25rem 2.5rem',
+        padding: '1.2rem 3rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(26,18,8,0.75)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(201,168,76,.1)',
+        background: 'rgba(26,18,8,0.92)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(201,168,76,0.15)',
       }}>
-        {/* Logo */}
         <a href="#" style={{
-          fontFamily: 'var(--font-cinzel)', fontSize: '.8rem',
+          fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
           letterSpacing: '.35em', color: '#C9A84C', textDecoration: 'none',
-          whiteSpace: 'nowrap',
+          whiteSpace: 'nowrap', flexShrink: 0,
         }}>
           SOKKO LOUNGE
         </a>
 
-        {/* Zones */}
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          {NAV_ZONES.map(({ label, href }) => (
+        <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
+          {NAV_LINKS.map(({ label, href }) => (
             <a key={label} href={href} style={{
               fontFamily: 'var(--font-raleway)', fontWeight: 300,
-              fontSize: '.58rem', letterSpacing: '.22em', textTransform: 'uppercase',
-              color: '#B8A980', textDecoration: 'none',
-              transition: 'color .2s',
+              fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
+              color: '#B8956A', textDecoration: 'none',
             }}>
               {label}
             </a>
           ))}
         </div>
 
-        {/* CTA */}
         <a href="#terraza" style={{
-          fontFamily: 'var(--font-raleway)', fontWeight: 500,
-          fontSize: '.58rem', letterSpacing: '.25em', textTransform: 'uppercase',
-          color: '#1A1208', background: '#C9A84C',
-          padding: '.65rem 1.4rem', textDecoration: 'none',
-          whiteSpace: 'nowrap',
+          fontFamily: 'var(--font-raleway)', fontWeight: 400,
+          fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
+          color: '#C9A84C', textDecoration: 'none',
+          border: '1px solid rgba(201,168,76,0.6)',
+          padding: '.6rem 1.5rem',
+          flexShrink: 0,
         }}>
-          BOOK TABLE
+          RESERVAR
         </a>
       </nav>
 
-      {/* HERO */}
+      {/* ── HERO ───────────────────────────────────────────── */}
       <LampContainer>
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} style={{
@@ -85,153 +81,165 @@ export default async function Home() {
           }} />
         ))}
         <h1 style={{
-          fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(2.2rem, 6vw, 5rem)',
-          color: '#C9A84C', letterSpacing: '.1em', lineHeight: 1.1,
-          textShadow: '0 0 60px rgba(201,168,76,.3)',
+          fontFamily: 'var(--font-cinzel)',
+          fontSize: 'clamp(3rem, 8vw, 6rem)',
+          color: '#C9A84C', letterSpacing: '.1em', lineHeight: 1.05,
+          textShadow: '0 0 80px rgba(201,168,76,.25)',
           animation: 'fadeUp 1.4s .4s both', textAlign: 'center',
         }}>
           RAW ELEGANCE.<br />VOLCANIC SOUL.
         </h1>
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.05rem', color: '#B8A980',
-          maxWidth: '540px', textAlign: 'center', lineHeight: '1.75',
-          marginTop: '1.75rem', animation: 'fadeUp 1.4s .65s both',
+          fontSize: '1.1rem', color: '#B8956A',
+          maxWidth: '520px', textAlign: 'center', lineHeight: '1.8',
+          marginTop: '2rem', animation: 'fadeUp 1.4s .65s both',
         }}>
-          A sensory sanctuary where the ruggedness of nature meets the refinement
-          of a high-end lounge. Crafted in volcanic stone, illuminated by golden hour.
+          El refugio volcánico donde la naturaleza salvaje se encuentra con el lujo íntimo.
         </p>
         <a href="#espacios" style={{
           marginTop: '2.5rem',
-          fontFamily: 'var(--font-raleway)', fontWeight: 500,
-          fontSize: '.6rem', letterSpacing: '.3em', textTransform: 'uppercase',
-          color: '#1A1208', background: '#C9A84C',
-          padding: '.9rem 2.4rem', textDecoration: 'none',
+          fontFamily: 'var(--font-raleway)', fontWeight: 400,
+          fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
+          color: '#C9A84C',
+          border: '1px solid rgba(201,168,76,0.6)',
+          background: 'rgba(201,168,76,0.1)',
+          padding: '1rem 3rem', textDecoration: 'none',
           animation: 'fadeUp 1.4s .85s both',
+          display: 'inline-block',
         }}>
-          EXPLORE THE EXPERIENCE
+          EXPLORAR LA EXPERIENCIA
         </a>
-        <a href="#espacios" style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.6rem', textDecoration: 'none', animation: 'fadeUp 1.4s 1.1s both' }}>
-          <span style={{ fontSize: '.5rem', letterSpacing: '.4em', textTransform: 'uppercase', color: '#8A6E2F' }}>Discover</span>
-          <div style={{ width: '1px', height: '50px', background: 'linear-gradient(to bottom, #8A6E2F, transparent)', animation: 'scrollDrop 2s ease-in-out infinite' }} />
+        <a href="#espacios" style={{
+          marginTop: '2.5rem', display: 'flex',
+          flexDirection: 'column', alignItems: 'center', gap: '.6rem',
+          textDecoration: 'none', animation: 'fadeUp 1.4s 1.1s both',
+        }}>
+          <span style={{ fontSize: '.55rem', letterSpacing: '.4em', textTransform: 'uppercase', color: '#8A7560' }}>
+            DESCUBRIR
+          </span>
+          <div style={{
+            width: '1px', height: '50px',
+            background: 'linear-gradient(to bottom, #8A7560, transparent)',
+            animation: 'scrollDrop 2s ease-in-out infinite',
+          }} />
         </a>
       </LampContainer>
 
-      {/* ZONAS */}
+      {/* ── ZONAS ──────────────────────────────────────────── */}
       <section id="espacios">
         <ZonasGallery />
       </section>
 
-      {/* FILOSOFIA */}
-      <section style={{ padding: '8rem 2rem', textAlign: 'center', background: 'linear-gradient(to bottom, #0C0A06 0%, #F5F0E8 100%)' }}>
+      {/* ── FILOSOFÍA ──────────────────────────────────────── */}
+      <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A1208' }}>
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#1A1208',
+          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#F5F0E8',
           lineHeight: '1.7', maxWidth: '700px', margin: '0 auto',
         }}>
-          SOKKO is not just a place.<br />It is refuge, calm, connection and experience.
+          SOKKO no es solo un lugar.<br />Es refugio, calma, conexión y experiencia.
         </p>
         <div style={{ width: '60px', height: '2px', background: '#C9A84C', margin: '2.5rem auto 0' }} />
       </section>
 
-      {/* TERRAZA — ISLANDS GRID */}
-      <section id="terraza" style={{ background: '#1A1208', padding: '6rem 2rem', borderTop: '3px solid rgba(201,168,76,.2)' }}>
+      {/* ── ISLAS ──────────────────────────────────────────── */}
+      <section id="terraza" style={{
+        background: '#1A1208', padding: '6rem 2rem',
+        borderTop: '1px solid rgba(201,168,76,0.2)',
+      }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <p style={{ fontSize: '.6rem', letterSpacing: '.5em', color: '#8A6E2F', textTransform: 'uppercase' }}>
-            03 — Terrace
+          <p style={{
+            fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560',
+            textTransform: 'uppercase', margin: 0,
+          }}>
+            03 — Terraza
           </p>
           <h2 style={{
             fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            color: '#C9A84C', letterSpacing: '.15em', marginTop: '1rem',
+            color: '#C9A84C', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
           }}>
-            Island Groups
+            Las Ocho Islas
           </h2>
-          <div style={{ width: '60px', height: '1px', background: '#8A6E2F', margin: '1.5rem auto' }} />
+          <div style={{ width: '60px', height: '1px', background: 'rgba(201,168,76,0.4)', margin: '1.5rem auto' }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '1.05rem', color: '#B8A980',
+            fontSize: '1.05rem', color: '#B8956A',
             maxWidth: '520px', margin: '0 auto', lineHeight: '1.8',
           }}>
-            Each group bears the name of a Canary Island. Choose yours and reserve your space under the stars.
+            Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
           </p>
         </div>
 
-        {/* 4×2 Grid */}
         <div style={{
           maxWidth: '1280px', margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '2px',
+          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2px',
         }}>
           {ISLAS.map((isla) => (
-            <Link key={isla.slug} href={`/terraza/${isla.slug}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', overflow: 'hidden', aspectRatio: '3/4' }}>
-              {/* Photo */}
-              <img
-                src={isla.imagen}
-                alt={isla.nombre}
-                style={{
-                  position: 'absolute', inset: 0,
-                  width: '100%', height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform .6s ease',
-                }}
-              />
-              {/* Gradient overlay */}
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(26,18,8,.95) 0%, rgba(26,18,8,.45) 50%, rgba(26,18,8,.15) 100%)',
-                transition: 'opacity .4s ease',
-              }} />
-              {/* Text — bottom */}
-              <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: '1.5rem',
-              }}>
-                <p style={{
-                  fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                  fontSize: '.8rem', color: '#8A6E2F', marginBottom: '.4rem',
-                  letterSpacing: '.05em', lineHeight: '1.4',
-                }}>
-                  {isla.subtitulo}
-                </p>
-                <p style={{
-                  fontFamily: 'var(--font-cinzel)', fontSize: '.95rem',
-                  color: '#C9A84C', letterSpacing: '.15em', margin: 0,
-                }}>
-                  {isla.nombre}
-                </p>
-                <div style={{ width: '24px', height: '1px', background: '#C9A84C', marginTop: '.75rem', opacity: .6 }} />
-              </div>
-            </Link>
+            <IslaGridCard key={isla.slug} {...isla} />
           ))}
         </div>
       </section>
 
-      {/* EVENTOS */}
+      {/* ── EVENTOS ────────────────────────────────────────── */}
       <EventosSection />
 
-      {/* CARTA */}
+      {/* ── CARTA ──────────────────────────────────────────── */}
       <MenuSection />
 
-      {/* HORARIOS */}
+      {/* ── HORARIOS ───────────────────────────────────────── */}
       <HorariosSection />
 
-      {/* FOOTER */}
+      {/* ── FOOTER ─────────────────────────────────────────── */}
       <footer style={{
-        textAlign: 'center', padding: '4rem 2rem',
         background: '#1A1208',
-        borderTop: '3px solid rgba(201,168,76,.3)',
+        borderTop: '2px solid rgba(201,168,76,0.3)',
+        padding: '5rem 3rem 3rem',
       }}>
-        <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C9A84C', letterSpacing: '.3em', fontSize: '1.2rem' }}>
-          SOKKO LOUNGE
-        </p>
-        <div style={{ width: '40px', height: '1px', background: 'rgba(201,168,76,.4)', margin: '1rem auto' }} />
-        <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.9rem', color: '#B8A980' }}>
-          El Resguardo del Viento · Lanzarote
-        </p>
-        <p style={{ fontSize: '.55rem', letterSpacing: '.3em', color: '#8A6E2F', marginTop: '1.5rem', textTransform: 'uppercase' }}>
-          · By Gorka ·
-        </p>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          {/* Top row */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem' }}>
+            <div>
+              <p style={{
+                fontFamily: 'var(--font-cinzel)', color: '#C9A84C',
+                letterSpacing: '.35em', fontSize: '1.4rem', margin: 0,
+              }}>
+                SOKKO LOUNGE
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                fontSize: '1rem', color: '#8A7560', marginTop: '.5rem', margin: '.5rem 0 0',
+              }}>
+                El Resguardo del Viento · Lanzarote
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              {NAV_LINKS.map(({ label, href }) => (
+                <a key={label} href={href} style={{
+                  fontFamily: 'var(--font-raleway)', fontSize: '.6rem',
+                  letterSpacing: '.25em', textTransform: 'uppercase',
+                  color: '#8A7560', textDecoration: 'none',
+                }}>
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom */}
+          <div style={{
+            borderTop: '1px solid rgba(201,168,76,0.12)',
+            paddingTop: '1.5rem',
+            textAlign: 'center',
+          }}>
+            <p style={{
+              fontSize: '.55rem', letterSpacing: '.25em',
+              color: '#8A7560', textTransform: 'uppercase', margin: 0,
+            }}>
+              © 2026 SOKKO Lounge Lanzarote
+            </p>
+          </div>
+        </div>
       </footer>
 
     </main>

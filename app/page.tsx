@@ -35,23 +35,11 @@ export default async function Home() {
           }} />
         ))}
 
-        {/* Logo grande centrado */}
-        <img
-          src="/logo-sokko.svg"
-          alt="SOKKO LOUNGE"
-          style={{
-            height: '180px',
-            filter: 'drop-shadow(0 0 30px rgba(200,146,42,0.5))',
-            animation: 'fadeUp 1.4s .2s both',
-            marginBottom: '1rem',
-          }}
-        />
-
         <h1 style={{
           fontFamily: 'var(--font-cinzel)',
-          fontSize: 'clamp(3rem, 8vw, 6rem)',
-          color: '#D4A843', letterSpacing: '.12em', lineHeight: 1,
-          textShadow: '0 0 80px rgba(139,105,20,.4)',
+          fontSize: 'clamp(5rem, 14vw, 10rem)',
+          color: '#C8922A', letterSpacing: '.12em', lineHeight: 1,
+          textShadow: '0 0 80px rgba(200,146,42,.3)',
           animation: 'fadeUp 1.4s .4s both', textAlign: 'center',
         }}>
           SOKKO
@@ -60,7 +48,7 @@ export default async function Home() {
         <p style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: '.75rem', letterSpacing: '.45em',
-          color: '#8A7560', marginTop: '.6rem',
+          color: '#8A6940', marginTop: '.6rem',
           animation: 'fadeUp 1.4s .5s both', textAlign: 'center',
         }}>
           · LOUNGE ·
@@ -78,7 +66,7 @@ export default async function Home() {
 
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.05rem', color: '#8A7560',
+          fontSize: '1.05rem', color: '#8A6940',
           maxWidth: '480px', textAlign: 'center', lineHeight: '1.8',
           marginTop: '1.2rem', animation: 'fadeUp 1.4s .75s both',
         }}>
@@ -89,7 +77,7 @@ export default async function Home() {
           fontFamily: 'var(--font-cinzel)',
           fontSize: '.7rem', letterSpacing: '.5em',
           color: '#C4A882',
-          marginTop: '.8rem', animation: 'fadeUp 1.4s .65s both',
+          marginTop: '.8rem', animation: 'fadeUp 1.4s .85s both',
           textAlign: 'center',
         }}>
           EL RESGUARDO DEL VIENTO
@@ -100,7 +88,7 @@ export default async function Home() {
           fontFamily: 'var(--font-raleway)', fontWeight: 400,
           fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
           color: '#C8922A',
-          border: '1px solid rgba(200,146,42,0.7)',
+          border: '1px solid rgba(200,146,42,0.6)',
           background: 'rgba(200,146,42,0.08)',
           padding: '1rem 3rem', textDecoration: 'none',
           animation: 'fadeUp 1.4s .9s both',
@@ -114,12 +102,12 @@ export default async function Home() {
           flexDirection: 'column', alignItems: 'center', gap: '.6rem',
           textDecoration: 'none', animation: 'fadeUp 1.4s 1.1s both',
         }}>
-          <span style={{ fontSize: '.55rem', letterSpacing: '.4em', textTransform: 'uppercase', color: '#8A7560' }}>
+          <span style={{ fontSize: '.55rem', letterSpacing: '.4em', textTransform: 'uppercase', color: '#8A6940' }}>
             DESCUBRIR
           </span>
           <div style={{
             width: '1px', height: '50px',
-            background: 'linear-gradient(to bottom, #8A7560, transparent)',
+            background: 'linear-gradient(to bottom, #8A6940, transparent)',
             animation: 'scrollDrop 2s ease-in-out infinite',
           }} />
         </a>
@@ -134,7 +122,7 @@ export default async function Home() {
       <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A0E05' }}>
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#F5F0E8',
+          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#C4A882',
           lineHeight: '1.7', maxWidth: '700px', margin: '0 auto',
         }}>
           SOKKO no es solo un lugar.<br />Es refugio, calma, conexión y experiencia.
@@ -148,12 +136,12 @@ export default async function Home() {
         borderTop: '1px solid rgba(200,146,42,0.2)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560', textTransform: 'uppercase', margin: 0 }}>
+          <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
             03 — Terraza
           </p>
           <h2 style={{
             fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            color: '#D4A843', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
+            color: '#C8922A', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
           }}>
             Las Ocho Islas
           </h2>
@@ -193,21 +181,18 @@ export default async function Home() {
             alignItems: 'flex-start', flexWrap: 'wrap',
             gap: '2rem', marginBottom: '3rem',
           }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '.6rem' }}>
-              <img
-                src="/logo-sokko.svg"
-                alt="SOKKO LOUNGE"
-                style={{
-                  height: '90px',
-                  filter: 'drop-shadow(0 0 12px rgba(200,146,42,0.3))',
-                }}
-              />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '.5rem' }}>
               <p style={{
-                fontFamily: 'var(--font-cinzel)',
-                fontSize: '.6rem', letterSpacing: '.4em',
-                color: '#8A7560', margin: 0, textTransform: 'uppercase',
+                fontFamily: 'var(--font-cinzel)', color: '#C8922A',
+                letterSpacing: '.35em', fontSize: '1.3rem', margin: 0,
               }}>
-                EL RESGUARDO DEL VIENTO · FUERTEVENTURA
+                SOKKO LOUNGE
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                fontSize: '.95rem', color: '#8A6940', margin: 0,
+              }}>
+                El Resguardo del Viento · Fuerteventura
               </p>
             </div>
             <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -215,7 +200,7 @@ export default async function Home() {
                 <a key={label} href={href} style={{
                   fontFamily: 'var(--font-raleway)', fontSize: '.6rem',
                   letterSpacing: '.25em', textTransform: 'uppercase',
-                  color: '#8A7560', textDecoration: 'none',
+                  color: '#8A6940', textDecoration: 'none',
                 }}>
                   {label}
                 </a>
@@ -228,7 +213,7 @@ export default async function Home() {
           }}>
             <p style={{
               fontSize: '.55rem', letterSpacing: '.25em',
-              color: '#8A7560', textTransform: 'uppercase', margin: 0,
+              color: '#8A6940', textTransform: 'uppercase', margin: 0,
             }}>
               © 2026 SOKKO Lounge Fuerteventura
             </p>

@@ -35,11 +35,11 @@ export default function ContactoSection() {
 
   const inputStyle: React.CSSProperties = {
     width: '100%',
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(200,146,42,0.2)',
+    background: 'rgba(200,146,42,0.04)',
+    border: '1px solid rgba(200,146,42,0.15)',
     borderRadius: '6px',
     padding: '12px 16px',
-    color: '#F5F0E8',
+    color: '#C4A882',
     fontFamily: 'var(--font-raleway)',
     fontSize: '14px',
     outline: 'none',
@@ -52,13 +52,13 @@ export default function ContactoSection() {
     fontSize: '11px',
     letterSpacing: '0.15em',
     textTransform: 'uppercase' as const,
-    color: '#8A7560',
+    color: '#8A6940',
     marginBottom: '8px',
     display: 'block',
   };
 
   return (
-    <section id="contacto" style={{ background: '#1A0E05', padding: '100px 40px' }}>
+    <section id="contacto" style={{ background: '#110A03', padding: '100px 40px' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -66,14 +66,14 @@ export default function ContactoSection() {
           <p style={{
             fontFamily: 'var(--font-raleway)',
             fontSize: '11px', letterSpacing: '0.3em',
-            color: '#8A7560', textTransform: 'uppercase', marginBottom: '16px',
+            color: '#8A6940', textTransform: 'uppercase', marginBottom: '16px',
           }}>
             07 — CONTACTO
           </p>
           <h2 style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(28px, 4vw, 48px)',
-            fontWeight: 400, color: '#F5F0E8',
+            fontWeight: 400, color: '#C4A882',
             letterSpacing: '0.06em', textTransform: 'uppercase',
             marginBottom: '16px',
           }}>
@@ -82,7 +82,7 @@ export default function ContactoSection() {
           <div style={{ width: '40px', height: '1px', background: '#C8922A', margin: '0 auto 20px' }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '17px', color: '#8A7560', maxWidth: '480px', margin: '0 auto',
+            fontSize: '17px', color: '#8A6940', maxWidth: '480px', margin: '0 auto',
           }}>
             Reserva tu mesa y vive la experiencia SOKKO.
           </p>
@@ -112,14 +112,14 @@ export default function ContactoSection() {
                 }}>
                   Reserva recibida
                 </h3>
-                <p style={{ fontFamily: 'var(--font-raleway)', color: '#8A7560', fontSize: '14px' }}>
+                <p style={{ fontFamily: 'var(--font-raleway)', color: '#8A6940', fontSize: '14px' }}>
                   Nos pondremos en contacto contigo en breve.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <h3 style={{
-                  fontFamily: 'var(--font-cinzel)', color: '#F5F0E8',
+                  fontFamily: 'var(--font-cinzel)', color: '#C4A882',
                   fontSize: '18px', letterSpacing: '0.08em',
                   marginBottom: '32px', fontWeight: 400,
                 }}>
@@ -172,7 +172,7 @@ export default function ContactoSection() {
                       style={{ ...inputStyle, cursor: 'pointer' }}
                     >
                       {[1,2,3,4,5,6,7,8,9,10].map(n => (
-                        <option key={n} value={n} style={{ background: '#1A0E05' }}>
+                        <option key={n} value={n} style={{ background: '#110A03' }}>
                           {n} {n === 1 ? 'persona' : 'personas'}
                         </option>
                       ))}
@@ -240,13 +240,13 @@ export default function ContactoSection() {
                 </svg>
               </div>
               <h4 style={{
-                fontFamily: 'var(--font-cinzel)', color: '#F5F0E8',
+                fontFamily: 'var(--font-cinzel)', color: '#C4A882',
                 fontSize: '13px', letterSpacing: '0.1em', marginBottom: '10px', fontWeight: 400,
               }}>
                 Ubicación
               </h4>
               <p style={{
-                fontFamily: 'var(--font-raleway)', color: '#8A7560',
+                fontFamily: 'var(--font-raleway)', color: '#8A6940',
                 fontSize: '13px', lineHeight: '1.7', margin: '0 0 14px',
               }}>
                 Av. Alcalde Juan Ramón Soto Morales, 7<br />
@@ -287,7 +287,7 @@ export default function ContactoSection() {
                 </svg>
               </div>
               <h4 style={{
-                fontFamily: 'var(--font-cinzel)', color: '#F5F0E8',
+                fontFamily: 'var(--font-cinzel)', color: '#C4A882',
                 fontSize: '13px', letterSpacing: '0.1em', marginBottom: '10px', fontWeight: 400,
               }}>
                 Teléfono / WhatsApp
@@ -295,7 +295,7 @@ export default function ContactoSection() {
               <a
                 href="tel:+34643830451"
                 style={{
-                  fontFamily: 'var(--font-raleway)', color: '#F5F0E8',
+                  fontFamily: 'var(--font-raleway)', color: '#C4A882',
                   fontSize: '16px', fontWeight: 500, textDecoration: 'none',
                   display: 'block', marginBottom: '12px',
                 }}
@@ -343,7 +343,7 @@ export default function ContactoSection() {
                 </svg>
               </div>
               <h4 style={{
-                fontFamily: 'var(--font-cinzel)', color: '#F5F0E8',
+                fontFamily: 'var(--font-cinzel)', color: '#C4A882',
                 fontSize: '13px', letterSpacing: '0.1em', marginBottom: '10px', fontWeight: 400,
               }}>
                 Horario

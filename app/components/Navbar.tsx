@@ -32,26 +32,24 @@ export default function Navbar() {
     <>
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        padding: mobile ? '.75rem 1.5rem' : '.6rem 3rem',
+        padding: mobile ? '1.1rem 1.5rem' : '1.2rem 3rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: 'rgba(26,14,5,0.95)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(200,146,42,0.15)',
       }}>
-        {/* Logo */}
-        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <img
-            src="/logo-sokko.svg"
-            alt="SOKKO LOUNGE"
-            style={{
-              height: mobile ? '40px' : '52px',
-              filter: 'drop-shadow(0 0 8px rgba(200,146,42,0.4))',
-            }}
-          />
+        {/* Logo texto */}
+        <a href="/" style={{
+          fontFamily: 'var(--font-cinzel)',
+          fontSize: mobile ? '.7rem' : '.78rem',
+          letterSpacing: '.35em', color: '#C8922A',
+          textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
+        }}>
+          SOKKO LOUNGE
         </a>
 
-        {/* Desktop: links + RESERVAR */}
+        {/* Desktop */}
         {!mobile && (
           <>
             <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
@@ -69,7 +67,7 @@ export default function Navbar() {
               fontFamily: 'var(--font-raleway)', fontWeight: 400,
               fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
               color: '#C8922A', textDecoration: 'none',
-              border: '1px solid rgba(200,146,42,0.7)',
+              border: '1px solid rgba(200,146,42,0.6)',
               padding: '.6rem 1.5rem', flexShrink: 0,
             }}>
               RESERVAR
@@ -77,7 +75,7 @@ export default function Navbar() {
           </>
         )}
 
-        {/* Mobile: hamburguesa */}
+        {/* Mobile hamburguesa */}
         {mobile && (
           <button
             onClick={() => setOpen(v => !v)}
@@ -107,7 +105,7 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Mobile overlay */}
+      {/* Overlay */}
       {mobile && (
         <div onClick={close} style={{
           position: 'fixed', inset: 0, zIndex: 190,
@@ -118,7 +116,7 @@ export default function Navbar() {
         }} />
       )}
 
-      {/* Mobile drawer */}
+      {/* Drawer */}
       {mobile && (
         <div style={{
           position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 195,
@@ -149,13 +147,12 @@ export default function Navbar() {
               </a>
             ))}
           </nav>
-
           <a href="#terraza" onClick={close} style={{
             marginTop: '2.5rem',
             fontFamily: 'var(--font-raleway)', fontWeight: 500,
             fontSize: '.7rem', letterSpacing: '.3em', textTransform: 'uppercase',
             color: '#C8922A', textDecoration: 'none',
-            border: '1px solid rgba(200,146,42,0.7)',
+            border: '1px solid rgba(200,146,42,0.6)',
             padding: '.9rem', textAlign: 'center', display: 'block',
             opacity: open ? 1 : 0,
             transform: open ? 'translateX(0)' : 'translateX(20px)',
@@ -163,10 +160,14 @@ export default function Navbar() {
           }}>
             RESERVAR
           </a>
-
-          <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', justifyContent: 'center' }}>
-            <img src="/logo-sokko.svg" alt="SOKKO LOUNGE" style={{ height: '48px', opacity: 0.25 }} />
-          </div>
+          <p style={{
+            marginTop: 'auto', paddingTop: '2rem',
+            fontFamily: 'var(--font-cinzel)', fontSize: '.65rem',
+            letterSpacing: '.3em', color: 'rgba(200,146,42,0.25)',
+            textAlign: 'center',
+          }}>
+            SOKKO LOUNGE
+          </p>
         </div>
       )}
     </>

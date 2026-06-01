@@ -21,7 +21,7 @@ const HEADING: React.CSSProperties = {
 
 const SEPARATOR: React.CSSProperties = {
   border: 'none',
-  borderTop: '1px solid rgba(90,60,20,0.15)',
+  borderTop: '1px solid rgba(200,146,42,0.1)',
   margin: '0',
 };
 
@@ -40,14 +40,15 @@ export default async function MenuSection() {
   const otras     = bebidas.filter(p => p.acf.categoria !== 'cocktail');
 
   return (
-    <section id="menu" style={{ background: '#F5F0E8' }}>
+    <section id="menu" style={{ background: '#1A0E05' }}>
 
+      {/* Header */}
       <div style={{
         padding: '6rem 3rem 4rem', textAlign: 'center',
-        borderBottom: '1px solid rgba(90,60,20,0.15)',
+        borderBottom: '1px solid rgba(200,146,42,0.12)',
       }}>
         <p style={{
-          fontSize: '.6rem', letterSpacing: '.6em', color: '#7A6040',
+          fontSize: '.6rem', letterSpacing: '.6em', color: '#8A6940',
           textTransform: 'uppercase', margin: 0,
         }}>
           06 — Gastronomía
@@ -55,7 +56,7 @@ export default async function MenuSection() {
         <h2 style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-          color: '#1A0E05', letterSpacing: '.2em',
+          color: '#C8922A', letterSpacing: '.2em',
           marginTop: '1rem', marginBottom: 0,
         }}>
           NUESTRA CARTA
@@ -63,24 +64,29 @@ export default async function MenuSection() {
         <div style={{ width: '60px', height: '2px', background: '#C8922A', margin: '1.75rem auto' }} />
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.1rem', color: '#5C4A1E',
+          fontSize: '1.1rem', color: '#C4A882',
           maxWidth: '480px', margin: '0 auto', lineHeight: '1.8',
         }}>
           Cocina canaria con alma. Ingredientes locales, sabores auténticos.
         </p>
       </div>
 
+      {/* 3 columnas */}
       <div style={{
         maxWidth: '1280px', margin: '0 auto',
         display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',
-        borderBottom: '1px solid rgba(90,60,20,0.15)',
+        borderBottom: '1px solid rgba(200,146,42,0.12)',
       }}>
 
         {/* COL 1 — CÓCTELES */}
-        <div style={{ padding: '3.5rem 3rem', borderRight: '1px solid rgba(90,60,20,0.15)' }}>
+        <div style={{
+          padding: '3.5rem 3rem',
+          borderRight: '1px solid rgba(200,146,42,0.12)',
+          background: 'rgba(200,146,42,0.04)',
+        }}>
           <p style={HEADING}>Cócteles</p>
           {cocktails.length === 0 ? (
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#7A6040', fontSize: '.9rem' }}>Próximamente.</p>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6940', fontSize: '.9rem' }}>Próximamente.</p>
           ) : cocktails.map((p, i) => (
             <div key={p.id}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', padding: '1rem 0' }}>
@@ -90,11 +96,11 @@ export default async function MenuSection() {
                       ★ Signature
                     </span>
                   )}
-                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#1A0E05', letterSpacing: '.04em', margin: 0 }}>
+                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#C4A882', letterSpacing: '.04em', margin: 0 }}>
                     {p.title.rendered}
                   </p>
                   {p.acf.descripcion && (
-                    <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#7A6040', margin: '.2rem 0 0', lineHeight: '1.5' }}>
+                    <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#8A6940', margin: '.2rem 0 0', lineHeight: '1.5' }}>
                       {p.acf.descripcion}
                     </p>
                   )}
@@ -109,11 +115,14 @@ export default async function MenuSection() {
         </div>
 
         {/* COL 2 — COCINA */}
-        <div style={{ padding: '3.5rem 3rem', borderRight: '1px solid rgba(90,60,20,0.15)' }}>
+        <div style={{
+          padding: '3.5rem 3rem',
+          borderRight: '1px solid rgba(200,146,42,0.12)',
+        }}>
           {Object.entries(porCategoriaComida).length === 0 ? (
             <>
               <p style={HEADING}>Cocina</p>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#7A6040', fontSize: '.9rem' }}>Próximamente.</p>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6940', fontSize: '.9rem' }}>Próximamente.</p>
             </>
           ) : (
             Object.entries(porCategoriaComida).map(([cat, items], catIdx, arr) => (
@@ -123,11 +132,11 @@ export default async function MenuSection() {
                   <div key={p.id}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', padding: '1rem 0' }}>
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#1A0E05', letterSpacing: '.04em', margin: 0 }}>
+                        <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#C4A882', letterSpacing: '.04em', margin: 0 }}>
                           {p.title.rendered}
                         </p>
                         {p.acf.descripcion && (
-                          <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#7A6040', margin: '.2rem 0 0', lineHeight: '1.5' }}>
+                          <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#8A6940', margin: '.2rem 0 0', lineHeight: '1.5' }}>
                             {p.acf.descripcion}
                           </p>
                         )}
@@ -145,19 +154,19 @@ export default async function MenuSection() {
         </div>
 
         {/* COL 3 — BEBIDAS */}
-        <div style={{ padding: '3.5rem 3rem', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ padding: '3.5rem 3rem', display: 'flex', flexDirection: 'column', background: 'rgba(200,146,42,0.04)' }}>
           <p style={HEADING}>Bebidas</p>
           {otras.length === 0 ? (
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#7A6040', fontSize: '.9rem' }}>Próximamente.</p>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6940', fontSize: '.9rem' }}>Próximamente.</p>
           ) : otras.map((p, i) => (
             <div key={p.id}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', padding: '1rem 0' }}>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#1A0E05', letterSpacing: '.04em', margin: 0 }}>
+                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '.78rem', color: '#C4A882', letterSpacing: '.04em', margin: 0 }}>
                     {p.title.rendered}
                   </p>
                   {p.acf.descripcion && (
-                    <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#7A6040', margin: '.2rem 0 0', lineHeight: '1.5' }}>
+                    <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.82rem', color: '#8A6940', margin: '.2rem 0 0', lineHeight: '1.5' }}>
                       {p.acf.descripcion}
                     </p>
                   )}
@@ -170,8 +179,8 @@ export default async function MenuSection() {
             </div>
           ))}
           <div style={{ flex: 1 }} />
-          <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(90,60,20,0.15)', textAlign: 'center' }}>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.9rem', color: '#7A6040', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+          <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(200,146,42,0.12)', textAlign: 'center' }}>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '.9rem', color: '#8A6940', lineHeight: '1.7', marginBottom: '1.5rem' }}>
               Todos nuestros cócteles están elaborados con destilados premium e infusiones de la casa.
             </p>
             <a href="#terraza" style={{

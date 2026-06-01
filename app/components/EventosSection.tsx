@@ -30,7 +30,7 @@ export default async function EventosSection() {
     }}>
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
         <p style={{
-          fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560',
+          fontSize: '.6rem', letterSpacing: '.55em', color: '#8A6940',
           textTransform: 'uppercase', margin: 0,
         }}>
           04 — Agenda
@@ -56,7 +56,7 @@ export default async function EventosSection() {
       {activos.length === 0 ? (
         <p style={{
           textAlign: 'center', fontFamily: 'var(--font-cormorant)',
-          fontStyle: 'italic', color: '#8A7560', fontSize: '1rem',
+          fontStyle: 'italic', color: '#8A6940', fontSize: '1rem',
         }}>
           Próximamente nuevos eventos. Síguenos para no perderte nada.
         </p>
@@ -89,7 +89,7 @@ export default async function EventosSection() {
                       </p>
                       <p style={{
                         fontSize: '.6rem', letterSpacing: '.25em',
-                        color: '#8A7560', textTransform: 'uppercase',
+                        color: '#8A6940', textTransform: 'uppercase',
                         margin: '.35rem 0 0',
                       }}>
                         {mesIdx !== null ? MESES[mesIdx] : ''} {anio}
@@ -104,7 +104,7 @@ export default async function EventosSection() {
                       )}
                     </>
                   ) : (
-                    <p style={{ fontFamily: 'var(--font-cinzel)', color: '#8A7560', fontSize: '.75rem' }}>—</p>
+                    <p style={{ fontFamily: 'var(--font-cinzel)', color: '#8A6940', fontSize: '.75rem' }}>—</p>
                   )}
                 </div>
 
@@ -130,7 +130,7 @@ export default async function EventosSection() {
                   {evento.acf.description && (
                     <p style={{
                       fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                      fontSize: '.95rem', color: '#8A7560',
+                      fontSize: '.95rem', color: '#8A6940',
                       lineHeight: '1.65', margin: 0,
                     }}>
                       {evento.acf.description}
@@ -138,7 +138,7 @@ export default async function EventosSection() {
                   )}
                   {evento.acf.aforo > 0 && (
                     <p style={{
-                      fontSize: '.5rem', letterSpacing: '.2em', color: '#8A7560',
+                      fontSize: '.5rem', letterSpacing: '.2em', color: '#8A6940',
                       textTransform: 'uppercase', marginTop: '.75rem',
                     }}>
                       Aforo: {evento.acf.aforo} personas
@@ -149,7 +149,7 @@ export default async function EventosSection() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1rem', paddingTop: '.2rem' }}>
                   {evento.acf.precio > 0 && (
                     <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontSize: '.48rem', letterSpacing: '.25em', color: '#8A7560', textTransform: 'uppercase', margin: 0 }}>
+                      <p style={{ fontSize: '.48rem', letterSpacing: '.25em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
                         Desde
                       </p>
                       <p style={{

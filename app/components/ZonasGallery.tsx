@@ -53,7 +53,7 @@ export default function ZonasGallery() {
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <p style={{
             fontSize: '.6rem', letterSpacing: '.6em',
-            color: '#8A7560', textTransform: 'uppercase', margin: 0,
+            color: '#8A6940', textTransform: 'uppercase', margin: 0,
           }}>
             02 — Espacios
           </p>
@@ -72,7 +72,7 @@ export default function ZonasGallery() {
           }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '.9rem', color: '#B8956A', margin: 0,
+            fontSize: '.9rem', color: '#C4A882', margin: 0,
           }}>
             Descubre los seis espacios de SOKKO
           </p>
@@ -157,7 +157,7 @@ export default function ZonasGallery() {
         }}>
           <p style={{
             fontSize: '.6rem', letterSpacing: '.6em',
-            color: '#8A7560', textTransform: 'uppercase', margin: 0,
+            color: '#8A6940', textTransform: 'uppercase', margin: 0,
           }}>
             02 — Espacios
           </p>
@@ -176,7 +176,7 @@ export default function ZonasGallery() {
           }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '.9rem', color: '#B8956A', margin: 0,
+            fontSize: '.9rem', color: '#C4A882', margin: 0,
           }}>
             Haz scroll para explorar los seis espacios
           </p>

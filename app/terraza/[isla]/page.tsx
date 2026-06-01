@@ -65,8 +65,8 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
 
   return (
     <div style={{
-      background: 'rgba(201,168,76,.03)',
-      border: '1px solid rgba(201,168,76,.15)',
+      background: 'rgba(200,146,42,.03)',
+      border: '1px solid rgba(200,146,42,.15)',
       borderRadius: '4px', padding: '1.5rem',
       maxWidth: '360px'
     }}>
@@ -74,18 +74,18 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
         <button
           onClick={() => setMes(new Date(mes.getFullYear(), mes.getMonth() - 1, 1))}
           style={{
-            background: 'transparent', border: '1px solid rgba(201,168,76,.2)',
+            background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
             color: '#8A6E2F', width: '32px', height: '32px',
             cursor: 'pointer', fontSize: '1rem', borderRadius: '2px'
           }}
         >‹</button>
-        <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C9A84C', fontSize: '.85rem', letterSpacing: '.15em' }}>
+        <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C8922A', fontSize: '.85rem', letterSpacing: '.15em' }}>
           {MESES_LARGO[mes.getMonth()]} {mes.getFullYear()}
         </p>
         <button
           onClick={() => setMes(new Date(mes.getFullYear(), mes.getMonth() + 1, 1))}
           style={{
-            background: 'transparent', border: '1px solid rgba(201,168,76,.2)',
+            background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
             color: '#8A6E2F', width: '32px', height: '32px',
             cursor: 'pointer', fontSize: '1rem', borderRadius: '2px'
           }}
@@ -117,11 +117,11 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
               disabled={pasado}
               style={{
                 width: '100%', aspectRatio: '1',
-                border: seleccionado ? '1px solid #C9A84C'
-                  : esHoy ? '1px solid rgba(201,168,76,.4)'
+                border: seleccionado ? '1px solid #C8922A'
+                  : esHoy ? '1px solid rgba(200,146,42,.4)'
                   : '1px solid transparent',
-                background: seleccionado ? 'rgba(201,168,76,.15)' : 'transparent',
-                color: pasado ? 'rgba(138,110,47,.3)' : seleccionado ? '#C9A84C' : '#B8A980',
+                background: seleccionado ? 'rgba(200,146,42,.15)' : 'transparent',
+                color: pasado ? 'rgba(138,110,47,.3)' : seleccionado ? '#C8922A' : '#B8A980',
                 fontFamily: 'var(--font-cinzel)', fontSize: '.75rem',
                 cursor: pasado ? 'default' : 'pointer',
                 borderRadius: '2px', transition: 'all .2s'
@@ -158,7 +158,7 @@ export default function IslaPage() {
 
   const inputStyle = {
     width: '100%', background: 'transparent',
-    border: 'none', borderBottom: '1px solid rgba(201,168,76,.3)',
+    border: 'none', borderBottom: '1px solid rgba(200,146,42,.3)',
     padding: '.8rem 0', color: '#B8A980', fontSize: '.85rem',
     fontFamily: 'var(--font-raleway)', outline: 'none', letterSpacing: '.05em'
   };
@@ -185,34 +185,31 @@ export default function IslaPage() {
   };
 
   if (!isla) return (
-    <div style={{ background: '#1A1208', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p style={{ color: '#C9A84C', fontFamily: 'var(--font-cinzel)' }}>Isla no encontrada</p>
+    <div style={{ background: '#1A0E05', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <p style={{ color: '#C8922A', fontFamily: 'var(--font-cinzel)' }}>Isla no encontrada</p>
     </div>
   );
 
   return (
-    <div style={{ background: '#1A1208', minHeight: '100vh' }}>
+    <div style={{ background: '#1A0E05', minHeight: '100vh' }}>
 
       {/* NAV */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '1.2rem 3rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(26,18,8,0.92)',
+        background: 'rgba(26,14,5,0.95)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(201,168,76,0.15)',
+        borderBottom: '1px solid rgba(200,146,42,0.15)',
       }}>
-        <a href="/" style={{
-          fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
-          letterSpacing: '.35em', color: '#C9A84C', textDecoration: 'none',
-        }}>
-          SOKKO LOUNGE
+        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+          <img src="/logo-sokko.svg" alt="SOKKO LOUNGE" style={{ height: '40px' }} />
         </a>
         <a href="/" style={{
           fontFamily: 'var(--font-raleway)', fontSize: '.65rem',
           letterSpacing: '.3em', textTransform: 'uppercase',
-          color: '#B8956A', textDecoration: 'none',
+          color: '#C4A882', textDecoration: 'none',
         }}>
           ← VOLVER
         </a>
@@ -244,13 +241,13 @@ export default function IslaPage() {
           <h1 style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-            color: '#C9A84C', letterSpacing: '.15em', marginBottom: '1rem'
+            color: '#C8922A', letterSpacing: '.15em', marginBottom: '1rem'
           }}>
             {nombreIsla}
           </h1>
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '1.1rem', color: '#B8956A', maxWidth: '500px'
+            fontSize: '1.1rem', color: '#C4A882', maxWidth: '500px'
           }}>
             {isla.desc}
           </p>
@@ -262,16 +259,16 @@ export default function IslaPage() {
 
         {enviado ? (
           <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-            <div style={{ width: '60px', height: '1px', background: '#C9A84C', margin: '0 auto 2rem' }} />
-            <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C9A84C', fontSize: '1.3rem', letterSpacing: '.15em' }}>
+            <div style={{ width: '60px', height: '1px', background: '#C8922A', margin: '0 auto 2rem' }} />
+            <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C8922A', fontSize: '1.3rem', letterSpacing: '.15em' }}>
               Reserva Confirmada
             </p>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#B8956A', marginTop: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#C4A882', marginTop: '1rem' }}>
               Te esperamos en la isla {nombreIsla}. Nos pondremos en contacto contigo pronto.
             </p>
             <a href="/" style={{
               display: 'inline-block', marginTop: '2rem',
-              border: '1px solid rgba(201,168,76,.3)', color: '#C9A84C',
+              border: '1px solid rgba(200,146,42,.3)', color: '#C8922A',
               padding: '.8rem 2rem', fontSize: '.6rem', letterSpacing: '.3em',
               textTransform: 'uppercase', fontFamily: 'var(--font-raleway)',
               textDecoration: 'none'
@@ -287,13 +284,13 @@ export default function IslaPage() {
                 <div key={s.n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.5rem' }}>
                   <div style={{
                     width: '40px', height: '40px', borderRadius: '50%',
-                    border: `1px solid ${step >= s.n ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                    background: step === s.n ? 'rgba(201,168,76,.1)' : 'transparent',
+                    border: `1px solid ${step >= s.n ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                    background: step === s.n ? 'rgba(200,146,42,.1)' : 'transparent',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontFamily: 'var(--font-cinzel)', fontSize: '.8rem',
-                    color: step >= s.n ? '#C9A84C' : '#8A6E2F'
+                    color: step >= s.n ? '#C8922A' : '#8A6E2F'
                   }}>{s.n}</div>
-                  <span style={{ fontSize: '.55rem', letterSpacing: '.2em', color: step >= s.n ? '#C9A84C' : '#8A6E2F', textTransform: 'uppercase' }}>
+                  <span style={{ fontSize: '.55rem', letterSpacing: '.2em', color: step >= s.n ? '#C8922A' : '#8A6E2F', textTransform: 'uppercase' }}>
                     {s.label}
                   </span>
                 </div>
@@ -309,18 +306,18 @@ export default function IslaPage() {
                     {[1,2,3,4,5,6,7,8].map(n => (
                       <button key={n} onClick={() => setPersonas(n)} style={{
                         width: '44px', height: '44px',
-                        border: `1px solid ${personas === n ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                        background: personas === n ? 'rgba(201,168,76,.1)' : 'transparent',
-                        color: personas === n ? '#C9A84C' : '#8A6E2F',
+                        border: `1px solid ${personas === n ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                        background: personas === n ? 'rgba(200,146,42,.1)' : 'transparent',
+                        color: personas === n ? '#C8922A' : '#8A6E2F',
                         fontFamily: 'var(--font-cinzel)', fontSize: '.8rem',
                         cursor: 'pointer', borderRadius: '2px', transition: 'all .2s'
                       }}>{n}</button>
                     ))}
                     <button onClick={() => setPersonas(9)} style={{
                       padding: '0 1rem', height: '44px',
-                      border: `1px solid ${personas === 9 ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                      background: personas === 9 ? 'rgba(201,168,76,.1)' : 'transparent',
-                      color: personas === 9 ? '#C9A84C' : '#8A6E2F',
+                      border: `1px solid ${personas === 9 ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                      background: personas === 9 ? 'rgba(200,146,42,.1)' : 'transparent',
+                      color: personas === 9 ? '#C8922A' : '#8A6E2F',
                       fontFamily: 'var(--font-raleway)', fontSize: '.6rem', letterSpacing: '.2em',
                       cursor: 'pointer', borderRadius: '2px'
                     }}>9+</button>
@@ -339,9 +336,9 @@ export default function IslaPage() {
                       {isla.horarios.map(h => (
                         <button key={h} onClick={() => setHorario(h)} style={{
                           padding: '.5rem 1rem',
-                          border: `1px solid ${horario === h ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                          background: horario === h ? 'rgba(201,168,76,.1)' : 'transparent',
-                          color: horario === h ? '#C9A84C' : '#8A6E2F',
+                          border: `1px solid ${horario === h ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                          background: horario === h ? 'rgba(200,146,42,.1)' : 'transparent',
+                          color: horario === h ? '#C8922A' : '#8A6E2F',
                           fontFamily: 'var(--font-cinzel)', fontSize: '.75rem',
                           cursor: 'pointer', borderRadius: '2px', transition: 'all .2s'
                         }}>{h}</button>
@@ -352,9 +349,9 @@ export default function IslaPage() {
 
                 <button onClick={() => setStep(2)} disabled={!fecha || !horario} style={{
                   alignSelf: 'center', marginTop: '1rem',
-                  background: fecha && horario ? 'rgba(201,168,76,.1)' : 'transparent',
-                  border: `1px solid ${fecha && horario ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                  color: fecha && horario ? '#C9A84C' : '#8A6E2F',
+                  background: fecha && horario ? 'rgba(200,146,42,.1)' : 'transparent',
+                  border: `1px solid ${fecha && horario ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                  color: fecha && horario ? '#C8922A' : '#8A6E2F',
                   padding: '1rem 3rem', fontSize: '.65rem', letterSpacing: '.35em',
                   textTransform: 'uppercase', cursor: 'pointer',
                   fontFamily: 'var(--font-raleway)', transition: 'all .3s'
@@ -365,12 +362,12 @@ export default function IslaPage() {
             {/* STEP 2 */}
             {step === 2 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-                <div style={{ padding: '1.5rem', border: '1px solid rgba(201,168,76,.1)', background: 'rgba(201,168,76,.03)' }}>
+                <div style={{ padding: '1.5rem', border: '1px solid rgba(200,146,42,.1)', background: 'rgba(200,146,42,.03)' }}>
                   <p style={{ fontSize: '.6rem', letterSpacing: '.3em', color: '#8A7560', textTransform: 'uppercase', marginBottom: '.8rem' }}>Resumen</p>
-                  <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C9A84C', fontSize: '.85rem' }}>
+                  <p style={{ fontFamily: 'var(--font-cinzel)', color: '#C8922A', fontSize: '.85rem' }}>
                     {nombreIsla} · {personas} {personas === 1 ? 'persona' : 'personas'}
                   </p>
-                  <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#B8956A', fontSize: '.9rem', marginTop: '.3rem' }}>
+                  <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#C4A882', fontSize: '.9rem', marginTop: '.3rem' }}>
                     {fecha?.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })} · {horario}h
                   </p>
                 </div>
@@ -391,15 +388,15 @@ export default function IslaPage() {
                 </div>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
                   <button onClick={() => setStep(1)} style={{
-                    background: 'transparent', border: '1px solid rgba(201,168,76,.2)',
+                    background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
                     color: '#8A6E2F', padding: '1rem 2rem', fontSize: '.65rem',
                     letterSpacing: '.35em', textTransform: 'uppercase',
                     cursor: 'pointer', fontFamily: 'var(--font-raleway)'
                   }}>← Atrás</button>
                   <button onClick={() => setStep(3)} disabled={!form.nombre || !form.correo || !form.telefono} style={{
-                    background: form.nombre && form.correo && form.telefono ? 'rgba(201,168,76,.1)' : 'transparent',
-                    border: `1px solid ${form.nombre && form.correo && form.telefono ? '#C9A84C' : 'rgba(201,168,76,.2)'}`,
-                    color: form.nombre && form.correo && form.telefono ? '#C9A84C' : '#8A6E2F',
+                    background: form.nombre && form.correo && form.telefono ? 'rgba(200,146,42,.1)' : 'transparent',
+                    border: `1px solid ${form.nombre && form.correo && form.telefono ? '#C8922A' : 'rgba(200,146,42,.2)'}`,
+                    color: form.nombre && form.correo && form.telefono ? '#C8922A' : '#8A6E2F',
                     padding: '1rem 2rem', fontSize: '.65rem', letterSpacing: '.35em',
                     textTransform: 'uppercase', cursor: 'pointer',
                     fontFamily: 'var(--font-raleway)', transition: 'all .3s'
@@ -411,7 +408,7 @@ export default function IslaPage() {
             {/* STEP 3 */}
             {step === 3 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div style={{ padding: '2rem', border: '1px solid rgba(201,168,76,.15)', background: 'rgba(201,168,76,.03)' }}>
+                <div style={{ padding: '2rem', border: '1px solid rgba(200,146,42,.15)', background: 'rgba(200,146,42,.03)' }}>
                   <p style={{ fontSize: '.6rem', letterSpacing: '.3em', color: '#8A7560', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
                     Confirma tu reserva
                   </p>
@@ -425,23 +422,23 @@ export default function IslaPage() {
                       ['Correo', form.correo],
                       ['Teléfono', form.telefono],
                     ].map(([k, v]) => (
-                      <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(201,168,76,.06)', paddingBottom: '.8rem' }}>
+                      <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(200,146,42,.06)', paddingBottom: '.8rem' }}>
                         <span style={{ fontSize: '.6rem', letterSpacing: '.2em', color: '#8A7560', textTransform: 'uppercase' }}>{k}</span>
-                        <span style={{ fontFamily: 'var(--font-cormorant)', color: '#B8956A', fontSize: '.9rem' }}>{v}</span>
+                        <span style={{ fontFamily: 'var(--font-cormorant)', color: '#C4A882', fontSize: '.9rem' }}>{v}</span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
                   <button onClick={() => setStep(2)} style={{
-                    background: 'transparent', border: '1px solid rgba(201,168,76,.2)',
+                    background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
                     color: '#8A6E2F', padding: '1rem 2rem', fontSize: '.65rem',
                     letterSpacing: '.35em', textTransform: 'uppercase',
                     cursor: 'pointer', fontFamily: 'var(--font-raleway)'
                   }}>← Atrás</button>
                   <button onClick={handleSubmit} disabled={cargando} style={{
-                    background: 'rgba(201,168,76,.1)', border: '1px solid #C9A84C',
-                    color: '#C9A84C', padding: '1rem 2.5rem', fontSize: '.65rem',
+                    background: 'rgba(200,146,42,.1)', border: '1px solid #C8922A',
+                    color: '#C8922A', padding: '1rem 2.5rem', fontSize: '.65rem',
                     letterSpacing: '.35em', textTransform: 'uppercase', cursor: 'pointer',
                     fontFamily: 'var(--font-raleway)', transition: 'all .3s'
                   }}>{cargando ? 'Enviando...' : 'Confirmar Reserva'}</button>

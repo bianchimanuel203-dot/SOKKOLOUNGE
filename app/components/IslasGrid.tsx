@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 import IslaGridCard from './IslaGridCard';
 
 const ISLAS = [
-  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Alma volcánica, fuego y calma',          imagen: '/islas/lanzarote.jpg' },
-  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Brisa atlántica, silencio del desierto', imagen: '/islas/Fuerteventura.jpg' },
-  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante, cosmopolita, viva',             imagen: '/islas/Gran canaria.jpg' },
-  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Alturas majestuosas, cielos íntimos',    imagen: '/islas/Tenerife.jpg' },
-  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Sueños verdes, luz dorada',               imagen: '/islas/la palma.jpg' },
-  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Niebla ancestral, esencia pura',          imagen: '/islas/La gomera.jpg' },
-  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje, remota, ancestral',              imagen: '/islas/el hierro.jpg' },
-  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serenidad en su máxima expresión',       imagen: '/islas/La graciosa.jpg' },
+  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Volcánica y única',       imagen: '/islas/lanzarote.jpg' },
+  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Salvaje y libre',         imagen: '/islas/Fuerteventura.jpg' },
+  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante y cosmopolita',  imagen: '/islas/Gran canaria.jpg' },
+  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Intensa y majestuosa',    imagen: '/islas/Tenerife.jpg' },
+  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Verde y soñadora',        imagen: '/islas/la palma.jpg' },
+  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Auténtica y esencial',    imagen: '/islas/La gomera.jpg' },
+  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje y espiritual',    imagen: '/islas/el hierro.jpg' },
+  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serena y exclusiva',      imagen: '/islas/La graciosa.jpg' },
 ];
 
 function getColumns(w: number) {
@@ -20,7 +20,7 @@ function getColumns(w: number) {
 }
 
 export default function IslasGrid() {
-  const [cols, setCols] = useState('repeat(4, 1fr)');
+  const [cols, setCols]     = useState('repeat(4, 1fr)');
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -37,15 +37,10 @@ export default function IslasGrid() {
   return (
     <div style={{
       maxWidth: '1280px', margin: '0 auto',
-      display: 'grid',
-      gridTemplateColumns: cols,
-      gap: '2px',
+      display: 'grid', gridTemplateColumns: cols, gap: '2px',
     }}>
       {ISLAS.map((isla) => (
-        <div
-          key={isla.slug}
-          style={isMobile ? { height: '480px' } : undefined}
-        >
+        <div key={isla.slug} style={isMobile ? { height: '480px' } : undefined}>
           <IslaGridCard {...isla} />
         </div>
       ))}

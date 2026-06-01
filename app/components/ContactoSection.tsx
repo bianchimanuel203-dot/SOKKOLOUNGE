@@ -36,7 +36,7 @@ export default function ContactoSection() {
   const inputStyle: React.CSSProperties = {
     width: '100%',
     background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(201,168,76,0.2)',
+    border: '1px solid rgba(200,146,42,0.2)',
     borderRadius: '6px',
     padding: '12px 16px',
     color: '#F5F0E8',
@@ -58,7 +58,7 @@ export default function ContactoSection() {
   };
 
   return (
-    <section id="contacto" style={{ background: '#110E07', padding: '100px 40px' }}>
+    <section id="contacto" style={{ background: '#1A0E05', padding: '100px 40px' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -77,9 +77,9 @@ export default function ContactoSection() {
             letterSpacing: '0.06em', textTransform: 'uppercase',
             marginBottom: '16px',
           }}>
-            Tu refugio te <span style={{ color: '#C9A84C' }}>espera</span>
+            Tu refugio te <span style={{ color: '#C8922A' }}>espera</span>
           </h2>
-          <div style={{ width: '40px', height: '1px', background: '#C9A84C', margin: '0 auto 20px' }} />
+          <div style={{ width: '40px', height: '1px', background: '#C8922A', margin: '0 auto 20px' }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
             fontSize: '17px', color: '#8A7560', maxWidth: '480px', margin: '0 auto',
@@ -98,8 +98,8 @@ export default function ContactoSection() {
 
           {/* ── Formulario ── */}
           <div style={{
-            background: 'rgba(201,168,76,0.04)',
-            border: '1px solid rgba(201,168,76,0.12)',
+            background: 'rgba(200,146,42,0.04)',
+            border: '1px solid rgba(200,146,42,0.12)',
             borderRadius: '12px',
             padding: '40px',
           }}>
@@ -107,7 +107,7 @@ export default function ContactoSection() {
               <div style={{ textAlign: 'center', padding: '40px 0' }}>
                 <div style={{ fontSize: '40px', marginBottom: '16px' }}>✓</div>
                 <h3 style={{
-                  fontFamily: 'var(--font-cinzel)', color: '#C9A84C',
+                  fontFamily: 'var(--font-cinzel)', color: '#C8922A',
                   fontSize: '20px', letterSpacing: '0.1em', marginBottom: '12px',
                 }}>
                   Reserva recibida
@@ -172,7 +172,7 @@ export default function ContactoSection() {
                       style={{ ...inputStyle, cursor: 'pointer' }}
                     >
                       {[1,2,3,4,5,6,7,8,9,10].map(n => (
-                        <option key={n} value={n} style={{ background: '#1A1208' }}>
+                        <option key={n} value={n} style={{ background: '#1A0E05' }}>
                           {n} {n === 1 ? 'persona' : 'personas'}
                         </option>
                       ))}
@@ -199,7 +199,7 @@ export default function ContactoSection() {
                   style={{
                     width: '100%',
                     padding: '14px',
-                    background: enviando ? 'rgba(201,168,76,0.5)' : '#C9A84C',
+                    background: enviando ? 'rgba(200,146,42,0.5)' : '#C8922A',
                     border: 'none',
                     borderRadius: '6px',
                     fontFamily: 'var(--font-raleway)',
@@ -207,7 +207,7 @@ export default function ContactoSection() {
                     fontWeight: 700,
                     letterSpacing: '0.25em',
                     textTransform: 'uppercase',
-                    color: '#1A1208',
+                    color: '#1A0E05',
                     cursor: enviando ? 'not-allowed' : 'pointer',
                     transition: 'background 0.2s ease',
                   }}
@@ -223,14 +223,14 @@ export default function ContactoSection() {
 
             {/* Ubicación */}
             <div style={{
-              background: 'rgba(201,168,76,0.04)',
-              border: '1px solid rgba(201,168,76,0.12)',
+              background: 'rgba(200,146,42,0.04)',
+              border: '1px solid rgba(200,146,42,0.12)',
               borderRadius: '12px',
               padding: '28px',
             }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '10px',
-                background: 'rgba(201,168,76,0.12)',
+                background: 'rgba(200,146,42,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 marginBottom: '16px',
               }}>
@@ -260,8 +260,8 @@ export default function ContactoSection() {
                 style={{
                   fontFamily: 'var(--font-raleway)',
                   fontSize: '10px', letterSpacing: '0.2em',
-                  textTransform: 'uppercase', color: '#C9A84C',
-                  textDecoration: 'none', borderBottom: '1px solid rgba(201,168,76,0.3)',
+                  textTransform: 'uppercase', color: '#C8922A',
+                  textDecoration: 'none', borderBottom: '1px solid rgba(200,146,42,0.3)',
                   paddingBottom: '2px',
                 }}
               >
@@ -271,14 +271,14 @@ export default function ContactoSection() {
 
             {/* Teléfono / WhatsApp */}
             <div style={{
-              background: 'rgba(201,168,76,0.04)',
-              border: '1px solid rgba(201,168,76,0.12)',
+              background: 'rgba(200,146,42,0.04)',
+              border: '1px solid rgba(200,146,42,0.12)',
               borderRadius: '12px',
               padding: '28px',
             }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '10px',
-                background: 'rgba(201,168,76,0.12)',
+                background: 'rgba(200,146,42,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 marginBottom: '16px',
               }}>
@@ -326,14 +326,14 @@ export default function ContactoSection() {
 
             {/* Horario */}
             <div style={{
-              background: 'rgba(201,168,76,0.04)',
-              border: '1px solid rgba(201,168,76,0.12)',
+              background: 'rgba(200,146,42,0.04)',
+              border: '1px solid rgba(200,146,42,0.12)',
               borderRadius: '12px',
               padding: '28px',
             }}>
               <div style={{
                 width: '44px', height: '44px', borderRadius: '10px',
-                background: 'rgba(201,168,76,0.12)',
+                background: 'rgba(200,146,42,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 marginBottom: '16px',
               }}>
@@ -357,12 +357,12 @@ export default function ContactoSection() {
                 <div key={dia} style={{
                   display: 'flex', justifyContent: 'space-between',
                   padding: '8px 0',
-                  borderBottom: '1px solid rgba(201,168,76,0.08)',
+                  borderBottom: '1px solid rgba(200,146,42,0.08)',
                 }}>
                   <span style={{ fontFamily: 'var(--font-raleway)', fontSize: '12px', color: '#8A7560' }}>{dia}</span>
                   <span style={{
                     fontFamily: 'var(--font-raleway)', fontSize: '12px',
-                    color: hora === 'Cerrado' ? '#5A4A3A' : '#C9A84C',
+                    color: hora === 'Cerrado' ? '#5A4A3A' : '#C8922A',
                     fontWeight: 500,
                   }}>{hora}</span>
                 </div>

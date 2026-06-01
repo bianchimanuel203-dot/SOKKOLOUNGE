@@ -48,7 +48,7 @@ export default function ZonasGallery() {
   // ── MÓVIL — grid 2 columnas estático ─────────────────────────────────────
   if (mobile) {
     return (
-      <div style={{ background: '#1A1208', padding: '4rem 1.25rem 3rem' }}>
+      <div style={{ background: '#1A0E05', padding: '4rem 1.25rem 3rem' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <p style={{
@@ -60,14 +60,14 @@ export default function ZonasGallery() {
           <h2 style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(1.6rem, 6vw, 2.2rem)',
-            color: '#C9A84C', letterSpacing: '.15em',
+            color: '#D4A843', letterSpacing: '.15em',
             marginTop: '.8rem', marginBottom: 0,
           }}>
             Nuestras Zonas
           </h2>
           <div style={{
             width: '50px', height: '1px',
-            background: 'rgba(201,168,76,0.4)',
+            background: 'rgba(200,146,42,0.4)',
             margin: '.8rem auto',
           }} />
           <p style={{
@@ -113,7 +113,7 @@ export default function ZonasGallery() {
                 position: 'absolute', top: '0.75rem', left: '0.75rem',
                 fontFamily: 'var(--font-cinzel)',
                 fontSize: '.5rem', letterSpacing: '.3em',
-                color: 'rgba(201,168,76,0.7)',
+                color: 'rgba(200,146,42,0.7)',
                 textTransform: 'uppercase', margin: 0,
               }}>
                 {zona.binomial}
@@ -124,7 +124,7 @@ export default function ZonasGallery() {
                 position: 'absolute', bottom: '0.85rem', left: '0.75rem', right: '0.75rem',
                 fontFamily: 'var(--font-cinzel)',
                 fontSize: '.75rem', letterSpacing: '.12em',
-                color: '#C9A84C', margin: 0, lineHeight: '1.3',
+                color: '#D4A843', margin: 0, lineHeight: '1.3',
               }}>
                 {zona.common}
               </p>
@@ -137,18 +137,18 @@ export default function ZonasGallery() {
 
   // ── DESKTOP — galería circular con sticky ────────────────────────────────
   return (
-    <div style={{ background: '#1A1208', width: '100%', height: '300vh' }}>
+    <div style={{ background: '#1A0E05', width: '100%', height: '300vh' }}>
       <div style={{
         width: '100%', height: '100vh',
         position: 'sticky', top: 0,
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        overflow: 'hidden', background: '#1A1208',
+        overflow: 'hidden', background: '#1A0E05',
       }}>
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: '1px',
-          background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)',
+          background: 'linear-gradient(to right, transparent, rgba(200,146,42,0.3), transparent)',
         }} />
 
         <div style={{
@@ -164,14 +164,14 @@ export default function ZonasGallery() {
           <h2 style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            color: '#C9A84C', letterSpacing: '.15em',
+            color: '#D4A843', letterSpacing: '.15em',
             marginTop: '.8rem', marginBottom: 0,
           }}>
             Nuestras Zonas
           </h2>
           <div style={{
             width: '50px', height: '1px',
-            background: 'rgba(201,168,76,0.4)',
+            background: 'rgba(200,146,42,0.4)',
             margin: '.8rem auto',
           }} />
           <p style={{
@@ -189,7 +189,7 @@ export default function ZonasGallery() {
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '1px',
-          background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)',
+          background: 'linear-gradient(to right, transparent, rgba(200,146,42,0.3), transparent)',
         }} />
       </div>
     </div>

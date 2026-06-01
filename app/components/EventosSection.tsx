@@ -12,10 +12,10 @@ const MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV'
 
 const categoriaColor: Record<string, string> = {
   musica:      '#C4693E',
-  dj:          '#C9A84C',
+  dj:          '#C8922A',
   gastronomia: '#7A9B7E',
   taller:      '#8A7EC9',
-  especial:    '#C9A84C',
+  especial:    '#C8922A',
 };
 
 export default async function EventosSection() {
@@ -24,11 +24,10 @@ export default async function EventosSection() {
 
   return (
     <section id="eventos" style={{
-      background: '#1A1208',
+      background: '#1A0E05',
       padding: '7rem 2rem',
-      borderTop: '1px solid rgba(201,168,76,0.2)',
+      borderTop: '1px solid rgba(200,146,42,0.2)',
     }}>
-      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
         <p style={{
           fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560',
@@ -39,15 +38,15 @@ export default async function EventosSection() {
         <h2 style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-          color: '#C9A84C', letterSpacing: '.18em',
+          color: '#D4A843', letterSpacing: '.18em',
           marginTop: '1rem', marginBottom: 0,
         }}>
           PRÓXIMOS EVENTOS
         </h2>
-        <div style={{ width: '60px', height: '1px', background: 'rgba(201,168,76,0.4)', margin: '1.75rem auto' }} />
+        <div style={{ width: '60px', height: '1px', background: 'rgba(200,146,42,0.4)', margin: '1.75rem auto' }} />
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.05rem', color: '#B8956A',
+          fontSize: '1.05rem', color: '#C4A882',
           maxWidth: '480px', margin: '0 auto', lineHeight: '1.8',
         }}>
           Cada noche en SOKKO es una experiencia única. Consulta nuestra agenda y reserva tu momento.
@@ -64,7 +63,7 @@ export default async function EventosSection() {
       ) : (
         <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
           {activos.map((evento, idx) => {
-            const catColor = categoriaColor[evento.acf.categoria] ?? '#C9A84C';
+            const catColor = categoriaColor[evento.acf.categoria] ?? '#C8922A';
             const dia    = evento.acf.fecha_evento ? parseInt(evento.acf.fecha_evento.substring(6, 8)) : null;
             const mesIdx = evento.acf.fecha_evento ? parseInt(evento.acf.fecha_evento.substring(4, 6)) - 1 : null;
             const anio   = evento.acf.fecha_evento ? evento.acf.fecha_evento.substring(0, 4) : null;
@@ -73,20 +72,17 @@ export default async function EventosSection() {
               <div key={evento.id} style={{
                 display: 'grid',
                 gridTemplateColumns: '110px 1fr auto',
-                gap: '2.5rem',
-                alignItems: 'start',
+                gap: '2.5rem', alignItems: 'start',
                 padding: '2.5rem 0',
-                borderBottom: '1px solid rgba(201,168,76,0.15)',
-                borderTop: idx === 0 ? '1px solid rgba(201,168,76,0.15)' : 'none',
+                borderBottom: '1px solid rgba(200,146,42,0.15)',
+                borderTop: idx === 0 ? '1px solid rgba(200,146,42,0.15)' : 'none',
               }}>
-
-                {/* Fecha — columna izquierda */}
                 <div style={{ textAlign: 'center', paddingTop: '.2rem' }}>
                   {dia !== null ? (
                     <>
                       <p style={{
                         fontFamily: 'var(--font-cinzel)',
-                        fontSize: '3.5rem', color: '#C9A84C',
+                        fontSize: '3.5rem', color: '#C8922A',
                         lineHeight: 1, letterSpacing: '-.02em', margin: 0,
                       }}>
                         {String(dia).padStart(2, '0')}
@@ -101,8 +97,7 @@ export default async function EventosSection() {
                       {evento.acf.hora_evento && (
                         <p style={{
                           fontFamily: 'var(--font-cinzel)', fontSize: '.72rem',
-                          color: '#B8956A', letterSpacing: '.08em',
-                          margin: '.3rem 0 0',
+                          color: '#C4A882', letterSpacing: '.08em', margin: '.3rem 0 0',
                         }}>
                           {evento.acf.hora_evento}h
                         </p>
@@ -113,7 +108,6 @@ export default async function EventosSection() {
                   )}
                 </div>
 
-                {/* Info — columna central */}
                 <div>
                   <span style={{
                     display: 'inline-block',
@@ -152,11 +146,7 @@ export default async function EventosSection() {
                   )}
                 </div>
 
-                {/* Precio + CTA — columna derecha */}
-                <div style={{
-                  display: 'flex', flexDirection: 'column',
-                  alignItems: 'flex-end', gap: '1rem', paddingTop: '.2rem',
-                }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1rem', paddingTop: '.2rem' }}>
                   {evento.acf.precio > 0 && (
                     <div style={{ textAlign: 'right' }}>
                       <p style={{ fontSize: '.48rem', letterSpacing: '.25em', color: '#8A7560', textTransform: 'uppercase', margin: 0 }}>
@@ -164,7 +154,7 @@ export default async function EventosSection() {
                       </p>
                       <p style={{
                         fontFamily: 'var(--font-cinzel)', fontSize: '1.4rem',
-                        color: '#C9A84C', margin: '.2rem 0 0',
+                        color: '#C8922A', margin: '.2rem 0 0',
                       }}>
                         {evento.acf.precio}€
                       </p>
@@ -173,16 +163,14 @@ export default async function EventosSection() {
                   <a href="/terraza/lanzarote" style={{
                     fontFamily: 'var(--font-raleway)', fontSize: '.55rem',
                     letterSpacing: '.28em', textTransform: 'uppercase',
-                    color: '#C9A84C', textDecoration: 'none',
-                    border: '1px solid rgba(201,168,76,0.5)',
-                    background: 'rgba(201,168,76,0.06)',
-                    padding: '.65rem 1.4rem',
-                    whiteSpace: 'nowrap',
+                    color: '#C8922A', textDecoration: 'none',
+                    border: '1px solid rgba(200,146,42,0.5)',
+                    background: 'rgba(200,146,42,0.06)',
+                    padding: '.65rem 1.4rem', whiteSpace: 'nowrap',
                   }}>
                     RESERVAR
                   </a>
                 </div>
-
               </div>
             );
           })}

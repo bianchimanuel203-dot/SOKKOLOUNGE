@@ -19,7 +19,7 @@ const NAV_LINKS = [
 
 export default async function Home() {
   return (
-    <main style={{ background: '#1A1208', minHeight: '100vh' }}>
+    <main style={{ background: '#1A0E05', minHeight: '100vh' }}>
 
       {/* NAV */}
       <Navbar />
@@ -29,17 +29,29 @@ export default async function Home() {
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} style={{
             position: 'absolute', left: `${(i * 17 + 5) % 100}%`,
-            width: '2px', height: '2px', background: '#C9A84C', borderRadius: '50%',
+            width: '2px', height: '2px', background: '#C8922A', borderRadius: '50%',
             opacity: 0, animation: `float ${10 + (i % 8)}s ${i * 0.7}s linear infinite`,
             pointerEvents: 'none',
           }} />
         ))}
 
+        {/* Logo grande centrado */}
+        <img
+          src="/logo-sokko.svg"
+          alt="SOKKO LOUNGE"
+          style={{
+            height: '180px',
+            filter: 'drop-shadow(0 0 30px rgba(200,146,42,0.5))',
+            animation: 'fadeUp 1.4s .2s both',
+            marginBottom: '1rem',
+          }}
+        />
+
         <h1 style={{
           fontFamily: 'var(--font-cinzel)',
-          fontSize: 'clamp(5rem, 14vw, 10rem)',
-          color: '#C9A84C', letterSpacing: '.12em', lineHeight: 1,
-          textShadow: '0 0 80px rgba(201,168,76,.3)',
+          fontSize: 'clamp(3rem, 8vw, 6rem)',
+          color: '#D4A843', letterSpacing: '.12em', lineHeight: 1,
+          textShadow: '0 0 80px rgba(139,105,20,.4)',
           animation: 'fadeUp 1.4s .4s both', textAlign: 'center',
         }}>
           SOKKO
@@ -57,7 +69,7 @@ export default async function Home() {
         <p style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(.9rem, 2vw, 1.3rem)',
-          color: '#B8956A', letterSpacing: '.1em',
+          color: '#C4A882', letterSpacing: '.1em',
           marginTop: '1.5rem', animation: 'fadeUp 1.4s .6s both',
           textAlign: 'center',
         }}>
@@ -73,13 +85,23 @@ export default async function Home() {
           El refugio volcánico donde la naturaleza salvaje se encuentra con el lujo íntimo.
         </p>
 
+        <p style={{
+          fontFamily: 'var(--font-cinzel)',
+          fontSize: '.7rem', letterSpacing: '.5em',
+          color: '#C4A882',
+          marginTop: '.8rem', animation: 'fadeUp 1.4s .65s both',
+          textAlign: 'center',
+        }}>
+          EL RESGUARDO DEL VIENTO
+        </p>
+
         <a href="#espacios" style={{
           marginTop: '2.5rem',
           fontFamily: 'var(--font-raleway)', fontWeight: 400,
           fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
-          color: '#C9A84C',
-          border: '1px solid rgba(201,168,76,0.6)',
-          background: 'rgba(201,168,76,0.08)',
+          color: '#C8922A',
+          border: '1px solid rgba(200,146,42,0.7)',
+          background: 'rgba(200,146,42,0.08)',
           padding: '1rem 3rem', textDecoration: 'none',
           animation: 'fadeUp 1.4s .9s both',
           display: 'inline-block',
@@ -109,7 +131,7 @@ export default async function Home() {
       </section>
 
       {/* FILOSOFÍA */}
-      <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A1208' }}>
+      <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A0E05' }}>
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
           fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#F5F0E8',
@@ -117,13 +139,13 @@ export default async function Home() {
         }}>
           SOKKO no es solo un lugar.<br />Es refugio, calma, conexión y experiencia.
         </p>
-        <div style={{ width: '60px', height: '2px', background: '#C9A84C', margin: '2.5rem auto 0' }} />
+        <div style={{ width: '60px', height: '2px', background: '#C8922A', margin: '2.5rem auto 0' }} />
       </section>
 
       {/* ISLAS */}
       <section id="terraza" style={{
-        background: '#1A1208', padding: '6rem 2rem',
-        borderTop: '1px solid rgba(201,168,76,0.2)',
+        background: '#1A0E05', padding: '6rem 2rem',
+        borderTop: '1px solid rgba(200,146,42,0.2)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A7560', textTransform: 'uppercase', margin: 0 }}>
@@ -131,14 +153,14 @@ export default async function Home() {
           </p>
           <h2 style={{
             fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            color: '#C9A84C', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
+            color: '#D4A843', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
           }}>
             Las Ocho Islas
           </h2>
-          <div style={{ width: '60px', height: '1px', background: 'rgba(201,168,76,0.4)', margin: '1.5rem auto' }} />
+          <div style={{ width: '60px', height: '1px', background: 'rgba(200,146,42,0.4)', margin: '1.5rem auto' }} />
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '1.05rem', color: '#B8956A',
+            fontSize: '1.05rem', color: '#C4A882',
             maxWidth: '520px', margin: '0 auto', lineHeight: '1.8',
           }}>
             Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
@@ -161,8 +183,8 @@ export default async function Home() {
 
       {/* FOOTER */}
       <footer style={{
-        background: '#1A1208',
-        borderTop: '2px solid rgba(201,168,76,0.3)',
+        background: '#1A0E05',
+        borderTop: '2px solid rgba(200,146,42,0.3)',
         padding: '5rem 3rem 3rem',
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -171,18 +193,21 @@ export default async function Home() {
             alignItems: 'flex-start', flexWrap: 'wrap',
             gap: '2rem', marginBottom: '3rem',
           }}>
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '.6rem' }}>
+              <img
+                src="/logo-sokko.svg"
+                alt="SOKKO LOUNGE"
+                style={{
+                  height: '90px',
+                  filter: 'drop-shadow(0 0 12px rgba(200,146,42,0.3))',
+                }}
+              />
               <p style={{
-                fontFamily: 'var(--font-cinzel)', color: '#C9A84C',
-                letterSpacing: '.35em', fontSize: '1.4rem', margin: 0,
+                fontFamily: 'var(--font-cinzel)',
+                fontSize: '.6rem', letterSpacing: '.4em',
+                color: '#8A7560', margin: 0, textTransform: 'uppercase',
               }}>
-                SOKKO LOUNGE
-              </p>
-              <p style={{
-                fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                fontSize: '1rem', color: '#8A7560', margin: '.5rem 0 0',
-              }}>
-                El Resguardo del Viento · Fuerteventura
+                EL RESGUARDO DEL VIENTO · FUERTEVENTURA
               </p>
             </div>
             <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -198,7 +223,7 @@ export default async function Home() {
             </div>
           </div>
           <div style={{
-            borderTop: '1px solid rgba(201,168,76,0.12)',
+            borderTop: '1px solid rgba(200,146,42,0.12)',
             paddingTop: '1.5rem', textAlign: 'center',
           }}>
             <p style={{

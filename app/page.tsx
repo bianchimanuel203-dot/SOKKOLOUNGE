@@ -3,20 +3,10 @@ import ZonasGallery from './components/ZonasGallery';
 import EventosSection from './components/EventosSection';
 import HorariosSection from './components/HorariosSection';
 import MenuSection from './components/MenuSection';
-import IslaGridCard from './components/IslaGridCard';
+import IslasGrid from './components/IslasGrid';
 import ContactoSection from './components/ContactoSection';
 import WhatsAppButton from './components/WhatsAppButton';
-
-const ISLAS = [
-  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Alma volcánica, fuego y calma',          imagen: '/islas/lanzarote.jpg' },
-  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Brisa atlántica, silencio del desierto', imagen: '/islas/Fuerteventura.jpg' },
-  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante, cosmopolita, viva',             imagen: '/islas/Gran canaria.jpg' },
-  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Alturas majestuosas, cielos íntimos',    imagen: '/islas/Tenerife.jpg' },
-  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Sueños verdes, luz dorada',               imagen: '/islas/la palma.jpg' },
-  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Niebla ancestral, esencia pura',          imagen: '/islas/La gomera.jpg' },
-  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje, remota, ancestral',              imagen: '/islas/el hierro.jpg' },
-  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serenidad en su máxima expresión',       imagen: '/islas/La graciosa.jpg' },
-];
+import Navbar from './components/Navbar';
 
 const NAV_LINKS = [
   { label: 'ESPACIOS',  href: '#espacios' },
@@ -32,43 +22,7 @@ export default async function Home() {
     <main style={{ background: '#1A1208', minHeight: '100vh' }}>
 
       {/* NAV */}
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        padding: '1.2rem 3rem',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(26,18,8,0.92)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(201,168,76,0.15)',
-      }}>
-        <a href="#" style={{
-          fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
-          letterSpacing: '.35em', color: '#C9A84C', textDecoration: 'none',
-          whiteSpace: 'nowrap', flexShrink: 0,
-        }}>
-          SOKKO LOUNGE
-        </a>
-        <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
-          {NAV_LINKS.map(({ label, href }) => (
-            <a key={label} href={href} style={{
-              fontFamily: 'var(--font-raleway)', fontWeight: 300,
-              fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
-              color: '#B8956A', textDecoration: 'none',
-            }}>
-              {label}
-            </a>
-          ))}
-        </div>
-        <a href="#terraza" style={{
-          fontFamily: 'var(--font-raleway)', fontWeight: 400,
-          fontSize: '.65rem', letterSpacing: '.3em', textTransform: 'uppercase',
-          color: '#C9A84C', textDecoration: 'none',
-          border: '1px solid rgba(201,168,76,0.6)',
-          padding: '.6rem 1.5rem', flexShrink: 0,
-        }}>
-          RESERVAR
-        </a>
-      </nav>
+      <Navbar />
 
       {/* HERO */}
       <LampContainer>
@@ -190,14 +144,7 @@ export default async function Home() {
             Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
           </p>
         </div>
-        <div style={{
-          maxWidth: '1280px', margin: '0 auto',
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2px',
-        }}>
-          {ISLAS.map((isla) => (
-            <IslaGridCard key={isla.slug} {...isla} />
-          ))}
-        </div>
+        <IslasGrid />
       </section>
 
       {/* EVENTOS */}

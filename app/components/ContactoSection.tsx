@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactoSection() {
   const [formData, setFormData] = useState({
@@ -7,6 +7,14 @@ export default function ContactoSection() {
   });
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +58,7 @@ export default function ContactoSection() {
   };
 
   return (
-    <section style={{ background: '#110E07', padding: '100px 40px' }}>
+    <section id="contacto" style={{ background: '#110E07', padding: '100px 40px' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -83,8 +91,8 @@ export default function ContactoSection() {
         {/* Grid formulario + info */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 420px',
-          gap: '48px',
+          gridTemplateColumns: mobile ? '1fr' : '1fr 420px',
+          gap: mobile ? '32px' : '48px',
           alignItems: 'start',
         }}>
 

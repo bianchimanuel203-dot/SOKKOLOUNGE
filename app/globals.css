@@ -23,6 +23,10 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes float {
+  0%, 100% { opacity: 0; transform: translateY(0px); }
+  50% { opacity: 0.6; transform: translateY(-30px); }
+}
+@keyframes floatRise {
   0% { transform: translateY(100vh) translateX(0); opacity: 0; }
   10% { opacity: .6; }
   90% { opacity: .3; }

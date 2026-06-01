@@ -87,6 +87,7 @@ export interface Plato {
     tipo: string;
     destacado: boolean;
     disponible: boolean;
+    imagen: { url: string } | false;
   };
 }
 
@@ -97,4 +98,15 @@ export async function getMenu(): Promise<Plato[]> {
   );
   if (!res.ok) throw new Error('Error al cargar menú');
   return res.json();
+}
+
+export interface Reserva {
+  nombre: string;
+  email: string;
+  telefono?: string;
+  fecha: string;
+  hora: string;
+  personas: string;
+  isla: string;
+  mensaje?: string;
 }

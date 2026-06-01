@@ -6,6 +6,9 @@ import IslasGrid from './components/IslasGrid';
 import ContactoSection from './components/ContactoSection';
 import WhatsAppButton from './components/WhatsAppButton';
 import Navbar from './components/Navbar';
+import HorizontalMarquee from './components/HorizontalMarquee';
+import RevealText from './components/RevealText';
+import RevealSection from './components/RevealSection';
 
 const NAV_LINKS = [
   { label: 'ESPACIOS',  href: '#espacios' },
@@ -20,10 +23,9 @@ export default async function Home() {
   return (
     <main style={{ background: '#1A0E05', minHeight: '100vh' }}>
 
-      {/* NAV */}
       <Navbar />
 
-      {/* ── HERO ──────────────────────────────────────────────────────────── */}
+      {/* ── HERO ── */}
       <section style={{
         minHeight: '100vh',
         background: 'radial-gradient(ellipse at 50% 38%, #3A1E08 0%, #251208 25%, #1A0E05 55%, #110A03 100%)',
@@ -37,7 +39,6 @@ export default async function Home() {
         paddingBottom: '3rem',
       }}>
 
-        {/* Resplandor central superior */}
         <div style={{
           position: 'absolute', top: '-5%', left: '50%',
           transform: 'translateX(-50%)',
@@ -46,7 +47,6 @@ export default async function Home() {
           pointerEvents: 'none',
         }} />
 
-        {/* Partículas flotantes doradas */}
         {Array.from({ length: 16 }).map((_, i) => (
           <div key={i} style={{
             position: 'absolute',
@@ -61,7 +61,7 @@ export default async function Home() {
           }} />
         ))}
 
-        {/* ── ISOTIPO — medallón circular ── */}
+        {/* Isotipo medallón */}
         <div style={{
           position: 'relative',
           width: '280px',
@@ -69,20 +69,17 @@ export default async function Home() {
           marginBottom: '2rem',
           animation: 'fadeUp 1.6s .2s both',
         }}>
-          {/* Anillo exterior decorativo */}
           <div style={{
             position: 'absolute', inset: '-12px',
             borderRadius: '50%',
             border: '1px solid rgba(200,146,42,0.2)',
             animation: 'archGlow 4s ease-in-out infinite',
           }} />
-          {/* Anillo medio */}
           <div style={{
             position: 'absolute', inset: '-5px',
             borderRadius: '50%',
             border: '1.5px solid rgba(200,146,42,0.45)',
           }} />
-          {/* Círculo imagen — fondo del SVG como background-image para control fino */}
           <div style={{
             width: '100%', height: '100%',
             borderRadius: '50%',
@@ -94,7 +91,6 @@ export default async function Home() {
             backgroundColor: '#2A160A',
             boxShadow: '0 0 40px rgba(200,146,42,0.25), 0 0 80px rgba(200,146,42,0.1), inset 0 0 20px rgba(200,146,42,0.05)',
           }} />
-          {/* Puntos decorativos en los 4 polos */}
           {[0, 90, 180, 270].map((deg) => (
             <div key={deg} style={{
               position: 'absolute',
@@ -108,7 +104,6 @@ export default async function Home() {
           ))}
         </div>
 
-        {/* ── SOKKO ── */}
         <h1 style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(4.5rem, 12vw, 9rem)',
@@ -123,7 +118,6 @@ export default async function Home() {
           SOKKO
         </h1>
 
-        {/* ── · LOUNGE · ── */}
         <p style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: '.8rem',
@@ -136,7 +130,6 @@ export default async function Home() {
           · LOUNGE ·
         </p>
 
-        {/* ── Separador decorativo ─── ✦ ─── ── */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -149,8 +142,7 @@ export default async function Home() {
             flex: 1, height: '1px',
             background: 'linear-gradient(to right, transparent, rgba(200,146,42,0.55))',
           }} />
-          {/* Ornamento estrella */}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 0L8.06 5.5L14 7L8.06 8.5L7 14L5.94 8.5L0 7L5.94 5.5L7 0Z"
               fill="#C8922A" opacity="0.85"/>
           </svg>
@@ -160,7 +152,6 @@ export default async function Home() {
           }} />
         </div>
 
-        {/* ── EL RESGUARDO DEL VIENTO ── */}
         <p style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: '.7rem',
@@ -173,7 +164,6 @@ export default async function Home() {
           EL RESGUARDO DEL VIENTO
         </p>
 
-        {/* ── CTA ── */}
         <a href="#espacios" style={{
           marginTop: '2.8rem',
           fontFamily: 'var(--font-raleway)',
@@ -192,7 +182,6 @@ export default async function Home() {
           EXPLORAR LA EXPERIENCIA
         </a>
 
-        {/* ── Scroll indicator ── */}
         <a href="#espacios" style={{
           marginTop: '2.5rem',
           display: 'flex',
@@ -219,24 +208,34 @@ export default async function Home() {
         </a>
 
       </section>
-      {/* ── FIN HERO ────────────────────────────────────────────────────────── */}
+
+      {/* MARQUEE 1 */}
+      <HorizontalMarquee />
 
       {/* ZONAS */}
       <section id="espacios">
         <ZonasGallery />
       </section>
 
+      {/* MARQUEE 2 */}
+      <HorizontalMarquee text="REFUGIO · CALMA · CONEXIÓN · EXPERIENCIA · FUERTEVENTURA · " speed={40} />
+
       {/* FILOSOFÍA */}
       <section style={{ padding: '8rem 2rem', textAlign: 'center', background: '#1A0E05' }}>
-        <p style={{
-          fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#C4A882',
-          lineHeight: '1.7', maxWidth: '700px', margin: '0 auto',
-        }}>
-          SOKKO no es solo un lugar.<br />Es refugio, calma, conexión y experiencia.
-        </p>
-        <div style={{ width: '60px', height: '2px', background: '#C8922A', margin: '2.5rem auto 0' }} />
+        <RevealSection direction="up">
+          <p style={{
+            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+            fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', color: '#C4A882',
+            lineHeight: '1.7', maxWidth: '700px', margin: '0 auto',
+          }}>
+            SOKKO no es solo un lugar.<br />Es refugio, calma, conexión y experiencia.
+          </p>
+          <div style={{ width: '60px', height: '2px', background: '#C8922A', margin: '2.5rem auto 0' }} />
+        </RevealSection>
       </section>
+
+      {/* MARQUEE 3 */}
+      <HorizontalMarquee text="LAS OCHO ISLAS · TERRAZA · BAJO LAS ESTRELLAS · FUERTEVENTURA · " speed={35} />
 
       {/* ISLAS */}
       <section id="terraza" style={{
@@ -244,35 +243,58 @@ export default async function Home() {
         borderTop: '1px solid rgba(200,146,42,0.2)',
       }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
-            03 — Terraza
-          </p>
-          <h2 style={{
-            fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-            color: '#C8922A', letterSpacing: '.15em', marginTop: '1rem', marginBottom: 0,
-          }}>
+          <RevealSection direction="up">
+            <p style={{ fontSize: '.6rem', letterSpacing: '.55em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
+              03 — Terraza
+            </p>
+          </RevealSection>
+          <RevealText
+            tag="h2"
+            style={{
+              fontFamily: 'var(--font-cinzel)',
+              fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+              color: '#C8922A', letterSpacing: '.15em',
+              marginTop: '1rem',
+            }}
+          >
             Las Ocho Islas
-          </h2>
-          <div style={{ width: '60px', height: '1px', background: 'rgba(200,146,42,0.4)', margin: '1.5rem auto' }} />
-          <p style={{
-            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-            fontSize: '1.05rem', color: '#C4A882',
-            maxWidth: '520px', margin: '0 auto', lineHeight: '1.8',
-          }}>
-            Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
-          </p>
+          </RevealText>
+          <RevealSection direction="up" delay={0.2}>
+            <div style={{ width: '60px', height: '1px', background: 'rgba(200,146,42,0.4)', margin: '1.5rem auto' }} />
+            <p style={{
+              fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+              fontSize: '1.05rem', color: '#C4A882',
+              maxWidth: '520px', margin: '0 auto', lineHeight: '1.8',
+            }}>
+              Cada agrupación lleva el nombre de una isla canaria. Elige la tuya y reserva tu espacio bajo las estrellas.
+            </p>
+          </RevealSection>
         </div>
-        <IslasGrid />
+        <RevealSection direction="scale" delay={0.1}>
+          <IslasGrid />
+        </RevealSection>
       </section>
+
+      {/* MARQUEE 4 */}
+      <HorizontalMarquee text="PRÓXIMOS EVENTOS · MÚSICA EN DIRECTO · SHOWS TEMÁTICOS · CENAS ÚNICAS · " speed={45} />
 
       {/* EVENTOS */}
       <EventosSection />
 
+      {/* MARQUEE 5 */}
+      <HorizontalMarquee text="COCINA CANARIA · CÓCTELES PREMIUM · SABORES AUTÉNTICOS · " speed={38} />
+
       {/* CARTA */}
       <MenuSection />
 
+      {/* MARQUEE 6 */}
+      <HorizontalMarquee text="CUÁNDO VISITARNOS · HORARIOS · FUERTEVENTURA · EL RESGUARDO DEL VIENTO · " speed={42} />
+
       {/* HORARIOS */}
       <HorariosSection />
+
+      {/* MARQUEE 7 */}
+      <HorizontalMarquee text="RESERVA TU MESA · CONTACTO · SOKKO LOUNGE · CALETA DE FUSTE · " speed={36} />
 
       {/* CONTACTO */}
       <ContactoSection />
@@ -284,37 +306,39 @@ export default async function Home() {
         padding: '5rem 3rem 3rem',
       }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{
-            display: 'flex', justifyContent: 'space-between',
-            alignItems: 'flex-start', flexWrap: 'wrap',
-            gap: '2rem', marginBottom: '3rem',
-          }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '.5rem' }}>
-              <p style={{
-                fontFamily: 'var(--font-cinzel)', color: '#C8922A',
-                letterSpacing: '.35em', fontSize: '1.3rem', margin: 0,
-              }}>
-                SOKKO LOUNGE
-              </p>
-              <p style={{
-                fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                fontSize: '.95rem', color: '#8A6940', margin: 0,
-              }}>
-                El Resguardo del Viento · Fuerteventura
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              {NAV_LINKS.map(({ label, href }) => (
-                <a key={label} href={href} style={{
-                  fontFamily: 'var(--font-raleway)', fontSize: '.6rem',
-                  letterSpacing: '.25em', textTransform: 'uppercase',
-                  color: '#8A6940', textDecoration: 'none',
+          <RevealSection direction="up">
+            <div style={{
+              display: 'flex', justifyContent: 'space-between',
+              alignItems: 'flex-start', flexWrap: 'wrap',
+              gap: '2rem', marginBottom: '3rem',
+            }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '.5rem' }}>
+                <p style={{
+                  fontFamily: 'var(--font-cinzel)', color: '#C8922A',
+                  letterSpacing: '.35em', fontSize: '1.3rem', margin: 0,
                 }}>
-                  {label}
-                </a>
-              ))}
+                  SOKKO LOUNGE
+                </p>
+                <p style={{
+                  fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                  fontSize: '.95rem', color: '#8A6940', margin: 0,
+                }}>
+                  El Resguardo del Viento · Fuerteventura
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                {NAV_LINKS.map(({ label, href }) => (
+                  <a key={label} href={href} style={{
+                    fontFamily: 'var(--font-raleway)', fontSize: '.6rem',
+                    letterSpacing: '.25em', textTransform: 'uppercase',
+                    color: '#8A6940', textDecoration: 'none',
+                  }}>
+                    {label}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          </RevealSection>
           <div style={{
             borderTop: '1px solid rgba(200,146,42,0.12)',
             paddingTop: '1.5rem', textAlign: 'center',

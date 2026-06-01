@@ -28,6 +28,8 @@ export default async function EventosSection() {
       padding: '7rem 2rem',
       borderTop: '1px solid rgba(200,146,42,0.2)',
     }}>
+
+      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
         <p style={{
           fontSize: '.6rem', letterSpacing: '.55em', color: '#8A6940',
@@ -38,7 +40,7 @@ export default async function EventosSection() {
         <h2 style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-          color: '#D4A843', letterSpacing: '.18em',
+          color: '#C8922A', letterSpacing: '.18em',
           marginTop: '1rem', marginBottom: 0,
         }}>
           PRÓXIMOS EVENTOS
@@ -54,15 +56,34 @@ export default async function EventosSection() {
       </div>
 
       {activos.length === 0 ? (
-        <p style={{
-          textAlign: 'center', fontFamily: 'var(--font-cormorant)',
-          fontStyle: 'italic', color: '#8A6940', fontSize: '1rem',
-        }}>
-          Próximamente nuevos eventos. Síguenos para no perderte nada.
-        </p>
+        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+          <div style={{
+            width: '60px', height: '1px',
+            background: 'rgba(200,146,42,0.3)',
+            margin: '0 auto 2rem',
+          }} />
+          <p style={{
+            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+            color: '#8A6940', fontSize: '1.1rem', letterSpacing: '.05em',
+          }}>
+            Próximamente nuevos eventos.
+          </p>
+          <p style={{
+            fontFamily: 'var(--font-raleway)', fontSize: '.55rem',
+            letterSpacing: '.25em', color: '#5A3A20',
+            textTransform: 'uppercase', marginTop: '.75rem',
+          }}>
+            Síguenos para no perderte nada
+          </p>
+        </div>
       ) : (
-        <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
-          {activos.map((evento, idx) => {
+        <div style={{
+          maxWidth: '1200px', margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: activos.length === 1 ? '1fr' : activos.length === 2 ? '1fr 1fr' : 'repeat(3, 1fr)',
+          gap: '2px',
+        }}>
+          {activos.map((evento) => {
             const catColor = categoriaColor[evento.acf.categoria] ?? '#C8922A';
             const dia    = evento.acf.fecha_evento ? parseInt(evento.acf.fecha_evento.substring(6, 8)) : null;
             const mesIdx = evento.acf.fecha_evento ? parseInt(evento.acf.fecha_evento.substring(4, 6)) - 1 : null;
@@ -70,106 +91,150 @@ export default async function EventosSection() {
 
             return (
               <div key={evento.id} style={{
-                display: 'grid',
-                gridTemplateColumns: '110px 1fr auto',
-                gap: '2.5rem', alignItems: 'start',
-                padding: '2.5rem 0',
-                borderBottom: '1px solid rgba(200,146,42,0.15)',
-                borderTop: idx === 0 ? '1px solid rgba(200,146,42,0.15)' : 'none',
+                position: 'relative',
+                minHeight: '520px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                overflow: 'hidden',
+                cursor: 'pointer',
               }}>
-                <div style={{ textAlign: 'center', paddingTop: '.2rem' }}>
-                  {dia !== null ? (
-                    <>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel)',
-                        fontSize: '3.5rem', color: '#C8922A',
-                        lineHeight: 1, letterSpacing: '-.02em', margin: 0,
-                      }}>
-                        {String(dia).padStart(2, '0')}
-                      </p>
-                      <p style={{
-                        fontSize: '.6rem', letterSpacing: '.25em',
-                        color: '#8A6940', textTransform: 'uppercase',
-                        margin: '.35rem 0 0',
-                      }}>
-                        {mesIdx !== null ? MESES[mesIdx] : ''} {anio}
-                      </p>
-                      {evento.acf.hora_evento && (
-                        <p style={{
-                          fontFamily: 'var(--font-cinzel)', fontSize: '.72rem',
-                          color: '#C4A882', letterSpacing: '.08em', margin: '.3rem 0 0',
-                        }}>
-                          {evento.acf.hora_evento}h
-                        </p>
-                      )}
-                    </>
-                  ) : (
-                    <p style={{ fontFamily: 'var(--font-cinzel)', color: '#8A6940', fontSize: '.75rem' }}>—</p>
-                  )}
-                </div>
+                {/* Imagen de fondo */}
+                {evento.acf.imagen_evento ? (
+                  <img
+                    src={evento.acf.imagen_evento}
+                    alt={evento.title.rendered}
+                    style={{
+                      position: 'absolute', inset: 0,
+                      width: '100%', height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                ) : (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: `linear-gradient(135deg, #2A1608 0%, #1A0E05 50%, #0D0703 100%)`,
+                  }} />
+                )}
 
-                <div>
+                {/* Overlay degradado */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(10,5,0,0.97) 0%, rgba(10,5,0,0.6) 50%, rgba(10,5,0,0.2) 100%)',
+                }} />
+
+                {/* Fecha — esquina superior */}
+                {dia !== null && (
+                  <div style={{
+                    position: 'absolute', top: '2rem', left: '2rem',
+                    textAlign: 'center',
+                    background: 'rgba(10,5,0,0.7)',
+                    border: `1px solid ${catColor}44`,
+                    padding: '.6rem 1rem',
+                    backdropFilter: 'blur(8px)',
+                  }}>
+                    <p style={{
+                      fontFamily: 'var(--font-cinzel)',
+                      fontSize: '2.2rem', color: '#C8922A',
+                      lineHeight: 1, margin: 0,
+                    }}>
+                      {String(dia).padStart(2, '0')}
+                    </p>
+                    <p style={{
+                      fontSize: '.5rem', letterSpacing: '.2em',
+                      color: '#8A6940', textTransform: 'uppercase',
+                      margin: '.2rem 0 0',
+                    }}>
+                      {mesIdx !== null ? MESES[mesIdx] : ''} {anio}
+                    </p>
+                  </div>
+                )}
+
+                {/* Categoría badge */}
+                <div style={{
+                  position: 'absolute', top: '2rem', right: '2rem',
+                }}>
                   <span style={{
-                    display: 'inline-block',
-                    fontSize: '.45rem', letterSpacing: '.28em', textTransform: 'uppercase',
-                    color: catColor, padding: '.2rem .8rem',
+                    fontSize: '.42rem', letterSpacing: '.25em',
+                    textTransform: 'uppercase', color: catColor,
+                    padding: '.3rem .8rem',
                     border: `1px solid ${catColor}55`,
-                    background: `${catColor}10`,
-                    marginBottom: '1rem',
+                    background: `rgba(10,5,0,0.7)`,
+                    backdropFilter: 'blur(8px)',
                   }}>
                     {categoriaLabel[evento.acf.categoria] ?? evento.acf.categoria}
                   </span>
+                </div>
+
+                {/* Contenido inferior */}
+                <div style={{
+                  position: 'relative', zIndex: 2,
+                  padding: '2.5rem 2rem',
+                }}>
+                  {evento.acf.hora_evento && (
+                    <p style={{
+                      fontFamily: 'var(--font-cinzel)', fontSize: '.62rem',
+                      color: catColor, letterSpacing: '.2em',
+                      textTransform: 'uppercase', margin: '0 0 .6rem',
+                    }}>
+                      {evento.acf.hora_evento}h
+                    </p>
+                  )}
+
                   <h3 style={{
                     fontFamily: 'var(--font-cinzel)',
-                    fontSize: 'clamp(1rem, 2vw, 1.4rem)',
-                    color: '#F5F0E8', letterSpacing: '.07em',
-                    margin: '0 0 .6rem', lineHeight: '1.25',
+                    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                    color: '#F5E8D0', letterSpacing: '.06em',
+                    margin: '0 0 .8rem', lineHeight: '1.2',
                   }}>
                     {evento.title.rendered}
                   </h3>
+
                   {evento.acf.description && (
                     <p style={{
                       fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                      fontSize: '.95rem', color: '#8A6940',
-                      lineHeight: '1.65', margin: 0,
+                      fontSize: '.95rem', color: '#C4A882',
+                      lineHeight: '1.6', margin: '0 0 1.5rem',
                     }}>
                       {evento.acf.description}
                     </p>
                   )}
-                  {evento.acf.aforo > 0 && (
-                    <p style={{
-                      fontSize: '.5rem', letterSpacing: '.2em', color: '#8A6940',
-                      textTransform: 'uppercase', marginTop: '.75rem',
-                    }}>
-                      Aforo: {evento.acf.aforo} personas
-                    </p>
-                  )}
-                </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1rem', paddingTop: '.2rem' }}>
-                  {evento.acf.precio > 0 && (
-                    <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontSize: '.48rem', letterSpacing: '.25em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
-                        Desde
-                      </p>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel)', fontSize: '1.4rem',
-                        color: '#C8922A', margin: '.2rem 0 0',
-                      }}>
-                        {evento.acf.precio}€
-                      </p>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div>
+                      {evento.acf.precio > 0 && (
+                        <div>
+                          <p style={{ fontSize: '.42rem', letterSpacing: '.2em', color: '#8A6940', textTransform: 'uppercase', margin: 0 }}>
+                            Desde
+                          </p>
+                          <p style={{
+                            fontFamily: 'var(--font-cinzel)', fontSize: '1.3rem',
+                            color: '#C8922A', margin: '.1rem 0 0', lineHeight: 1,
+                          }}>
+                            {evento.acf.precio}€
+                          </p>
+                        </div>
+                      )}
+                      {evento.acf.aforo > 0 && (
+                        <p style={{
+                          fontSize: '.42rem', letterSpacing: '.15em', color: '#5A3A20',
+                          textTransform: 'uppercase', margin: '.4rem 0 0',
+                        }}>
+                          {evento.acf.aforo} plazas
+                        </p>
+                      )}
                     </div>
-                  )}
-                  <a href="/terraza/lanzarote" style={{
-                    fontFamily: 'var(--font-raleway)', fontSize: '.55rem',
-                    letterSpacing: '.28em', textTransform: 'uppercase',
-                    color: '#C8922A', textDecoration: 'none',
-                    border: '1px solid rgba(200,146,42,0.5)',
-                    background: 'rgba(200,146,42,0.06)',
-                    padding: '.65rem 1.4rem', whiteSpace: 'nowrap',
-                  }}>
-                    RESERVAR
-                  </a>
+                    <a href="/terraza/lanzarote" style={{
+                      fontFamily: 'var(--font-raleway)', fontSize: '.52rem',
+                      letterSpacing: '.25em', textTransform: 'uppercase',
+                      color: '#1A0E05', background: '#C8922A',
+                      padding: '.75rem 1.5rem', textDecoration: 'none',
+                      border: '1px solid #C8922A',
+                      whiteSpace: 'nowrap',
+                    }}>
+                      RESERVAR
+                    </a>
+                  </div>
                 </div>
               </div>
             );

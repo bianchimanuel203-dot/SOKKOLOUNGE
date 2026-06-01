@@ -1,11 +1,11 @@
 import { getMenu } from '../lib/wordpress';
 
 const categoriaLabel: Record<string, string> = {
-  entrante: 'Entrantes',
-  principal: 'Principales',
-  postre: 'Postres',
-  bebida: 'Bebidas',
-  cocktail: 'Cócteles',
+  entrante: 'Starters',
+  principal: 'Mains',
+  postre: 'Desserts',
+  bebida: 'Drinks',
+  cocktail: 'Cocktails',
 };
 
 const ordenCategorias = ['entrante', 'principal', 'postre'];
@@ -24,241 +24,221 @@ export default async function MenuSection() {
   const cocktails = bebidas.filter(p => p.acf.categoria === 'cocktail');
   const otrasBebidas = bebidas.filter(p => p.acf.categoria !== 'cocktail');
 
-  const comidaEntries = Object.entries(porCategoriaComida);
-
   return (
-    <section id="menu">
+    <section id="menu" style={{ background: '#F5F0E8' }}>
 
       {/* HEADER */}
-      <div style={{ background: '#F2E8D0', padding: '5rem 2rem 0', textAlign: 'center' }}>
-        <p style={{ fontSize: '.65rem', letterSpacing: '.5em', color: '#8A6E2F', textTransform: 'uppercase' }}>
-          06 — Carta
+      <div style={{ padding: '6rem 2rem 4rem', textAlign: 'center', borderBottom: '1px solid rgba(201,168,76,.2)' }}>
+        <p style={{ fontSize: '.6rem', letterSpacing: '.6em', color: '#8A6E2F', textTransform: 'uppercase', margin: 0 }}>
+          06 — Gastronomy
         </p>
         <h2 style={{
-          fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-          color: '#1A1208', letterSpacing: '.15em', marginTop: '1rem'
+          fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+          color: '#1A1208', letterSpacing: '.2em', marginTop: '1rem', marginBottom: 0,
         }}>
-          Nuestra Carta
+          THE GASTRONOMY
         </h2>
-        <div style={{ width: '60px', height: '2px', background: '#C9A84C', margin: '1.5rem auto' }} />
+        <div style={{ width: '60px', height: '2px', background: '#C9A84C', margin: '1.75rem auto' }} />
         <p style={{
           fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-          fontSize: '1.05rem', color: '#5C4A1E',
-          maxWidth: '520px', margin: '0 auto 4rem', lineHeight: '1.8'
+          fontSize: '1.1rem', color: '#5C4A1E',
+          maxWidth: '480px', margin: '0 auto', lineHeight: '1.8',
         }}>
-          Cocina canaria con alma. Ingredientes locales, sabores auténticos.
+          Canarian cuisine with soul. Local ingredients, authentic flavours.
         </p>
       </div>
 
-      {/* COCKTAILS SHOWCASE — dark dramatic panel */}
-      {cocktails.length > 0 && (
-        <div style={{
-          background: '#160F08', padding: '5rem 2rem',
-          position: 'relative', overflow: 'hidden',
-          borderTop: '1px solid rgba(201,168,76,.15)',
-          borderBottom: '1px solid rgba(201,168,76,.15)',
-        }}>
-          {/* Watermark */}
-          <div style={{
-            position: 'absolute', top: '50%', left: '50%',
-            transform: 'translate(-50%,-50%)',
-            fontFamily: 'var(--font-cinzel)',
-            fontSize: 'clamp(6rem, 18vw, 14rem)',
-            color: 'rgba(201,168,76,.03)', letterSpacing: '.1em',
-            whiteSpace: 'nowrap', pointerEvents: 'none', userSelect: 'none',
-          }}>
-            COCKTAILS
-          </div>
+      {/* 3-COLUMN LAYOUT */}
+      <div style={{
+        maxWidth: '1280px', margin: '0 auto',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gap: '0',
+        borderBottom: '1px solid rgba(201,168,76,.15)',
+      }}>
 
-          <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative' }}>
-            {/* Section title */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
-              <h3 style={{
-                fontFamily: 'var(--font-cinzel)',
-                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                color: '#C9A84C', letterSpacing: '.12em', margin: 0
-              }}>
-                Cócteles
-              </h3>
-              <div style={{ flex: 1, minWidth: '60px', height: '1px', background: 'rgba(201,168,76,.2)', alignSelf: 'center' }} />
+        {/* COL 1 — FOOD */}
+        <div style={{ padding: '3.5rem 3rem', borderRight: '1px solid rgba(201,168,76,.15)' }}>
+          <p style={{ fontSize: '.55rem', letterSpacing: '.45em', color: '#8A6E2F', textTransform: 'uppercase', marginBottom: '2.5rem' }}>
+            Kitchen
+          </p>
+          {Object.entries(porCategoriaComida).map(([cat, items], catIdx, arr) => (
+            <div key={cat} style={{ marginBottom: catIdx < arr.length - 1 ? '2.5rem' : 0 }}>
               <p style={{
-                fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                color: '#8A6E2F', fontSize: '1rem', margin: 0
+                fontFamily: 'var(--font-cinzel)', fontSize: '.75rem',
+                color: '#C9A84C', letterSpacing: '.15em', textTransform: 'uppercase',
+                marginBottom: '1.25rem',
               }}>
-                El alma de SOKKO
+                {categoriaLabel[cat]}
               </p>
-            </div>
-
-            {/* Cocktail grid */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '1px',
-              background: 'rgba(201,168,76,.08)',
-            }}>
-              {cocktails.map(p => (
+              {items.map((p, i) => (
                 <div key={p.id} style={{
-                  background: '#160F08',
-                  padding: '2rem',
-                  position: 'relative',
-                  borderLeft: p.acf.destacado ? '2px solid #C9A84C' : '2px solid transparent',
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+                  gap: '1rem', paddingBottom: '1rem',
+                  marginBottom: i < items.length - 1 ? '0' : '0',
+                  borderBottom: i < items.length - 1 ? '1px solid rgba(201,168,76,.08)' : 'none',
                 }}>
-                  {p.acf.destacado && (
-                    <span style={{
-                      position: 'absolute', top: '1.5rem', right: '1.5rem',
-                      fontSize: '.42rem', letterSpacing: '.25em',
-                      color: '#C4693E', border: '1px solid rgba(196,105,62,.4)',
-                      padding: '.15rem .5rem', textTransform: 'uppercase',
-                      background: 'rgba(196,105,62,.08)',
-                    }}>
-                      Signature
-                    </span>
-                  )}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', marginBottom: '.5rem' }}>
+                  <div style={{ flex: 1 }}>
                     <p style={{
-                      fontFamily: 'var(--font-cinzel)', fontSize: '.9rem',
-                      color: '#D4BC8A', letterSpacing: '.06em', lineHeight: '1.4', margin: 0
+                      fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
+                      color: '#1A1208', letterSpacing: '.04em', margin: 0,
                     }}>
                       {p.title.rendered}
                     </p>
-                    <p style={{
-                      fontFamily: 'var(--font-cinzel)', fontSize: '1.05rem',
-                      color: '#C9A84C', flexShrink: 0, margin: 0
-                    }}>
-                      {p.acf.precio}€
-                    </p>
+                    {p.acf.descripcion && (
+                      <p style={{
+                        fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                        fontSize: '.82rem', color: '#5C4A1E',
+                        marginTop: '.2rem', lineHeight: '1.5', marginBottom: 0,
+                      }}>
+                        {p.acf.descripcion}
+                      </p>
+                    )}
                   </div>
-                  {p.acf.descripcion && (
-                    <p style={{
-                      fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                      fontSize: '.85rem', color: '#6A5832', lineHeight: '1.6', margin: 0
-                    }}>
-                      {p.acf.descripcion}
-                    </p>
-                  )}
+                  <p style={{
+                    fontFamily: 'var(--font-cinzel)', fontSize: '.82rem',
+                    color: '#C9A84C', flexShrink: 0, margin: 0,
+                  }}>
+                    {p.acf.precio}€
+                  </p>
                 </div>
               ))}
             </div>
-          </div>
+          ))}
+          {Object.keys(porCategoriaComida).length === 0 && (
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6E2F', fontSize: '.9rem' }}>
+              Menu coming soon.
+            </p>
+          )}
         </div>
-      )}
 
-      {/* FOOD CATEGORIES — editorial layout */}
-      {comidaEntries.length > 0 && (
-        <div style={{ background: '#F2E8D0', padding: '5rem 2rem' }}>
-          <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            {comidaEntries.map(([cat, items], index) => (
-              <div key={cat} style={{
-                display: 'grid',
-                gridTemplateColumns: '180px 1fr',
-                gap: '3rem',
-                paddingTop: index > 0 ? '3.5rem' : '0',
-                paddingBottom: '3.5rem',
-                borderBottom: index < comidaEntries.length - 1
-                  ? '1px solid rgba(201,168,76,.15)'
-                  : 'none',
-              }}>
-                {/* Category label */}
-                <div style={{ paddingTop: '.2rem' }}>
-                  <p style={{
-                    fontFamily: 'var(--font-cinzel)',
-                    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-                    color: '#C9A84C', letterSpacing: '.1em', lineHeight: '1.2', margin: 0
-                  }}>
-                    {categoriaLabel[cat]}
-                  </p>
-                  <div style={{ width: '28px', height: '1px', background: '#C9A84C', marginTop: '1rem', opacity: .5 }} />
-                </div>
-
-                {/* Items */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                  {items.map((p, i) => (
-                    <div key={p.id} style={{
-                      display: 'flex', justifyContent: 'space-between',
-                      alignItems: 'flex-start', gap: '2rem',
-                      padding: '1rem 0',
-                      borderBottom: i < items.length - 1 ? '1px solid rgba(201,168,76,.1)' : 'none',
-                    }}>
-                      <div style={{ flex: 1 }}>
-                        <p style={{
-                          fontFamily: 'var(--font-cinzel)', fontSize: '.85rem',
-                          color: '#1A1208', letterSpacing: '.05em', margin: 0
-                        }}>
-                          {p.title.rendered}
-                        </p>
-                        {p.acf.descripcion && (
-                          <p style={{
-                            fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                            fontSize: '.85rem', color: '#5C4A1E',
-                            marginTop: '.25rem', lineHeight: '1.6', marginBottom: 0
-                          }}>
-                            {p.acf.descripcion}
-                          </p>
-                        )}
-                      </div>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel)', fontSize: '.9rem',
-                        color: '#C9A84C', flexShrink: 0, margin: 0
-                      }}>
-                        {p.acf.precio}€
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* OTHER DRINKS */}
-      {otrasBebidas.length > 0 && (
-        <div style={{ background: '#E8DCC4', padding: '4rem 2rem', borderTop: '1px solid rgba(201,168,76,.2)' }}>
-          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-              <h3 style={{
-                fontFamily: 'var(--font-cinzel)', fontSize: '1.2rem',
-                color: '#8A6E2F', letterSpacing: '.12em', margin: 0
-              }}>
-                Bebidas
-              </h3>
-              <div style={{ flex: 1, minWidth: '40px', height: '1px', background: 'rgba(201,168,76,.25)', alignSelf: 'center' }} />
-            </div>
-            {otrasBebidas.map((p, i) => (
-              <div key={p.id} style={{
-                display: 'flex', justifyContent: 'space-between',
-                alignItems: 'flex-start', gap: '1rem',
-                padding: '1rem 0',
-                borderBottom: i < otrasBebidas.length - 1 ? '1px solid rgba(201,168,76,.12)' : 'none',
-              }}>
-                <div>
-                  <p style={{
-                    fontFamily: 'var(--font-cinzel)', fontSize: '.8rem',
-                    color: '#1A1208', letterSpacing: '.05em', margin: 0
-                  }}>
-                    {p.title.rendered}
-                  </p>
-                  {p.acf.descripcion && (
-                    <p style={{
-                      fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                      fontSize: '.8rem', color: '#5C4A1E', marginTop: '.2rem', marginBottom: 0
-                    }}>
-                      {p.acf.descripcion}
-                    </p>
-                  )}
-                </div>
+        {/* COL 2 — COCKTAILS */}
+        <div style={{ padding: '3.5rem 3rem', borderRight: '1px solid rgba(201,168,76,.15)', background: '#EDE8DC' }}>
+          <p style={{ fontSize: '.55rem', letterSpacing: '.45em', color: '#8A6E2F', textTransform: 'uppercase', marginBottom: '2.5rem' }}>
+            Cocktails
+          </p>
+          <p style={{
+            fontFamily: 'var(--font-cinzel)', fontSize: '.75rem',
+            color: '#C9A84C', letterSpacing: '.15em', textTransform: 'uppercase',
+            marginBottom: '1.25rem',
+          }}>
+            Signature Drinks
+          </p>
+          {cocktails.length === 0 ? (
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6E2F', fontSize: '.9rem' }}>
+              Cocktail menu coming soon.
+            </p>
+          ) : cocktails.map((p, i) => (
+            <div key={p.id} style={{
+              paddingBottom: '1rem',
+              borderBottom: i < cocktails.length - 1 ? '1px solid rgba(201,168,76,.1)' : 'none',
+              marginBottom: i < cocktails.length - 1 ? '0' : '0',
+              position: 'relative',
+            }}>
+              {p.acf.destacado && (
+                <span style={{
+                  fontSize: '.42rem', letterSpacing: '.2em', color: '#C4693E',
+                  textTransform: 'uppercase', marginBottom: '.3rem', display: 'block',
+                }}>
+                  ★ Signature
+                </span>
+              )}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                 <p style={{
-                  fontFamily: 'var(--font-cinzel)', fontSize: '.85rem',
-                  color: '#C9A84C', flexShrink: 0, margin: 0
+                  fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
+                  color: '#1A1208', letterSpacing: '.04em', margin: 0,
+                }}>
+                  {p.title.rendered}
+                </p>
+                <p style={{
+                  fontFamily: 'var(--font-cinzel)', fontSize: '.82rem',
+                  color: '#C9A84C', flexShrink: 0, margin: 0,
                 }}>
                   {p.acf.precio}€
                 </p>
               </div>
-            ))}
+              {p.acf.descripcion && (
+                <p style={{
+                  fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                  fontSize: '.82rem', color: '#5C4A1E',
+                  marginTop: '.2rem', lineHeight: '1.5', marginBottom: 0,
+                }}>
+                  {p.acf.descripcion}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* COL 3 — DRINKS */}
+        <div style={{ padding: '3.5rem 3rem' }}>
+          <p style={{ fontSize: '.55rem', letterSpacing: '.45em', color: '#8A6E2F', textTransform: 'uppercase', marginBottom: '2.5rem' }}>
+            Bar
+          </p>
+          <p style={{
+            fontFamily: 'var(--font-cinzel)', fontSize: '.75rem',
+            color: '#C9A84C', letterSpacing: '.15em', textTransform: 'uppercase',
+            marginBottom: '1.25rem',
+          }}>
+            Drinks & Beverages
+          </p>
+          {otrasBebidas.length === 0 ? (
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', color: '#8A6E2F', fontSize: '.9rem' }}>
+              Drinks menu coming soon.
+            </p>
+          ) : otrasBebidas.map((p, i) => (
+            <div key={p.id} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+              gap: '1rem', paddingBottom: '1rem',
+              borderBottom: i < otrasBebidas.length - 1 ? '1px solid rgba(201,168,76,.08)' : 'none',
+            }}>
+              <div style={{ flex: 1 }}>
+                <p style={{
+                  fontFamily: 'var(--font-cinzel)', fontSize: '.78rem',
+                  color: '#1A1208', letterSpacing: '.04em', margin: 0,
+                }}>
+                  {p.title.rendered}
+                </p>
+                {p.acf.descripcion && (
+                  <p style={{
+                    fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+                    fontSize: '.82rem', color: '#5C4A1E',
+                    marginTop: '.2rem', lineHeight: '1.5', marginBottom: 0,
+                  }}>
+                    {p.acf.descripcion}
+                  </p>
+                )}
+              </div>
+              <p style={{
+                fontFamily: 'var(--font-cinzel)', fontSize: '.82rem',
+                color: '#C9A84C', flexShrink: 0, margin: 0,
+              }}>
+                {p.acf.precio}€
+              </p>
+            </div>
+          ))}
+
+          {/* Divider + note */}
+          <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(201,168,76,.15)' }}>
+            <p style={{
+              fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
+              fontSize: '.85rem', color: '#8A6E2F', lineHeight: '1.6',
+            }}>
+              All our cocktails are crafted with premium spirits and house-made infusions.
+            </p>
+            <a href="#terraza" style={{
+              display: 'inline-block', marginTop: '1.5rem',
+              fontFamily: 'var(--font-raleway)', fontSize: '.58rem',
+              letterSpacing: '.3em', textTransform: 'uppercase',
+              color: '#1A1208', background: '#C9A84C',
+              padding: '.7rem 1.6rem', textDecoration: 'none',
+            }}>
+              BOOK A TABLE
+            </a>
           </div>
         </div>
-      )}
 
+      </div>
     </section>
   );
 }

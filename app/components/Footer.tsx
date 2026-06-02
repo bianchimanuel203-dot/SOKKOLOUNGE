@@ -154,7 +154,7 @@ export default function Footer() {
               fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
               fontSize: '.85rem', color: '#8A6940', margin: 0,
             }}>
-              ·By Gorka·
+              Fuerteventura, Canarias
             </p>
             <p style={{
               fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',

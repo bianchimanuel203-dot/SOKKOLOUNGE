@@ -1,220 +1,221 @@
 'use client';
 
-import { useState } from 'react';
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  MobileNavHeader,
-  MobileNavMenu,
-  MobileNavToggle,
-} from '../../components/ui/resizable-navbar';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-const NAV_ITEMS = [
-  { name: 'INICIO',   link: '#inicio' },
-  { name: 'ZONAS',    link: '#espacios' },
-  { name: 'ISLAS',    link: '#islas' },
-  { name: 'EVENTOS',  link: '#eventos' },
-  { name: 'CARTA',    link: '#menu' },
-  { name: 'HORARIOS', link: '#horarios' },
-];
-
-export default function SokkoNavbar() {
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    onScroll();
+    onResize();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200 }}>
-      <Navbar>
-        {/* ── Desktop ──────────────────────────────────────────── */}
-        <NavBody className="sokko-navbody">
-          {/* Logo */}
-          <a
-            href="/"
-            style={{
-              fontFamily: 'var(--font-cinzel)',
-              fontSize: '14px',
-              color: '#C8922A',
-              letterSpacing: '.3em',
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              position: 'relative',
-              zIndex: 20,
-            }}
-          >
-            SOKKO LOUNGE
-          </a>
+    <>
+      <nav style={{
+        position: 'fixed',
+        top: 0, left: 0, right: 0,
+        zIndex: 1000,
+        height: '72px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: isMobile ? '0 1.5rem' : '0 3rem',
+        background: scrolled ? 'rgba(26,14,5,0.95)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(200,146,42,0.15)' : 'none',
+        transition: 'background .3s ease, border-color .3s ease, backdrop-filter .3s ease',
+      }}>
 
-          {/* Links */}
-          <NavItems
-            items={NAV_ITEMS}
-            className="sokko-navitems"
-          />
+        {/* Logo izquierda */}
+        <Link href="/" style={{
+          fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+          fontSize: '15px',
+          color: '#C8922A',
+          letterSpacing: '.3em',
+          textDecoration: 'none',
+          whiteSpace: 'nowrap',
+          flexShrink: 0,
+        }}>
+          SOKKO LOUNGE
+        </Link>
 
-          {/* Botón RESERVAR */}
+        {/* Desktop — links centro */}
+        {!isMobile && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+            {[
+              { label: 'INICIO',   href: '#inicio' },
+              { label: 'ZONAS',    href: '#espacios' },
+              { label: 'ISLAS',    href: '#islas' },
+              { label: 'EVENTOS',  href: '#eventos' },
+              { label: 'CARTA',    href: '#menu' },
+              { label: 'HORARIOS', href: '#horarios' },
+            ].map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                style={{
+                  fontFamily: 'var(--font-raleway, Raleway, sans-serif)',
+                  fontWeight: 300,
+                  fontSize: '11px',
+                  letterSpacing: '.2em',
+                  color: '#C4A882',
+                  textDecoration: 'none',
+                  transition: 'color .2s ease',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#C8922A')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#C4A882')}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Desktop — botón RESERVAR derecha */}
+        {!isMobile && (
           <a
             href="#contacto"
             style={{
-              fontFamily: 'var(--font-raleway)',
+              fontFamily: 'var(--font-raleway, Raleway, sans-serif)',
               fontWeight: 400,
               fontSize: '11px',
-              letterSpacing: '.28em',
-              textTransform: 'uppercase',
+              letterSpacing: '.2em',
               color: '#C8922A',
-              border: '1px solid rgba(200,146,42,0.65)',
-              padding: '9px 22px',
+              border: '1px solid #C8922A',
+              padding: '10px 24px',
               textDecoration: 'none',
+              transition: 'all .2s ease',
               whiteSpace: 'nowrap',
               flexShrink: 0,
-              position: 'relative',
-              zIndex: 20,
-              transition: 'background .25s ease, color .25s ease',
             }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.background = '#C8922A';
-              (e.currentTarget as HTMLElement).style.color = '#1A0E05';
+              e.currentTarget.style.background = '#C8922A';
+              e.currentTarget.style.color = '#1A0E05';
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.background = 'transparent';
-              (e.currentTarget as HTMLElement).style.color = '#C8922A';
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = '#C8922A';
             }}
           >
             RESERVAR
           </a>
-        </NavBody>
+        )}
 
-        {/* ── Mobile ───────────────────────────────────────────── */}
-        <MobileNav className="sokko-mobilenav">
-          <MobileNavHeader>
-            <a
-              href="/"
-              style={{
-                fontFamily: 'var(--font-cinzel)',
-                fontSize: '13px',
-                color: '#C8922A',
-                letterSpacing: '.25em',
-                textDecoration: 'none',
-              }}
-            >
-              SOKKO LOUNGE
-            </a>
-            <MobileNavToggle
-              isOpen={mobileOpen}
-              onClick={() => setMobileOpen(v => !v)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={mobileOpen}
-            onClose={() => setMobileOpen(false)}
-            className="sokko-mobilemenu"
+        {/* Mobile — hamburguesa */}
+        {isMobile && (
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            aria-label="Menú"
+            style={{
+              background: 'transparent', border: 'none',
+              padding: '4px', cursor: 'pointer',
+              display: 'flex', flexDirection: 'column',
+              gap: '5px', alignItems: 'flex-end',
+            }}
           >
-            {NAV_ITEMS.map((item) => (
+            {[22, 16, 22].map((w, i) => (
+              <span key={i} style={{
+                display: 'block', height: '1.5px',
+                background: '#C8922A', width: `${w}px`,
+                transition: 'transform .3s ease, opacity .3s ease',
+                transform: i === 0 && mobileOpen ? 'translateY(6.5px) rotate(45deg)'
+                           : i === 2 && mobileOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+                opacity: i === 1 && mobileOpen ? 0 : 1,
+              }} />
+            ))}
+          </button>
+        )}
+      </nav>
+
+      {/* Mobile drawer */}
+      {isMobile && (
+        <>
+          <div
+            onClick={() => setMobileOpen(false)}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 990,
+              background: 'rgba(10,6,1,0.6)',
+              opacity: mobileOpen ? 1 : 0,
+              pointerEvents: mobileOpen ? 'auto' : 'none',
+              transition: 'opacity .3s ease',
+            }}
+          />
+          <div style={{
+            position: 'fixed', top: 0, right: 0, bottom: 0,
+            zIndex: 995, width: '78vw', maxWidth: '300px',
+            background: 'rgba(26,14,5,0.98)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderLeft: '1px solid rgba(200,146,42,0.15)',
+            display: 'flex', flexDirection: 'column',
+            padding: '5rem 2rem 3rem',
+            transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform .35s cubic-bezier(.4,0,.2,1)',
+          }}>
+            {[
+              { label: 'INICIO',   href: '#inicio' },
+              { label: 'ZONAS',    href: '#espacios' },
+              { label: 'ISLAS',    href: '#islas' },
+              { label: 'EVENTOS',  href: '#eventos' },
+              { label: 'CARTA',    href: '#menu' },
+              { label: 'HORARIOS', href: '#horarios' },
+              { label: 'CONTACTO', href: '#contacto' },
+            ].map(({ label, href }, i) => (
               <a
-                key={item.name}
-                href={item.link}
+                key={label}
+                href={href}
                 onClick={() => setMobileOpen(false)}
                 style={{
-                  fontFamily: 'var(--font-raleway)',
-                  fontWeight: 300,
-                  fontSize: '13px',
-                  letterSpacing: '.2em',
+                  fontFamily: 'var(--font-raleway)', fontWeight: 300,
+                  fontSize: '.75rem', letterSpacing: '.25em',
                   textTransform: 'uppercase',
-                  color: '#C4A882',
-                  textDecoration: 'none',
-                  padding: '.6rem 0',
+                  color: '#C4A882', textDecoration: 'none',
+                  padding: '1rem 0',
                   borderBottom: '1px solid rgba(200,146,42,0.08)',
                   display: 'block',
-                  width: '100%',
+                  opacity: mobileOpen ? 1 : 0,
+                  transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
+                  transition: `opacity .3s ease ${i * 0.05 + 0.1}s, transform .3s ease ${i * 0.05 + 0.1}s`,
                 }}
               >
-                {item.name}
+                {label}
               </a>
             ))}
             <a
               href="#contacto"
               onClick={() => setMobileOpen(false)}
               style={{
-                display: 'block',
-                textAlign: 'center',
-                fontFamily: 'var(--font-cinzel)',
-                fontSize: '11px',
-                letterSpacing: '.2em',
-                color: '#C8922A',
+                marginTop: '2rem',
+                fontFamily: 'var(--font-cinzel)', fontSize: '.7rem',
+                letterSpacing: '.2em', color: '#C8922A',
                 border: '1px solid rgba(200,146,42,0.6)',
-                padding: '12px',
-                marginTop: '1rem',
-                textDecoration: 'none',
+                padding: '.9rem', textAlign: 'center',
+                textDecoration: 'none', display: 'block',
               }}
             >
               RESERVAR
             </a>
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
-
-      {/* Estilos SOKKO para los primitivos de Aceternity */}
-      <style>{`
-        /* Contenedor fijo en top */
-        .sokko-navbody {
-          min-width: unset !important;
-          background: transparent !important;
-          border-radius: 0 !important;
-        }
-        /* Cuando está visible (scrolled): fondo oscuro */
-        .sokko-navbody[style*="width: 40%"] {
-          background: rgba(26,14,5,0.94) !important;
-          border-bottom: 1px solid rgba(200,146,42,0.15) !important;
-          backdrop-filter: blur(14px) !important;
-          -webkit-backdrop-filter: blur(14px) !important;
-          border-radius: 0 !important;
-          width: 100% !important;
-        }
-        /* Links en Raleway dorado suave con espacios */
-        .sokko-navitems {
-          display: flex !important;
-          gap: 0 !important;
-        }
-        .sokko-navitems a {
-          font-family: var(--font-raleway) !important;
-          font-size: 11px !important;
-          letter-spacing: .18em !important;
-          text-transform: uppercase !important;
-          color: #C4A882 !important;
-          font-weight: 300 !important;
-          padding: 8px 16px !important;
-        }
-        .sokko-navitems a:hover {
-          color: #C8922A !important;
-        }
-        /* Hover bg dorado sutil en lugar de gris */
-        .sokko-navitems div[class*="rounded"] {
-          background: rgba(200,146,42,0.1) !important;
-          border-radius: 2px !important;
-        }
-        /* Mobile nav: fondo oscuro */
-        .sokko-mobilenav {
-          background: rgba(26,14,5,0.96) !important;
-          border-bottom: 1px solid rgba(200,146,42,0.15) !important;
-          padding: 1rem 1.5rem !important;
-          border-radius: 0 !important;
-          width: 100% !important;
-        }
-        /* Iconos hamburguesa dorados */
-        .sokko-mobilenav svg {
-          color: #C8922A !important;
-          stroke: #C8922A !important;
-        }
-        /* Menú mobile: fondo muy oscuro */
-        .sokko-mobilemenu {
-          background: rgba(13,8,2,0.98) !important;
-          border: 1px solid rgba(200,146,42,0.15) !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          padding: 1.5rem !important;
-        }
-      `}</style>
-    </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }

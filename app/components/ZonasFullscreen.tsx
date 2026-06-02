@@ -288,9 +288,12 @@ function ZonaSection({ zona, index }: { zona: ZonaData; index: number }) {
             ref={titleRef}
             style={{
               fontFamily: 'var(--font-cinzel)',
-              fontSize: 'clamp(26px, 3.2vw, 50px)',
-              color: '#C8922A', lineHeight: 1.1,
+              fontSize: 'clamp(38px, 5vw, 72px)',
+              fontWeight: 400,
+              color: '#C8922A', lineHeight: 1.0,
+              letterSpacing: '.03em',
               whiteSpace: 'pre-line', margin: 0,
+              textShadow: '0 2px 30px rgba(0,0,0,0.9)',
             }}
           >
             {zona.titulo}

@@ -1,7 +1,7 @@
 import HeroThreeJS        from './components/HeroThreeJS';
 import OrigenSokko        from './components/OrigenSokko';
 import ZonasFullscreen    from './components/ZonasFullscreen';
-import IslasCardStack     from './components/IslasCardStack';
+import IslasSection       from './components/IslasSection';
 import EventosSection     from './components/EventosSection';
 import MenuSection        from './components/MenuSection';
 import HorariosSection    from './components/HorariosSection';
@@ -15,55 +15,59 @@ export default async function Home() {
   return (
     <main style={{ background: '#1A0E05', minHeight: '100vh' }}>
 
-      {/* 1 — Navbar */}
+      {/* 1 — Navbar resizable Aceternity */}
       <Navbar />
 
-      {/* 2 — Hero Three.js + doble imagen + GSAP */}
-      <HeroThreeJS />
+      {/* 2 — Hero: imagen portada real + crossfade + GSAP chars */}
+      <section id="inicio">
+        <HeroThreeJS />
+      </section>
 
-      {/* 3 — Marquee */}
+      {/* 3 */}
       <HorizontalMarquee text="SOKKO LOUNGE · EL RESGUARDO DEL VIENTO · FUERTEVENTURA · " speed={32} />
 
-      {/* 4 — Origen (sin título de sección visible) */}
+      {/* 4 — Origen: textos PDF sin título visible */}
       <OrigenSokko />
 
-      {/* 5 — Marquee */}
+      {/* 5 */}
       <HorizontalMarquee text="REFUGIO · CALMA · CONEXIÓN · EXPERIENCIA · " speed={28} />
 
-      {/* 6 — Zonas fullscreen 100vh parallax 3 capas */}
-      <ZonasFullscreen />
+      {/* 6 — Zonas 100vh parallax 3 capas, títulos 72px */}
+      <section id="espacios">
+        <ZonasFullscreen />
+      </section>
 
-      {/* 7 — Marquee */}
+      {/* 7 */}
       <HorizontalMarquee text="LAS OCHO ISLAS · TERRAZA · BAJO LAS ESTRELLAS · " speed={35} />
 
-      {/* 8 — Islas CardStack 3D */}
-      <IslasCardStack />
+      {/* 8 — Islas: grid 4×2 con tilt 3D framer-motion */}
+      <IslasSection />
 
-      {/* 9 — Marquee */}
+      {/* 9 */}
       <HorizontalMarquee text="PRÓXIMOS EVENTOS · MÚSICA EN DIRECTO · SHOWS TEMÁTICOS · CENAS ÚNICAS · " speed={42} />
 
-      {/* 10 — Eventos (server component WordPress) */}
+      {/* 10 — Eventos: banners horizontales alternados */}
       <EventosSection />
 
-      {/* 11 — Marquee */}
+      {/* 11 */}
       <HorizontalMarquee text="COCINA CANARIA · CÓCTELES PREMIUM · SABORES AUTÉNTICOS · " speed={36} />
 
-      {/* 12 — Carta (server component WordPress) */}
+      {/* 12 — Carta WordPress */}
       <MenuSection />
 
-      {/* 13 — Marquee */}
+      {/* 13 */}
       <HorizontalMarquee text="CUÁNDO VISITARNOS · HORARIOS · FUERTEVENTURA · EL RESGUARDO DEL VIENTO · " speed={40} />
 
-      {/* 14 — Horarios (server component WordPress) */}
+      {/* 14 — Horarios con fondo madera volcánica */}
       <HorariosSection />
 
-      {/* 15 — Marquee */}
+      {/* 15 */}
       <HorizontalMarquee text="RESERVA TU MESA · CONTACTO · SOKKO LOUNGE · CALETA DE FUSTE · " speed={34} />
 
       {/* 16 — Contacto */}
       <ContactoSection />
 
-      {/* 17 — Footer */}
+      {/* 17 — Footer DevStudio */}
       <Footer />
 
       {/* 18 — WhatsApp flotante */}

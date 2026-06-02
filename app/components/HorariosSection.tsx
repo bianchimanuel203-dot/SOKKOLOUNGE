@@ -23,7 +23,26 @@ export default async function HorariosSection() {
       background: '#1A0E05',
       borderTop: '1px solid rgba(200,146,42,0.15)',
       padding: '7rem 2rem',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
+      {/* Fondo: imagen madera volcánica como textura */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'url(/hero/hero-madera.jpg)',
+        backgroundSize: 'cover', backgroundPosition: 'center',
+        opacity: 0.18,
+        filter: 'brightness(0.6)',
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, #1A0E05 0%, rgba(26,14,5,0.65) 50%, #1A0E05 100%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Contenido — sobre los fondos */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
 
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -222,6 +241,7 @@ export default async function HorariosSection() {
           </p>
         </div>
       </div>
+      </div>{/* cierre contenido zIndex */}
     </section>
   );
 }

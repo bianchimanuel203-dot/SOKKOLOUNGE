@@ -1,196 +1,220 @@
 'use client';
-import { useState, useEffect } from 'react';
 
-const NAV_LINKS = [
-  { label: 'INICIO',    href: '/' },
-  { label: 'ZONAS',     href: '#espacios' },
-  { label: 'ISLAS',     href: '#terraza' },
-  { label: 'EVENTOS',   href: '#eventos' },
-  { label: 'CARTA',     href: '#menu' },
-  { label: 'HORARIOS',  href: '#horarios' },
+import { useState } from 'react';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+} from '../../components/ui/resizable-navbar';
+
+const NAV_ITEMS = [
+  { name: 'INICIO',   link: '#inicio' },
+  { name: 'ZONAS',    link: '#espacios' },
+  { name: 'ISLAS',    link: '#islas' },
+  { name: 'EVENTOS',  link: '#eventos' },
+  { name: 'CARTA',    link: '#menu' },
+  { name: 'HORARIOS', link: '#horarios' },
 ];
 
-export default function Navbar() {
-  const [open,    setOpen]    = useState(false);
-  const [mobile,  setMobile]  = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const check = () => setMobile(window.innerWidth <= 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-
-  const close = () => setOpen(false);
-
-  const navBg = scrolled
-    ? 'rgba(26,14,5,0.96)'
-    : 'rgba(26,14,5,0.0)';
-  const navBorder = scrolled
-    ? '1px solid rgba(200,146,42,0.15)'
-    : '1px solid transparent';
+export default function SokkoNavbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <>
-      <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-        padding: mobile ? '1.1rem 1.5rem' : '1.2rem 3rem',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: navBg,
-        backdropFilter: scrolled ? 'blur(14px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-        borderBottom: navBorder,
-        transition: 'background .35s ease, border-color .35s ease, backdrop-filter .35s ease',
-      }}>
-        {/* Logo */}
-        <a href="/" style={{
-          fontFamily: 'var(--font-cinzel)',
-          fontSize: mobile ? '.7rem' : '.78rem',
-          letterSpacing: '.35em', color: '#C8922A',
-          textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
-        }}>
-          SOKKO LOUNGE
-        </a>
-
-        {/* Desktop links */}
-        {!mobile && (
-          <>
-            <div style={{ display: 'flex', gap: '2.2rem', alignItems: 'center' }}>
-              {NAV_LINKS.map(({ label, href }) => (
-                <a key={label} href={href} style={{
-                  fontFamily: 'var(--font-raleway)', fontWeight: 300,
-                  fontSize: '.62rem', letterSpacing: '.28em', textTransform: 'uppercase',
-                  color: '#C4A882', textDecoration: 'none',
-                  transition: 'color .2s ease',
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#C8922A')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#C4A882')}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-            <a href="#contacto" style={{
-              fontFamily: 'var(--font-raleway)', fontWeight: 400,
-              fontSize: '.62rem', letterSpacing: '.28em', textTransform: 'uppercase',
-              color: '#C8922A', textDecoration: 'none',
-              border: '1px solid rgba(200,146,42,0.6)',
-              padding: '.6rem 1.5rem', flexShrink: 0,
-              transition: 'background .25s ease',
-              cursor: 'pointer',
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200 }}>
+      <Navbar>
+        {/* ── Desktop ──────────────────────────────────────────── */}
+        <NavBody className="sokko-navbody">
+          {/* Logo */}
+          <a
+            href="/"
+            style={{
+              fontFamily: 'var(--font-cinzel)',
+              fontSize: '14px',
+              color: '#C8922A',
+              letterSpacing: '.3em',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              position: 'relative',
+              zIndex: 20,
             }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(200,146,42,0.15)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+          >
+            SOKKO LOUNGE
+          </a>
+
+          {/* Links */}
+          <NavItems
+            items={NAV_ITEMS}
+            className="sokko-navitems"
+          />
+
+          {/* Botón RESERVAR */}
+          <a
+            href="#contacto"
+            style={{
+              fontFamily: 'var(--font-raleway)',
+              fontWeight: 400,
+              fontSize: '11px',
+              letterSpacing: '.28em',
+              textTransform: 'uppercase',
+              color: '#C8922A',
+              border: '1px solid rgba(200,146,42,0.65)',
+              padding: '9px 22px',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              position: 'relative',
+              zIndex: 20,
+              transition: 'background .25s ease, color .25s ease',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.background = '#C8922A';
+              (e.currentTarget as HTMLElement).style.color = '#1A0E05';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.background = 'transparent';
+              (e.currentTarget as HTMLElement).style.color = '#C8922A';
+            }}
+          >
+            RESERVAR
+          </a>
+        </NavBody>
+
+        {/* ── Mobile ───────────────────────────────────────────── */}
+        <MobileNav className="sokko-mobilenav">
+          <MobileNavHeader>
+            <a
+              href="/"
+              style={{
+                fontFamily: 'var(--font-cinzel)',
+                fontSize: '13px',
+                color: '#C8922A',
+                letterSpacing: '.25em',
+                textDecoration: 'none',
+              }}
+            >
+              SOKKO LOUNGE
+            </a>
+            <MobileNavToggle
+              isOpen={mobileOpen}
+              onClick={() => setMobileOpen(v => !v)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={mobileOpen}
+            onClose={() => setMobileOpen(false)}
+            className="sokko-mobilemenu"
+          >
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.name}
+                href={item.link}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  fontFamily: 'var(--font-raleway)',
+                  fontWeight: 300,
+                  fontSize: '13px',
+                  letterSpacing: '.2em',
+                  textTransform: 'uppercase',
+                  color: '#C4A882',
+                  textDecoration: 'none',
+                  padding: '.6rem 0',
+                  borderBottom: '1px solid rgba(200,146,42,0.08)',
+                  display: 'block',
+                  width: '100%',
+                }}
+              >
+                {item.name}
+              </a>
+            ))}
+            <a
+              href="#contacto"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: 'block',
+                textAlign: 'center',
+                fontFamily: 'var(--font-cinzel)',
+                fontSize: '11px',
+                letterSpacing: '.2em',
+                color: '#C8922A',
+                border: '1px solid rgba(200,146,42,0.6)',
+                padding: '12px',
+                marginTop: '1rem',
+                textDecoration: 'none',
+              }}
             >
               RESERVAR
             </a>
-          </>
-        )}
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
 
-        {/* Mobile hamburguesa */}
-        {mobile && (
-          <button
-            onClick={() => setOpen(v => !v)}
-            aria-label="Abrir menú"
-            style={{
-              background: 'transparent', border: 'none',
-              padding: '4px', cursor: 'pointer',
-              display: 'flex', flexDirection: 'column',
-              gap: '5px', alignItems: 'flex-end',
-            }}
-          >
-            {[22, 16, 22].map((w, i) => (
-              <span key={i} style={{
-                display: 'block', height: '1.5px',
-                background: '#C8922A', width: `${w}px`,
-                transition: 'transform .3s ease, opacity .3s ease, width .3s ease',
-                transform: i === 0 && open ? 'translateY(6.5px) rotate(45deg)' :
-                           i === 2 && open ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
-                opacity: i === 1 && open ? 0 : 1,
-              }} />
-            ))}
-          </button>
-        )}
-      </nav>
-
-      {/* Overlay */}
-      {mobile && (
-        <div onClick={close} style={{
-          position: 'fixed', inset: 0, zIndex: 190,
-          background: 'rgba(10,6,1,0.65)',
-          opacity: open ? 1 : 0,
-          pointerEvents: open ? 'auto' : 'none',
-          transition: 'opacity .3s ease',
-        }} />
-      )}
-
-      {/* Drawer mobile */}
-      {mobile && (
-        <div style={{
-          position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 195,
-          width: '80vw', maxWidth: '300px',
-          background: 'rgba(26,14,5,0.98)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderLeft: '1px solid rgba(200,146,42,0.15)',
-          display: 'flex', flexDirection: 'column',
-          padding: '5rem 2.5rem 3rem',
-          transform: open ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform .35s cubic-bezier(.4,0,.2,1)',
-        }}>
-          <nav style={{ display: 'flex', flexDirection: 'column' }}>
-            {[...NAV_LINKS, { label: 'CONTACTO', href: '#contacto' }].map(({ label, href }, i) => (
-              <a key={label} href={href} onClick={close} style={{
-                fontFamily: 'var(--font-raleway)', fontWeight: 300,
-                fontSize: '.75rem', letterSpacing: '.3em', textTransform: 'uppercase',
-                color: '#C4A882', textDecoration: 'none',
-                padding: '1.1rem 0',
-                borderBottom: '1px solid rgba(200,146,42,0.08)',
-                display: 'block',
-                opacity: open ? 1 : 0,
-                transform: open ? 'translateX(0)' : 'translateX(20px)',
-                transition: `opacity .35s ease ${i * 0.05 + 0.1}s, transform .35s ease ${i * 0.05 + 0.1}s`,
-              }}>
-                {label}
-              </a>
-            ))}
-          </nav>
-          <a href="#contacto" onClick={close} style={{
-            marginTop: '2.5rem',
-            fontFamily: 'var(--font-raleway)', fontWeight: 500,
-            fontSize: '.7rem', letterSpacing: '.3em', textTransform: 'uppercase',
-            color: '#C8922A', textDecoration: 'none',
-            border: '1px solid rgba(200,146,42,0.6)',
-            padding: '.9rem', textAlign: 'center', display: 'block',
-            opacity: open ? 1 : 0,
-            transform: open ? 'translateX(0)' : 'translateX(20px)',
-            transition: 'opacity .35s ease 0.45s, transform .35s ease 0.45s',
-          }}>
-            RESERVAR
-          </a>
-          <p style={{
-            marginTop: 'auto', paddingTop: '2rem',
-            fontFamily: 'var(--font-cinzel)', fontSize: '.65rem',
-            letterSpacing: '.3em', color: 'rgba(200,146,42,0.2)',
-            textAlign: 'center',
-          }}>
-            SOKKO LOUNGE
-          </p>
-        </div>
-      )}
-    </>
+      {/* Estilos SOKKO para los primitivos de Aceternity */}
+      <style>{`
+        /* Contenedor fijo en top */
+        .sokko-navbody {
+          min-width: unset !important;
+          background: transparent !important;
+          border-radius: 0 !important;
+        }
+        /* Cuando está visible (scrolled): fondo oscuro */
+        .sokko-navbody[style*="width: 40%"] {
+          background: rgba(26,14,5,0.94) !important;
+          border-bottom: 1px solid rgba(200,146,42,0.15) !important;
+          backdrop-filter: blur(14px) !important;
+          -webkit-backdrop-filter: blur(14px) !important;
+          border-radius: 0 !important;
+          width: 100% !important;
+        }
+        /* Links en Raleway dorado suave con espacios */
+        .sokko-navitems {
+          display: flex !important;
+          gap: 0 !important;
+        }
+        .sokko-navitems a {
+          font-family: var(--font-raleway) !important;
+          font-size: 11px !important;
+          letter-spacing: .18em !important;
+          text-transform: uppercase !important;
+          color: #C4A882 !important;
+          font-weight: 300 !important;
+          padding: 8px 16px !important;
+        }
+        .sokko-navitems a:hover {
+          color: #C8922A !important;
+        }
+        /* Hover bg dorado sutil en lugar de gris */
+        .sokko-navitems div[class*="rounded"] {
+          background: rgba(200,146,42,0.1) !important;
+          border-radius: 2px !important;
+        }
+        /* Mobile nav: fondo oscuro */
+        .sokko-mobilenav {
+          background: rgba(26,14,5,0.96) !important;
+          border-bottom: 1px solid rgba(200,146,42,0.15) !important;
+          padding: 1rem 1.5rem !important;
+          border-radius: 0 !important;
+          width: 100% !important;
+        }
+        /* Iconos hamburguesa dorados */
+        .sokko-mobilenav svg {
+          color: #C8922A !important;
+          stroke: #C8922A !important;
+        }
+        /* Menú mobile: fondo muy oscuro */
+        .sokko-mobilemenu {
+          background: rgba(13,8,2,0.98) !important;
+          border: 1px solid rgba(200,146,42,0.15) !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          padding: 1.5rem !important;
+        }
+      `}</style>
+    </div>
   );
 }

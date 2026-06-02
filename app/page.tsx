@@ -1,7 +1,7 @@
 import HeroThreeJS        from './components/HeroThreeJS';
 import OrigenSokko        from './components/OrigenSokko';
 import ZonasFullscreen    from './components/ZonasFullscreen';
-import IslasSection       from './components/IslasSection';
+import IslasCardStack     from './components/IslasCardStack';
 import EventosSection     from './components/EventosSection';
 import MenuSection        from './components/MenuSection';
 import HorariosSection    from './components/HorariosSection';
@@ -41,7 +41,7 @@ export default async function Home() {
       <HorizontalMarquee text="LAS OCHO ISLAS · TERRAZA · BAJO LAS ESTRELLAS · " speed={35} />
 
       {/* 8 — Islas: grid 4×2 con tilt 3D framer-motion */}
-      <IslasSection />
+      <IslasCardStack />
 
       {/* 9 */}
       <HorizontalMarquee text="PRÓXIMOS EVENTOS · MÚSICA EN DIRECTO · SHOWS TEMÁTICOS · CENAS ÚNICAS · " speed={42} />

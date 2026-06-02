@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 import IslaGridCard from './IslaGridCard';
 
 const ISLAS = [
-  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Volcánica y única',       imagen: '/islas/lanzarote.jpg' },
-  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Salvaje y libre',         imagen: '/islas/Fuerteventura.jpg' },
-  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante y cosmopolita',  imagen: '/islas/Gran canaria.jpg' },
-  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Intensa y majestuosa',    imagen: '/islas/Tenerife.jpg' },
-  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Verde y soñadora',        imagen: '/islas/la palma.jpg' },
-  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Auténtica y esencial',    imagen: '/islas/La gomera.jpg' },
-  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje y espiritual',    imagen: '/islas/el hierro.jpg' },
-  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serena y exclusiva',      imagen: '/islas/La graciosa.jpg' },
+  { slug: 'lanzarote',     nombre: 'Lanzarote',     subtitulo: 'Volcánica y única.',       imagen: '/islas/lanzarote.jpg' },
+  { slug: 'fuerteventura', nombre: 'Fuerteventura',  subtitulo: 'Salvaje y libre.',         imagen: '/islas/Fuerteventura.jpg' },
+  { slug: 'gran-canaria',  nombre: 'Gran Canaria',   subtitulo: 'Vibrante y cosmopolita.',  imagen: '/islas/Gran canaria.jpg' },
+  { slug: 'tenerife',      nombre: 'Tenerife',       subtitulo: 'Intensa y majestuosa.',    imagen: '/islas/Tenerife.jpg' },
+  { slug: 'la-palma',      nombre: 'La Palma',       subtitulo: 'Verde y soñadora.',        imagen: '/islas/la palma.jpg' },
+  { slug: 'la-gomera',     nombre: 'La Gomera',      subtitulo: 'Auténtica y esencial.',    imagen: '/islas/La gomera.jpg' },
+  { slug: 'el-hierro',     nombre: 'El Hierro',      subtitulo: 'Salvaje y espiritual.',    imagen: '/islas/el hierro.jpg' },
+  { slug: 'la-graciosa',   nombre: 'La Graciosa',    subtitulo: 'Serena y exclusiva.',      imagen: '/islas/La graciosa.jpg' },
 ];
 
 function getColumns(w: number) {

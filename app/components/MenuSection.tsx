@@ -49,7 +49,7 @@ export default function MenuSection() {
   const [modo, setModo] = useState<'imagen' | 'carta'>('imagen')
 
   return (
-    <section id="carta" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+    <section id="carta" style={{ background: '#1A0E05', padding: '8rem 4rem', minHeight: '100vh' }}>
       <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }`}</style>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 

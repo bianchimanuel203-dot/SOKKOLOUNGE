@@ -97,14 +97,29 @@ export default function MenuSection() {
         {modo === 'imagen' && (
           <div style={{ display: 'flex', justifyContent: 'center', animation: 'fadeIn 0.3s ease' }}>
             <div style={{
-              position: 'relative', maxWidth: '900px', width: '100%',
+              position: 'relative',
+              width: '100%',
+              maxWidth: '880px',
+              aspectRatio: '4 / 3',
               border: '1px solid rgba(212,152,46,0.3)',
               boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              background: '#1A0E05',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
             }}>
               <img
                 src="/menus/menu-comida.png"
                 alt="Carta SOKKO Lounge"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center',
+                  display: 'block',
+                  background: '#1A0E05',
+                }}
               />
               <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
                 <a

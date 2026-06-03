@@ -23,19 +23,19 @@ export default function MenuScrollWrapper({ children }: MenuScrollWrapperProps) 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section2Ref.current,
-        start: 'top 80%',
-        end: 'top 20%',
+        start: 'top 60%',
+        end: 'top 10%',
         scrub: 0.6,
       },
     })
 
     // Primera sección: encoge con rotación sutil
     tl.to(section1Ref.current, {
-      scale: 0.92,
-      rotation: 1.5,
+      scale: 0.97,
+      rotation: 0,
       transformOrigin: 'center center',
-      borderRadius: '16px',
-      opacity: 0.7,
+      borderRadius: '8px',
+      opacity: 0.85,
       duration: 1,
       ease: 'none',
     }, 0)
@@ -75,6 +75,7 @@ export default function MenuScrollWrapper({ children }: MenuScrollWrapperProps) 
           position: 'relative',
           zIndex: 2,
           willChange: 'transform',
+          marginTop: '-2px',
         }}
       >
         {children[1]}

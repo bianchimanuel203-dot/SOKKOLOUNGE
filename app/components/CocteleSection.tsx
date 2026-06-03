@@ -1,220 +1,249 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Book from '@/components/smoothui/book'
 
+// ── Datos ─────────────────────────────────────────────────────
 const coctelesData = {
   firma: [
-    { nombre: 'SOKKO SIGNATURE',     desc: 'Ron añejo, flor de hibisco, cítrico y espuma de coco',          precio: '13€',    destacado: true  },
-    { nombre: 'BRISA DEL ATLÁNTICO', desc: 'Ginebra botánica, pepino, aloe vera y agua tónica',             precio: '12€',    destacado: false },
-    { nombre: 'VOLCÁN DE FUEGO',     desc: 'Mezcal, maracuyá, jengibre y chile ahumado',                    precio: '13.50€', destacado: false },
-    { nombre: 'NOCHE ESTRELLADA',    desc: 'Mora, lavanda, limón y soda artesanal',                         precio: '8€',     destacado: false },
-    { nombre: 'ROSA CANARIA',        desc: 'Hibisco, frambuesa, lima y jarabe natural',                     precio: '7€',     destacado: false },
-    { nombre: 'OASIS VERDE',         desc: 'Pepino, menta, limón y agua de coco',                           precio: '7.50€',  destacado: false },
+    { nombre: 'SOKKO SIGNATURE',     desc: 'Ron añejo, flor de hibisco, cítrico y espuma de coco',      precio: '13€'    },
+    { nombre: 'BRISA DEL ATLÁNTICO', desc: 'Ginebra botánica, pepino, aloe vera y agua tónica',         precio: '12€'    },
+    { nombre: 'VOLCÁN DE FUEGO',     desc: 'Mezcal, maracuyá, jengibre y chile ahumado',                precio: '13.50€' },
+    { nombre: 'ROSA CANARIA',        desc: 'Hibisco, frambuesa, lima y jarabe natural',                 precio: '7€'     },
+    { nombre: 'OASIS VERDE',         desc: 'Pepino, menta, limón y agua de coco',                       precio: '7.50€'  },
+    { nombre: 'NOCHE ESTRELLADA',    desc: 'Mora, lavanda, limón y soda artesanal',                     precio: '8€'     },
   ],
   clasicos: [
-    { nombre: 'MOJITO CANARIO',      desc: 'Ron blanco, lima fresca, menta y azúcar de caña',              precio: '9€',     destacado: false },
-    { nombre: 'NEGRONI CLÁSICO',     desc: 'Ginebra, vermú rojo y Campari con naranja',                    precio: '10€',    destacado: false },
-    { nombre: 'DAIQUIRI DE MANGO',   desc: 'Ron blanco, mango tropical, lima y jarabe natural',            precio: '9.50€',  destacado: false },
-    { nombre: 'OLD FASHIONED',       desc: 'Bourbon premium, azúcar moreno y angostura',                   precio: '11€',    destacado: false },
-    { nombre: 'APEROL SPRITZ',       desc: 'Aperol, prosecco seco y un toque de naranja',                  precio: '9€',     destacado: false },
-    { nombre: 'MARGARITA PICANTE',   desc: 'Tequila, triple sec, lima y jalapeño fresco',                  precio: '10.50€', destacado: false },
+    { nombre: 'MOJITO CANARIO',      desc: 'Ron blanco, lima fresca, menta y azúcar de caña',          precio: '9€'     },
+    { nombre: 'NEGRONI CLÁSICO',     desc: 'Ginebra, vermú rojo y Campari con naranja',                precio: '10€'    },
+    { nombre: 'DAIQUIRI DE MANGO',   desc: 'Ron blanco, mango tropical, lima y jarabe natural',        precio: '9.50€'  },
+    { nombre: 'OLD FASHIONED',       desc: 'Bourbon premium, azúcar moreno y angostura',              precio: '11€'    },
+    { nombre: 'APEROL SPRITZ',       desc: 'Aperol, prosecco seco y un toque de naranja',             precio: '9€'     },
+    { nombre: 'MARGARITA PICANTE',   desc: 'Tequila, triple sec, lima y jalapeño fresco',             precio: '10.50€' },
   ],
 }
 
-const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
-  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-  fontSize: '11px',
-  letterSpacing: '0.2em',
-  padding: '10px 28px',
-  border: 'none',
-  borderRadius: '1px',
-  cursor: 'pointer',
-  transition: 'all 0.2s ease',
-  background: active ? '#D4982E' : 'transparent',
-  color:      active ? '#1A0E05' : '#A07850',
-})
-
-const seccionHeaderStyle: React.CSSProperties = {
-  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-  fontSize: '14px',
-  color: '#D4982E',
-  letterSpacing: '0.2em',
-  marginBottom: '0.5rem',
-}
-
+// ── Componente principal ──────────────────────────────────────
 export default function CocteleSection() {
-  const [modo, setModo] = useState<'imagen' | 'carta'>('imagen')
+  const [flipped, setFlipped] = useState(false)
 
   return (
-    <section id="cocteles" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
-      <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }`}</style>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="cocteles" style={{ background: '#1A0E05', padding: '6rem 4rem' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
 
-        {/* HEADER */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <p style={{
-            fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-            fontSize: '11px', color: '#A07850',
-            letterSpacing: '0.5em', marginBottom: '1rem',
-          }}>
-            MIXOLOGÍA CANARIA
-          </p>
-          <h2 style={{
-            fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-            fontSize: 'clamp(28px, 4vw, 48px)',
-            color: '#D4982E', letterSpacing: '0.08em', marginBottom: '0.5rem',
-          }}>
-            CÓCTELES PREMIUM
-          </h2>
-          <p style={{
-            fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-            fontStyle: 'italic',
-            fontSize: 'clamp(15px, 1.4vw, 19px)',
-            color: '#D4B896', margin: 0,
-          }}>
-            Sabores del archipiélago en cada trago.
-          </p>
-        </div>
+        {/* ── Flip card ────────────────────────────────── */}
+        <div style={{
+          perspective: '1200px',
+          width: '100%',
+          aspectRatio: '16/9',
+          maxHeight: '520px',
+        }}>
+          <motion.div
+            animate={{ rotateY: flipped ? 180 : 0 }}
+            transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+            style={{
+              width: '100%', height: '100%',
+              position: 'relative',
+              transformStyle: 'preserve-3d',
+            }}
+          >
 
-        {/* TOGGLE */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-          <div style={{
-            display: 'flex',
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(212,152,46,0.2)',
-            borderRadius: '2px',
-            padding: '3px', gap: '3px',
-          }}>
-            <button onClick={() => setModo('imagen')} style={toggleBtnStyle(modo === 'imagen')}>🖼 VER CARTA</button>
-            <button onClick={() => setModo('carta')}  style={toggleBtnStyle(modo === 'carta')}>📋 LEER LISTA</button>
-          </div>
-        </div>
-
-        {/* MODO: VER CARTA — imagen Canva */}
-        {modo === 'imagen' && (
-          <div style={{ display: 'flex', justifyContent: 'center', animation: 'fadeIn 0.3s ease' }}>
+            {/* CARA DELANTERA — Book + imagen cócteles */}
             <div style={{
-              position: 'relative', maxWidth: '900px', width: '100%',
-              border: '1px solid rgba(212,152,46,0.3)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              position: 'absolute', inset: 0,
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden' as React.CSSProperties['WebkitBackfaceVisibility'],
+              border: '1px solid rgba(212,152,46,0.25)',
+              overflow: 'hidden',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              gap: '3.5rem',
+              background: '#100804',
+              padding: '2.5rem',
+              cursor: 'pointer',
+            }}
+              onClick={() => setFlipped(true)}
+            >
+              {/* Book SmoothUI — portada decorativa */}
+              <div style={{ flexShrink: 0 }}>
+                <Book
+                  title="CÓCTELES"
+                  variant="simple"
+                  color="#8B3A1A"
+                  textColor="#E8B84B"
+                  width={170}
+                  logo={
+                    <p style={{
+                      fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                      fontStyle: 'italic', fontSize: '11px',
+                      color: '#D4B896', margin: 0,
+                    }}>SOKKO LOUNGE</p>
+                  }
+                />
+              </div>
+
+              {/* Texto + CTA */}
+              <div style={{ textAlign: 'center' }}>
+                <p style={{
+                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                  fontSize: '11px', color: '#A07850',
+                  letterSpacing: '0.4em', marginBottom: '1rem',
+                }}>MIXOLOGÍA CANARIA</p>
+                <h2 style={{
+                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                  fontSize: 'clamp(22px, 3vw, 38px)',
+                  color: '#D4982E', letterSpacing: '0.08em',
+                  marginBottom: '0.75rem',
+                }}>
+                  CÓCTELES<br />PREMIUM
+                </h2>
+                <p style={{
+                  fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                  fontStyle: 'italic',
+                  fontSize: 'clamp(14px, 1.3vw, 17px)',
+                  color: '#D4B896', marginBottom: '2rem',
+                }}>
+                  Sabores del archipiélago en cada trago
+                </p>
+                <span style={{
+                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                  fontSize: '11px', color: '#D4982E',
+                  letterSpacing: '0.25em',
+                  border: '1px solid rgba(212,152,46,0.4)',
+                  padding: '12px 28px',
+                  display: 'inline-block',
+                }}>
+                  VER COCTELERÍA →
+                </span>
+              </div>
+            </div>
+
+            {/* CARA TRASERA — dos columnas FIRMA + CLÁSICOS */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden' as React.CSSProperties['WebkitBackfaceVisibility'],
+              transform: 'rotateY(180deg)',
+              border: '1px solid rgba(212,152,46,0.25)',
+              overflow: 'hidden',
+              background: '#2C1A08',
+              padding: '2rem 2.5rem',
+              display: 'flex', flexDirection: 'column',
             }}>
-              <img
-                src="/menus/menu-cocteles.png"
-                alt="Carta de cócteles SOKKO Lounge"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-              <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
-                <a
-                  href="/menus/menu-cocteles.png"
-                  download="cocteleria-sokko-lounge.png"
-                  style={{
-                    fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                    fontSize: '10px', letterSpacing: '0.2em',
-                    color: '#1A0E05', background: 'rgba(212,152,46,0.9)',
-                    padding: '8px 16px', textDecoration: 'none', display: 'inline-block',
-                  }}
-                >
-                  DESCARGAR ↓
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* MODO: LEER LISTA — thumbnail izq + dos columnas derecha */}
-        {modo === 'carta' && (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '280px 1fr',
-            gap: '3rem',
-            alignItems: 'start',
-            animation: 'fadeIn 0.3s ease',
-          }}>
-            {/* Thumbnail sticky */}
-            <div style={{ position: 'sticky', top: '100px' }}>
-              <img
-                src="/menus/menu-cocteles.png"
-                alt="Cócteles SOKKO"
-                style={{
-                  width: '100%', height: 'auto',
-                  border: '1px solid rgba(212,152,46,0.25)', opacity: 0.85,
-                }}
-              />
-              <p style={{
-                fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                fontStyle: 'italic', fontSize: '13px', color: '#A07850',
-                textAlign: 'center', marginTop: '0.75rem',
+              {/* Header */}
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                marginBottom: '1.25rem',
+                borderBottom: '1px solid rgba(212,152,46,0.15)',
+                paddingBottom: '1rem',
               }}>
-                Bajo las estrellas de Fuerteventura
-              </p>
-            </div>
-
-            {/* Dos columnas: Firma + Clásicos */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
-
-              {/* FIRMA SOKKO */}
-              <div>
-                <h3 style={seccionHeaderStyle}>FIRMA SOKKO</h3>
-                <div style={{ width: '40px', height: '1px', background: '#D4982E', marginBottom: '1.5rem', opacity: 0.5 }} />
-                {coctelesData.firma.map((c, i) => (
-                  <div key={i} style={{
-                    padding: '1rem 0',
-                    borderBottom: '1px solid rgba(212,152,46,0.08)',
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                        fontSize: '12px', color: '#F4EDD8',
-                        letterSpacing: '0.05em', margin: 0,
-                      }}>{c.nombre}</p>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                        fontSize: '12px', color: '#D4982E',
-                        margin: 0, whiteSpace: 'nowrap', marginLeft: '8px',
-                      }}>{c.precio}</p>
-                    </div>
-                    <p style={{
-                      fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                      fontStyle: 'italic', fontSize: '13px',
-                      color: '#D4B896', margin: 0, lineHeight: 1.4,
-                    }}>{c.desc}</p>
-                  </div>
-                ))}
+                <p style={{
+                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                  fontSize: '15px', color: '#D4982E',
+                  letterSpacing: '0.15em', margin: 0,
+                }}>CÓCTELES PREMIUM</p>
+                <button onClick={() => setFlipped(false)} style={{
+                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                  fontSize: '10px', color: '#A07850',
+                  letterSpacing: '0.15em', background: 'none',
+                  border: '1px solid rgba(160,120,80,0.3)',
+                  padding: '6px 14px', cursor: 'pointer',
+                }}>← VOLVER</button>
               </div>
 
-              {/* CLÁSICOS */}
-              <div>
-                <h3 style={seccionHeaderStyle}>CLÁSICOS</h3>
-                <div style={{ width: '40px', height: '1px', background: '#D4982E', marginBottom: '1.5rem', opacity: 0.5 }} />
-                {coctelesData.clasicos.map((c, i) => (
-                  <div key={i} style={{
-                    padding: '1rem 0',
-                    borderBottom: '1px solid rgba(212,152,46,0.08)',
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+              {/* Dos columnas scrollable */}
+              <div style={{
+                flex: 1, overflowY: 'auto',
+                display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem 2.5rem',
+                alignContent: 'start',
+              }}>
+                {/* FIRMA SOKKO */}
+                <div>
+                  <p style={{
+                    fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                    fontSize: '11px', color: '#D4982E',
+                    letterSpacing: '0.2em',
+                    borderBottom: '1px solid rgba(212,152,46,0.25)',
+                    paddingBottom: '0.5rem', marginBottom: '0.75rem',
+                  }}>FIRMA SOKKO</p>
+                  {coctelesData.firma.map((c, i) => (
+                    <div key={i} style={{
+                      padding: '0.65rem 0',
+                      borderBottom: '1px solid rgba(212,152,46,0.07)',
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
+                        <p style={{
+                          fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                          fontSize: '11px', color: '#F4EDD8',
+                          letterSpacing: '0.04em', margin: 0,
+                        }}>{c.nombre}</p>
+                        <p style={{
+                          fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                          fontSize: '11px', color: '#D4982E',
+                          margin: 0, whiteSpace: 'nowrap', marginLeft: '6px',
+                        }}>{c.precio}</p>
+                      </div>
                       <p style={{
-                        fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                        fontSize: '12px', color: '#F4EDD8',
-                        letterSpacing: '0.05em', margin: 0,
-                      }}>{c.nombre}</p>
-                      <p style={{
-                        fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                        fontSize: '12px', color: '#D4982E',
-                        margin: 0, whiteSpace: 'nowrap', marginLeft: '8px',
-                      }}>{c.precio}</p>
+                        fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                        fontStyle: 'italic', fontSize: '12px',
+                        color: '#D4B896', margin: 0, lineHeight: 1.4,
+                      }}>{c.desc}</p>
                     </div>
-                    <p style={{
-                      fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                      fontStyle: 'italic', fontSize: '13px',
-                      color: '#D4B896', margin: 0, lineHeight: 1.4,
-                    }}>{c.desc}</p>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
+                {/* CLÁSICOS */}
+                <div>
+                  <p style={{
+                    fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                    fontSize: '11px', color: '#D4982E',
+                    letterSpacing: '0.2em',
+                    borderBottom: '1px solid rgba(212,152,46,0.25)',
+                    paddingBottom: '0.5rem', marginBottom: '0.75rem',
+                  }}>CLÁSICOS</p>
+                  {coctelesData.clasicos.map((c, i) => (
+                    <div key={i} style={{
+                      padding: '0.65rem 0',
+                      borderBottom: '1px solid rgba(212,152,46,0.07)',
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
+                        <p style={{
+                          fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                          fontSize: '11px', color: '#F4EDD8',
+                          letterSpacing: '0.04em', margin: 0,
+                        }}>{c.nombre}</p>
+                        <p style={{
+                          fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                          fontSize: '11px', color: '#D4982E',
+                          margin: 0, whiteSpace: 'nowrap', marginLeft: '6px',
+                        }}>{c.precio}</p>
+                      </div>
+                      <p style={{
+                        fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                        fontStyle: 'italic', fontSize: '12px',
+                        color: '#D4B896', margin: 0, lineHeight: 1.4,
+                      }}>{c.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+
+          </motion.div>
+        </div>
+
+        {/* Descarga */}
+        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+          <a href="/menus/menu-cocteles.png" download="cocteleria-sokko-lounge.png"
+            style={{
+              fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+              fontSize: '10px', letterSpacing: '0.2em', color: '#A07850',
+              textDecoration: 'none', borderBottom: '1px solid rgba(160,120,80,0.3)',
+              paddingBottom: '2px',
+            }}>
+            DESCARGAR CARTA DE CÓCTELES ↓
+          </a>
+        </div>
 
       </div>
     </section>

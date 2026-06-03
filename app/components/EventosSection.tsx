@@ -22,7 +22,7 @@ const EVENTOS = [
       { hora: '21:30 — 23:30', acto: 'DRAG SHOW — Dayana + Gabriela' },
       { hora: '23:30 — 02:00', acto: 'DJ LEMUS' },
     ],
-    imagen: '/zonas/zona-comedor.jpg', color: '#C8922A', destacado: true,
+    imagen: '/eventos/apertura-general.jpg', color: '#C8922A', destacado: true,
   },
   {
     id: 'e2', categoria: 'artistas', badgeLabel: 'APERTURA VIP',
@@ -36,7 +36,7 @@ const EVENTOS = [
       { hora: '21:30 — 22:00', acto: 'Brindis' },
       { hora: '22:00 — 00:00', acto: 'DJ DOA' },
     ],
-    imagen: '/zonas/zona-terraza.jpg', color: '#4080E0', destacado: false,
+    imagen: '/eventos/apertura-vip.jpg', color: '#4080E0', destacado: false,
   },
   {
     id: 'e3', categoria: 'shows', badgeLabel: 'DOMINGO FAMILIAR',
@@ -51,7 +51,7 @@ const EVENTOS = [
       { hora: '20:00 — 22:00', acto: 'MAGO SENA' },
       { hora: '22:00 — 02:00', acto: 'Música Ambiente' },
     ],
-    imagen: '/zonas/zona-chill.jpg', color: '#40B060', destacado: false,
+    imagen: '/eventos/domingo-familiar.jpg', color: '#40B060', destacado: false,
   },
   {
     id: 'e4', categoria: 'talleres', badgeLabel: 'PRÓXIMAMENTE',

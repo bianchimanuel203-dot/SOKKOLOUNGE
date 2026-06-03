@@ -55,3 +55,54 @@ input:-webkit-autofill {
 }
 .zona-row:hover { background: rgba(201,168,76,.02); }
 .island-pill:hover { border-color: rgba(201,168,76,.4) !important; background: rgba(201,168,76,.04) !important; }
+
+/* ── PALETA ACTUALIZADA — más contraste para legibilidad ──────── */
+:root {
+  --sokko-dark:        #1A0E05;
+  --sokko-dark-card:   #241508;
+  --sokko-dark-hover:  #2E1A09;
+  --sokko-gold:        #D4982E;
+  --sokko-gold-light:  #E8B84B;
+  --sokko-gold-soft:   #D4B896;
+  --sokko-sand:        #A07850;
+  --sokko-warm:        #F8EED8;
+  --sokko-text-primary:   #F0E0C0;
+  --sokko-text-secondary: #C8A878;
+  --sokko-text-muted:     #907058;
+}
+
+/* ── TAMAÑOS MÍNIMOS — accesibilidad ─────────────────────────── */
+body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ── ANIMATED GRADIENT BORDER ────────────────────────────────── */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gradient-rotate {
+  from { --gradient-angle: 0deg; }
+  to   { --gradient-angle: 360deg; }
+}
+
+.gradient-border-auto {
+  animation: gradient-rotate var(--animation-duration, 5s) linear infinite;
+}
+
+.gradient-border-hover {
+  --gradient-angle: 0deg;
+}
+.gradient-border-hover:hover {
+  animation: gradient-rotate var(--animation-duration, 5s) linear infinite;
+}
+
+.gradient-border-stop-hover {
+  animation: gradient-rotate var(--animation-duration, 5s) linear infinite;
+}
+.gradient-border-stop-hover:hover {
+  animation-play-state: paused;
+}

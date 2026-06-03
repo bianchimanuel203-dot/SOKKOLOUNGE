@@ -118,9 +118,9 @@ export default function ContactoSection() {
       >
         {/* FONDO ETHERAL — z-index 0, absoluto, no interfiere con clicks */}
         <EtherealShadow
-          color="rgba(212, 152, 46, 0.18)"
-          animation={{ scale: 60, speed: 25 }}
-          noise={{ opacity: 0.3, scale: 1.0 }}
+          color="rgba(212, 152, 46, 0.22)"
+          animation={{ scale: 45, speed: 72 }}
+          noise={{ opacity: 0.4, scale: 1.2 }}
           sizing="fill"
         />
 

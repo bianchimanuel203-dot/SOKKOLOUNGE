@@ -8,7 +8,7 @@ export default function MenuCartaSection() {
   return (
     <section
       id="carta"
-      style={{ background: '#1A0E05', padding: '6rem 4rem' }}
+      style={{ background: '#1A0E05', padding: '6rem 2rem' }}
     >
       {/* HEADER común */}
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -21,7 +21,7 @@ export default function MenuCartaSection() {
         </p>
         <h2 style={{
           fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-          fontSize: 'clamp(24px, 3.5vw, 48px)',
+          fontSize: 'clamp(32px, 4.5vw, 64px)',
           color: '#D4982E', letterSpacing: '0.08em', margin: 0,
         }}>
           NUESTRA CARTA
@@ -29,7 +29,7 @@ export default function MenuCartaSection() {
         <p style={{
           fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
           fontStyle: 'italic',
-          fontSize: 'clamp(14px, 1.3vw, 18px)',
+          fontSize: 'clamp(16px, 1.5vw, 22px)',
           color: '#D4B896', marginTop: '0.5rem', marginBottom: 0,
         }}>
           Haz click en cada menú para explorar
@@ -39,9 +39,10 @@ export default function MenuCartaSection() {
       {/* GRID 2 COLUMNAS */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '2rem',
-        maxWidth: '1200px',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '1.5rem',
+        maxWidth: '1600px',
+        width: '100%',
         margin: '0 auto',
         alignItems: 'start',
       }}>

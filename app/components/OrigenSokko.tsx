@@ -89,7 +89,7 @@ export default function OrigenSokko() {
   return (
     <section
       id="origen"
-      style={{ background: '#1A0E05', padding: 'clamp(5rem,8vw,8rem) 0 0' }}
+      style={{ background: '#1E1208', padding: 'clamp(5rem,8vw,8rem) 0 0' }}
     >
       <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
 
@@ -97,10 +97,11 @@ export default function OrigenSokko() {
         <p
           className="origen-intro"
           style={{
-            fontFamily: 'var(--font-raleway)', fontWeight: 300,
-            fontSize: 'clamp(.92rem,1.6vw,1.1rem)',
-            color: '#C4A882',
-            lineHeight: 1.95,
+            fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+            fontStyle: 'italic',
+            fontSize: 'clamp(17px,1.6vw,22px)',
+            color: '#F4EDD8',
+            lineHeight: 1.75,
             maxWidth: '820px',
             margin: '0 auto clamp(4rem,7vw,6rem)',
             textAlign: 'center',
@@ -112,14 +113,14 @@ export default function OrigenSokko() {
           creando un espacio único donde tradición, ocio, cultura y comunidad conviven en armonía.
         </p>
 
-        {/* Grid 4 bloques */}
+        {/* Grid 4 bloques — cards más claras que la sección */}
         <div
           className="origen-bloques-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
             gap: '1px',
-            background: 'rgba(200,146,42,0.08)',
+            background: 'rgba(212,152,46,0.12)',
           }}
         >
           {BLOQUES.map((b) => (
@@ -127,24 +128,27 @@ export default function OrigenSokko() {
               key={b.titulo}
               className="origen-bloque"
               style={{
-                background: '#1A0E05',
+                background: '#382010',
                 padding: 'clamp(2rem,3vw,3rem) clamp(1.5rem,2.5vw,2.5rem)',
                 display: 'flex', flexDirection: 'column', gap: '1.2rem',
+                transition: 'background 0.3s ease',
               }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#4A2A14'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = '#382010'}
             >
-              <div style={{ color: '#C8922A' }}>{b.icon}</div>
+              <div style={{ color: '#D4982E' }}>{b.icon}</div>
               <h3 style={{
                 fontFamily: 'var(--font-cinzel)',
-                fontSize: 'clamp(.62rem,1.1vw,.8rem)',
-                color: '#C8922A', letterSpacing: '.12em', lineHeight: 1.55,
+                fontSize: 'clamp(10px,1.1vw,13px)',
+                color: '#D4982E', letterSpacing: '.15em', lineHeight: 1.55,
                 margin: 0,
               }}>{b.titulo}</h3>
-              <div style={{ width: '28px', height: '1px', background: 'rgba(200,146,42,0.4)' }} />
+              <div style={{ width: '28px', height: '1px', background: 'rgba(212,152,46,0.5)' }} />
               {b.texto.split('\n').map((p, i) => (
                 <p key={i} style={{
                   fontFamily: 'var(--font-raleway)', fontWeight: 300,
-                  fontSize: 'clamp(.8rem,1.25vw,.92rem)',
-                  color: '#B8A57E', lineHeight: 1.85, margin: 0,
+                  fontSize: '14px',
+                  color: '#D4B896', lineHeight: 1.75, margin: 0,
                 }}>{p}</p>
               ))}
             </div>
@@ -160,7 +164,7 @@ export default function OrigenSokko() {
             fontFamily: 'var(--font-cormorant)',
             fontStyle: 'italic',
             fontSize: 'clamp(1.5rem,3.8vw,2.8rem)',
-            color: '#D4A843',
+            color: '#F4EDD8',
             lineHeight: 1.55, maxWidth: '820px',
             margin: '0 auto',
             textShadow: '0 0 50px rgba(212,168,67,0.18)',

@@ -3,8 +3,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: #0A0804;
-  color: #B8A980;
+  background: #100804;
+  color: #F4EDD8;
   font-family: var(--font-raleway), sans-serif;
   font-weight: 300;
   overflow-x: hidden;
@@ -56,20 +56,47 @@ input:-webkit-autofill {
 .zona-row:hover { background: rgba(201,168,76,.02); }
 .island-pill:hover { border-color: rgba(201,168,76,.4) !important; background: rgba(201,168,76,.04) !important; }
 
-/* ── PALETA ACTUALIZADA — más contraste para legibilidad ──────── */
+/* ── SISTEMA DE FONDOS CON CONTRASTE ─────────────────────────── */
 :root {
-  --sokko-dark:        #1A0E05;
-  --sokko-dark-card:   #241508;
-  --sokko-dark-hover:  #2E1A09;
+  /* NIVEL 1 — fondos de secciones oscuras */
+  --bg-dark:         #100804;
+  /* NIVEL 1b — fondos de secciones cálidas */
+  --bg-warm:         #1E1208;
+  /* NIVEL 2 — cards sobre fondo oscuro */
+  --bg-card-dark:    #2C1A08;
+  /* NIVEL 2b — cards sobre fondo cálido */
+  --bg-card-warm:    #382010;
+  /* NIVEL 3 — inputs / paneles dentro de card */
+  --bg-panel:        #3A2210;
+  /* FOOTER */
+  --bg-footer:       #0A0502;
+
+  /* TEXTOS */
+  --text-primary:    #F4EDD8;   /* crema brillante — párrafos */
+  --text-secondary:  #D4B896;   /* dorado suave — subtítulos */
+  --text-muted:      #A07850;   /* arena — labels, fechas */
+  --text-disabled:   #4A3020;   /* cerrado, inactivo */
+
+  /* DORADOS */
+  --gold:            #D4982E;
+  --gold-light:      #E8B84B;
+  --gold-dim:        #8B5A1A;
+
+  /* LEGADO — aliases para compatibilidad */
+  --sokko-dark:        #100804;
+  --sokko-dark-card:   #2C1A08;
+  --sokko-dark-hover:  #382010;
   --sokko-gold:        #D4982E;
   --sokko-gold-light:  #E8B84B;
   --sokko-gold-soft:   #D4B896;
   --sokko-sand:        #A07850;
-  --sokko-warm:        #F8EED8;
-  --sokko-text-primary:   #F0E0C0;
-  --sokko-text-secondary: #C8A878;
-  --sokko-text-muted:     #907058;
+  --sokko-warm:        #F4EDD8;
+  --sokko-text-primary:   #F4EDD8;
+  --sokko-text-secondary: #D4B896;
+  --sokko-text-muted:     #A07850;
 }
+
+html, body { background: var(--bg-dark); color: var(--text-primary); }
 
 /* ── TAMAÑOS MÍNIMOS — accesibilidad ─────────────────────────── */
 body {

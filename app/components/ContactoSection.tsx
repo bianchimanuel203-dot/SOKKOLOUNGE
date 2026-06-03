@@ -57,7 +57,7 @@ export default function ContactoSection() {
   };
 
   return (
-    <section id="reservar" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+    <section id="reservar" style={{ background: '#100804', padding: '8rem 4rem' }}>
 
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -89,7 +89,7 @@ export default function ContactoSection() {
           animationMode="auto-rotate"
           animationSpeed={6}
           gradientColors={SOKKO_GRADIENT}
-          backgroundColor="#1E1005"
+          backgroundColor="#2C1A08"
           borderWidth={1}
           borderRadius={2}
         >
@@ -184,7 +184,7 @@ export default function ContactoSection() {
 
           {/* Ubicación */}
           <BorderRotate animationMode="stop-rotate-on-hover" animationSpeed={8}
-            gradientColors={SOKKO_GRADIENT} backgroundColor="#1E1005" borderWidth={1} borderRadius={2}>
+            gradientColors={SOKKO_GRADIENT} backgroundColor="#2C1A08" borderWidth={1} borderRadius={2}>
             <div style={{ padding: '1.75rem 2rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '20px' }}>📍</span>
@@ -206,7 +206,7 @@ export default function ContactoSection() {
 
           {/* Teléfono / WhatsApp */}
           <BorderRotate animationMode="stop-rotate-on-hover" animationSpeed={8}
-            gradientColors={SOKKO_GRADIENT} backgroundColor="#1E1005" borderWidth={1} borderRadius={2}>
+            gradientColors={SOKKO_GRADIENT} backgroundColor="#2C1A08" borderWidth={1} borderRadius={2}>
             <div style={{ padding: '1.75rem 2rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '20px' }}>💬</span>
@@ -226,7 +226,7 @@ export default function ContactoSection() {
 
           {/* Horario rápido */}
           <BorderRotate animationMode="stop-rotate-on-hover" animationSpeed={8}
-            gradientColors={SOKKO_GRADIENT} backgroundColor="#1E1005" borderWidth={1} borderRadius={2}>
+            gradientColors={SOKKO_GRADIENT} backgroundColor="#2C1A08" borderWidth={1} borderRadius={2}>
             <div style={{ padding: '1.75rem 2rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1.25rem' }}>
                 <span style={{ fontSize: '20px' }}>🕐</span>

@@ -12,7 +12,7 @@ const FILTROS = [
 
 const EVENTOS = [
   {
-    id: 'e1', categoria: 'shows', badgeLabel: 'APERTURA GENERAL',
+    id: 'e1', slug: 'apertura-general', categoria: 'shows', badgeLabel: 'APERTURA GENERAL',
     titulo: 'DRAG SHOW\nDAYANA + GABRIELA',
     subtitulo: 'Con DJ Jony y DJ Lemus',
     fecha: 'SÁBADO', dia: '13', mes: 'JUNIO', horario: '20:00 — 02:00',
@@ -25,7 +25,7 @@ const EVENTOS = [
     imagen: '/eventos/apertura-general.jpg', color: '#C8922A', destacado: true,
   },
   {
-    id: 'e2', categoria: 'artistas', badgeLabel: 'APERTURA VIP',
+    id: 'e2', slug: 'apertura-vip', categoria: 'artistas', badgeLabel: 'APERTURA VIP',
     titulo: 'DJ DOA\nNOCHE EXCLUSIVA VIP',
     subtitulo: 'Presentación Dayana + SOKKO · Brindis',
     fecha: 'VIERNES', dia: '12', mes: 'JUNIO', horario: '20:00 — 00:00',
@@ -39,7 +39,7 @@ const EVENTOS = [
     imagen: '/eventos/apertura-vip.jpg', color: '#4080E0', destacado: false,
   },
   {
-    id: 'e3', categoria: 'shows', badgeLabel: 'DOMINGO FAMILIAR',
+    id: 'e3', slug: 'domingo-familiar', categoria: 'shows', badgeLabel: 'DOMINGO FAMILIAR',
     titulo: 'MAGO SENA\nFAMILIA Y JUEGOS',
     subtitulo: 'Torneos PS5, Billar y Actividades Familiares',
     fecha: 'DOMINGO', dia: '14', mes: 'JUNIO', horario: '12:00 — 02:00',
@@ -54,7 +54,7 @@ const EVENTOS = [
     imagen: '/eventos/domingo-familiar.jpg', color: '#40B060', destacado: false,
   },
   {
-    id: 'e4', categoria: 'talleres', badgeLabel: 'PRÓXIMAMENTE',
+    id: 'e4', slug: 'taller-baile-latino', categoria: 'talleres', badgeLabel: 'PRÓXIMAMENTE',
     titulo: 'TALLER DE\nBAILE LATINO',
     subtitulo: 'Salsa, Bachata y Merengue para todos los niveles',
     fecha: 'MIÉRCOLES', dia: '—', mes: 'PRÓX.', horario: '17:00 — 19:00',
@@ -75,7 +75,7 @@ export default function EventosSection() {
   const eventosSecundarios = filtroActivo === 'todos' ? EVENTOS.filter(e => !e.destacado) : eventosFiltrados;
 
   return (
-    <section id="eventos" style={{ background: '#1A0E05', padding: '8rem 4rem', borderTop: '1px solid rgba(200,146,42,0.15)' }}>
+    <section id="eventos" style={{ background: '#100804', padding: '8rem 4rem', borderTop: '1px solid rgba(200,146,42,0.15)' }}>
 
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -104,37 +104,57 @@ export default function EventosSection() {
         {eventoDestacado && (
           <div style={{ marginBottom: '2rem' }}>
             <HolographicCard intensity={5}>
-              <div onClick={() => setEventoModal(eventoDestacado)}
-                style={{ position: 'relative', height: '70vh', minHeight: '480px', borderRadius: '2px', overflow: 'hidden', border: '1px solid rgba(200,146,42,0.3)', cursor: 'pointer' }}>
-                <img src={eventoDestacado.imagen} alt={eventoDestacado.titulo} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,5,2,0.97) 0%, rgba(10,5,2,0.5) 50%, transparent 100%)' }} />
+              <div
+                onClick={() => window.open(`/eventos/${eventoDestacado.slug}`, '_blank')}
+                style={{
+                  position: 'relative',
+                  cursor: 'pointer',
+                  border: '1px solid rgba(212,152,46,0.3)',
+                  background: '#100804',
+                  overflow: 'hidden',
+                  borderRadius: '2px',
+                }}
+              >
+                {/* Flyer completo visible — object-fit: contain */}
+                <img
+                  src={eventoDestacado.imagen}
+                  alt={eventoDestacado.titulo}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: '85vh',
+                    objectFit: 'contain',
+                    objectPosition: 'top',
+                    display: 'block',
+                  }}
+                />
 
-                {/* Badge */}
-                <div style={{ position: 'absolute', top: '2rem', left: '2.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '24px', height: '1px', background: '#C8922A' }} />
-                  <span style={{ fontFamily: 'var(--font-cinzel)', fontSize: '10px', color: '#C8922A', letterSpacing: '.45em' }}>{eventoDestacado.badgeLabel}</span>
-                </div>
+                {/* Overlay sutil solo en la parte inferior */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0, left: 0, right: 0,
+                  height: '120px',
+                  background: 'linear-gradient(to top, rgba(16,8,4,0.95) 0%, transparent 100%)',
+                  pointerEvents: 'none',
+                }} />
 
-                {/* Día grande */}
-                <div style={{ position: 'absolute', top: '1.5rem', right: '2.5rem', textAlign: 'right' }}>
-                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(48px,7vw,100px)', color: 'rgba(200,146,42,0.12)', lineHeight: 1, margin: 0 }}>{eventoDestacado.dia}</p>
-                  <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '12px', color: 'rgba(200,146,42,0.4)', letterSpacing: '.3em', margin: 0 }}>{eventoDestacado.mes}</p>
-                </div>
-
-                {/* Contenido abajo */}
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 2.5rem 2.5rem' }}>
-                  <h3 style={{ fontFamily: 'var(--font-cinzel)', fontSize: 'clamp(24px,4vw,56px)', color: '#F5EDD8', lineHeight: 1.05, whiteSpace: 'pre-line', margin: '0 0 .75rem', textShadow: '0 2px 40px rgba(0,0,0,0.8)' }}>{eventoDestacado.titulo}</h3>
-                  <p style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: 'clamp(15px,1.5vw,20px)', color: '#C4A882', margin: '0 0 2rem' }}>{eventoDestacado.subtitulo}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' as const }}>
-                    <span style={{ fontFamily: 'var(--font-cinzel)', fontSize: '11px', color: '#C8922A', border: '1px solid rgba(200,146,42,0.4)', padding: '6px 16px' }}>{eventoDestacado.precio}</span>
-                    <span style={{ fontFamily: 'var(--font-raleway)', fontWeight: 300, fontSize: '13px', color: '#8A6940', letterSpacing: '.15em' }}>{eventoDestacado.fecha} {eventoDestacado.dia} · {eventoDestacado.horario}</span>
-                    <button onClick={() => setEventoModal(eventoDestacado)}
-                      style={{ marginLeft: 'auto', fontFamily: 'var(--font-cinzel)', fontSize: '11px', letterSpacing: '.25em', color: '#1A0E05', background: '#C8922A', border: 'none', padding: '14px 36px', cursor: 'pointer', transition: 'background .2s' }}
-                      onMouseEnter={e => (e.currentTarget.style.background = '#D4A843')}
-                      onMouseLeave={e => (e.currentTarget.style.background = '#C8922A')}>
-                      VER PROGRAMA
-                    </button>
-                  </div>
+                {/* Indicador click */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '1.5rem',
+                  right: '1.5rem',
+                  fontFamily: 'var(--font-cinzel)',
+                  fontSize: '11px',
+                  color: '#D4982E',
+                  letterSpacing: '0.2em',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: 'rgba(16,8,4,0.85)',
+                  padding: '8px 16px',
+                  border: '1px solid rgba(212,152,46,0.35)',
+                }}>
+                  VER EVENTO COMPLETO ↗
                 </div>
               </div>
             </HolographicCard>

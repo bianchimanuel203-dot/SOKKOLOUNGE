@@ -94,14 +94,30 @@ export default function CocteleSection() {
         {modo === 'imagen' && (
           <div style={{ display: 'flex', justifyContent: 'center', animation: 'fadeIn 0.3s ease' }}>
             <div style={{
-              position: 'relative', maxWidth: '900px', width: '100%',
+              position: 'relative',
+              width: '100%',
+              maxWidth: '600px',
+              /* Imagen vertical ~1000×1400 → ratio ~0.71:1
+                 600px / 0.71 ≈ 845px de alto */
+              height: 'clamp(500px, 80vw, 850px)',
               border: '1px solid rgba(212,152,46,0.3)',
               boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              background: '#0A0502',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
             }}>
               <img
                 src="/menus/menu-cocteles.png"
                 alt="Carta de cócteles SOKKO Lounge"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
               />
               <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
                 <a

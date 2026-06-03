@@ -100,7 +100,9 @@ export default function MenuSection() {
               position: 'relative',
               width: '100%',
               maxWidth: '880px',
-              aspectRatio: '4 / 3',
+              /* Imagen apaisada ~1400×990 → ratio ~1.41:1
+                 880px / 1.41 ≈ 624px de alto */
+              height: 'clamp(400px, 55vw, 624px)',
               border: '1px solid rgba(212,152,46,0.3)',
               boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
               background: '#1A0E05',
@@ -114,11 +116,10 @@ export default function MenuSection() {
                 alt="Carta SOKKO Lounge"
                 style={{
                   width: '100%',
-                  height: '100%',
+                  height: 'auto',      /* altura automática según ratio real */
+                  maxHeight: '100%',   /* nunca supera el contenedor */
                   objectFit: 'contain',
-                  objectPosition: 'center',
                   display: 'block',
-                  background: '#1A0E05',
                 }}
               />
               <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>

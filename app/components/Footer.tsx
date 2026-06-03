@@ -147,7 +147,7 @@ export default function Footer() {
         <p style={{
           fontFamily: 'var(--font-cinzel)',
           fontSize: 'clamp(60px, 13vw, 190px)',
-          color: 'rgba(200,146,42,0.06)',
+          color: 'rgba(212,152,46,0.22)',
           letterSpacing: '.02em',
           lineHeight: 0.82,
           margin: 0,

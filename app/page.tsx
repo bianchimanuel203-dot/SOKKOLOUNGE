@@ -5,7 +5,6 @@ import IslasCardStack     from './components/IslasCardStack';
 import EventosSection        from './components/EventosSection';
 import MenuSection           from './components/MenuSection';
 import CocteleSection        from './components/CocteleSection';
-import MenuScrollWrapper     from '../components/MenuScrollWrapper';
 import HorariosSection       from './components/HorariosSection';
 import ProgramacionSection   from './components/ProgramacionSection';
 import ContactoSection    from './components/ContactoSection';
@@ -49,11 +48,14 @@ export default async function Home() {
       {/* 9 */}
       <HorizontalMarquee text="COCINA CANARIA · CÓCTELES PREMIUM · SABORES AUTÉNTICOS · " speed={36} />
 
-      {/* 12+13 — Carta y cócteles con efecto sticky scroll */}
-      <MenuScrollWrapper>
-        <MenuSection />
-        <CocteleSection />
-      </MenuScrollWrapper>
+      {/* 12 — Carta */}
+      <MenuSection />
+
+      {/* 13 */}
+      <HorizontalMarquee text="CÓCTELES · FIRMA SOKKO · MIXOLOGÍA CANARIA · SIN ALCOHOL · " speed={38} />
+
+      {/* 13b — Cócteles */}
+      <CocteleSection />
 
       {/* 14 */}
       <HorizontalMarquee text="CUÁNDO VISITARNOS · HORARIOS · FUERTEVENTURA · EL RESGUARDO DEL VIENTO · " speed={40} />

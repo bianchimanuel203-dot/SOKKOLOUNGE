@@ -291,11 +291,14 @@ export default function ZonasFullscreen() {
               {/* Título */}
               <h3 style={{
                 fontFamily: 'var(--font-cinzel)',
-                fontSize: 'clamp(36px, 4.5vw, 60px)',
+                fontSize: 'clamp(28px, 3.2vw, 48px)',
                 color: '#C8922A', lineHeight: 1.05,
                 letterSpacing: '.03em',
                 whiteSpace: 'pre-line', margin: '0 0 .5rem',
                 textShadow: '0 2px 30px rgba(0,0,0,0.8)',
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
+                maxWidth: '100%',
               }}>
                 {zona.titulo}
               </h3>
@@ -315,19 +318,19 @@ export default function ZonasFullscreen() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem 2rem', marginBottom: '2rem' }}>
                 {zona.atributos.map(a => (
                   <div key={a.t}>
-                    <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '10px', color: '#C8922A', letterSpacing: '.15em', margin: '0 0 4px', textTransform: 'uppercase' as const }}>{a.t}</p>
-                    <p style={{ fontFamily: 'var(--font-raleway)', fontWeight: 300, fontSize: '13px', color: '#8A6940', lineHeight: 1.55, margin: 0 }}>{a.d}</p>
+                    <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '11px', color: '#C8922A', letterSpacing: '.12em', margin: '0 0 6px', textTransform: 'uppercase' as const }}>{a.t}</p>
+                    <p style={{ fontFamily: 'var(--font-raleway)', fontWeight: 300, fontSize: '14px', color: '#9A7A50', lineHeight: 1.6, margin: 0 }}>{a.d}</p>
                   </div>
                 ))}
               </div>
 
               {/* ¿Qué se quiere transmitir? */}
               <div style={{ borderTop: '1px solid rgba(200,146,42,0.15)', paddingTop: '1.5rem', marginBottom: '2rem' }}>
-                <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '9px', color: '#8A6940', letterSpacing: '.35em', margin: '0 0 1rem', textTransform: 'uppercase' as const }}>
+                <p style={{ fontFamily: 'var(--font-cinzel)', fontSize: '10px', color: '#8A6940', letterSpacing: '.3em', margin: '0 0 1rem', textTransform: 'uppercase' as const }}>
                   ¿QUÉ SE QUIERE TRANSMITIR?
                 </p>
                 {zona.transmitir.map(t => (
-                  <p key={t.k} style={{ fontFamily: 'var(--font-raleway)', fontWeight: 300, fontSize: '13px', color: '#C4A882', lineHeight: 1.5, margin: '0 0 5px' }}>
+                  <p key={t.k} style={{ fontFamily: 'var(--font-raleway)', fontWeight: 300, fontSize: '13.5px', color: '#C4A882', lineHeight: 1.6, margin: '0 0 6px' }}>
                     <span style={{ color: '#C8922A', marginRight: '6px' }}>◆</span>
                     <strong style={{ fontWeight: 500, color: '#D4A843', fontFamily: 'var(--font-cinzel)', fontSize: '10px', letterSpacing: '.08em' }}>{t.k}:</strong>
                     {' '}{t.v}
@@ -338,8 +341,8 @@ export default function ZonasFullscreen() {
               {/* Tagline */}
               <p style={{
                 fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
-                fontSize: 'clamp(15px, 1.3vw, 19px)',
-                color: '#D4A843', lineHeight: 1.6,
+                fontSize: 'clamp(14px, 1.1vw, 17px)',
+                color: '#D4A843', lineHeight: 1.65,
                 whiteSpace: 'pre-line' as const,
                 borderLeft: '2px solid rgba(200,146,42,0.3)',
                 paddingLeft: '1.25rem', margin: 0,

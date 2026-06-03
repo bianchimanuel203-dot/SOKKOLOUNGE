@@ -2,9 +2,10 @@ import HeroThreeJS        from './components/HeroThreeJS';
 import OrigenSokko        from './components/OrigenSokko';
 import ZonasFullscreen    from './components/ZonasFullscreen';
 import IslasCardStack     from './components/IslasCardStack';
-import EventosSection     from './components/EventosSection';
-import MenuSection        from './components/MenuSection';
-import HorariosSection    from './components/HorariosSection';
+import EventosSection        from './components/EventosSection';
+import MenuSection           from './components/MenuSection';
+import HorariosSection       from './components/HorariosSection';
+import ProgramacionSection   from './components/ProgramacionSection';
 import ContactoSection    from './components/ContactoSection';
 import Footer             from './components/Footer';
 import WhatsAppButton     from './components/WhatsAppButton';
@@ -44,12 +45,6 @@ export default async function Home() {
       <IslasCardStack />
 
       {/* 9 */}
-      <HorizontalMarquee text="PRÓXIMOS EVENTOS · MÚSICA EN DIRECTO · SHOWS TEMÁTICOS · CENAS ÚNICAS · " speed={42} />
-
-      {/* 10 — Eventos: banners horizontales alternados */}
-      <EventosSection />
-
-      {/* 11 */}
       <HorizontalMarquee text="COCINA CANARIA · CÓCTELES PREMIUM · SABORES AUTÉNTICOS · " speed={36} />
 
       {/* 12 — Carta WordPress */}
@@ -58,10 +53,22 @@ export default async function Home() {
       {/* 13 */}
       <HorizontalMarquee text="CUÁNDO VISITARNOS · HORARIOS · FUERTEVENTURA · EL RESGUARDO DEL VIENTO · " speed={40} />
 
-      {/* 14 — Horarios con fondo madera volcánica */}
+      {/* 14 — Horarios: franjas + tabla días + servicios */}
       <HorariosSection />
 
       {/* 15 */}
+      <HorizontalMarquee text="MÚSICA · SHOWS · BAILE · JUEGOS · CADA SEMANA · " speed={38} />
+
+      {/* 16 — Programación semanal recurrente */}
+      <ProgramacionSection />
+
+      {/* 17 */}
+      <HorizontalMarquee text="PRÓXIMOS EVENTOS · MÚSICA EN DIRECTO · SHOWS TEMÁTICOS · " speed={42} />
+
+      {/* 18 — Eventos con fecha + modal programa */}
+      <EventosSection />
+
+      {/* 19 */}
       <HorizontalMarquee text="RESERVA TU MESA · CONTACTO · SOKKO LOUNGE · CALETA DE FUSTE · " speed={34} />
 
       {/* 16 — Contacto */}

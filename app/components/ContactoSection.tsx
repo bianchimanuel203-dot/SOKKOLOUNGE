@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SokkoSpotlight } from '@/components/ui/spotlight-background';
 import { SokkoBackgroundPaths } from '@/components/ui/background-paths';
+import { EtherealShadow } from '@/components/ui/etheral-shadow';
 import type React from 'react';
 
 // ── Estilos compartidos ───────────────────────────────────────────
@@ -111,8 +112,18 @@ export default function ContactoSection() {
           background: '#3A2210',
           padding: '8rem 4rem',
           minHeight: '100vh',
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
+        {/* FONDO ETHERAL — z-index 0, absoluto, no interfiere con clicks */}
+        <EtherealShadow
+          color="rgba(212, 152, 46, 0.18)"
+          animation={{ scale: 60, speed: 25 }}
+          noise={{ opacity: 0.3, scale: 1.0 }}
+          sizing="fill"
+        />
+
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

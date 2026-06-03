@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SokkoSpotlight } from '@/components/ui/spotlight-background';
+import { SokkoBackgroundPaths } from '@/components/ui/background-paths';
 import type React from 'react';
 
 // ── Estilos compartidos ───────────────────────────────────────────
@@ -102,6 +103,7 @@ export default function ContactoSection() {
   };
 
   return (
+    <SokkoBackgroundPaths>
     <SokkoSpotlight>
       <section
         id="reservar"
@@ -430,5 +432,6 @@ export default function ContactoSection() {
         </div>
       </section>
     </SokkoSpotlight>
+    </SokkoBackgroundPaths>
   );
 }

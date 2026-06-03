@@ -48,10 +48,7 @@ export default function MenuFlipCard({
           paddingBottom: '70.7%',
           position: 'relative',
           cursor: 'pointer',
-          filter: flipped
-            ? 'drop-shadow(0 0 20px rgba(212,152,46,0.5))'
-            : 'drop-shadow(0 0 8px rgba(212,152,46,0.2))',
-          transition: 'filter 0.6s ease',
+          // Sin drop-shadow que se filtra sobre la imagen
         }}
         onClick={() => setFlipped(!flipped)}
       >
@@ -132,30 +129,16 @@ export default function MenuFlipCard({
           </motion.div>
         </div>
 
-        {/* Borde glow pulsante */}
+        {/* Borde glow sutil — solo contorno, se intensifica al flip */}
         <div style={{
           position: 'absolute', inset: 0,
           pointerEvents: 'none',
-          border: '1px solid transparent',
-          background: `linear-gradient(#1A0E05, #1A0E05) padding-box,
-                       linear-gradient(
-                         135deg,
-                         rgba(212,152,46,0.6) 0%,
-                         rgba(232,184,75,0.3) 25%,
-                         rgba(212,152,46,0.1) 50%,
-                         rgba(232,184,75,0.3) 75%,
-                         rgba(212,152,46,0.6) 100%
-                       ) border-box`,
-          animation: 'glowPulse 3s ease-in-out infinite',
+          boxShadow: flipped
+            ? '0 0 0 1px rgba(212,152,46,0.7), 0 0 25px -5px rgba(212,152,46,0.4)'
+            : '0 0 0 1px rgba(212,152,46,0.25), 0 0 15px -8px rgba(212,152,46,0.2)',
+          transition: 'box-shadow 0.6s ease',
         }} />
       </div>
-
-      <style>{`
-        @keyframes glowPulse {
-          0%, 100% { opacity: 0.6; }
-          50%       { opacity: 1;   }
-        }
-      `}</style>
 
       {/* Descarga */}
       <div style={{ textAlign: 'center', marginTop: '1rem' }}>

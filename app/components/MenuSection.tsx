@@ -1,49 +1,59 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import AnimatedTabs from '@/components/smoothui/animated-tabs'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
-// ── Datos ─────────────────────────────────────────────────────
+// Datos placeholder — reemplazar con getMenu() de WordPress cuando esté listo
 const menuData = {
   entrantes: [
-    { nombre: 'CEVICHE DE CORVINA',      desc: 'Corvina fresca marinada en limón canario, ají amarillo y cilantro',                    precio: '14€', destacado: true  },
-    { nombre: 'TATAKI DE ATÚN ROJO',     desc: 'Atún rojo del Atlántico sellado con sésamo negro, aguacate y salsa ponzu',             precio: '16€', destacado: false },
-    { nombre: 'TABLA DE QUESOS',         desc: 'Selección de quesos canarios con miel de palma y membrillo',                           precio: '12€', destacado: false },
-    { nombre: 'PAPAS ARRUGADAS',         desc: 'Patatas canarias tradicionales con mojo rojo y mojo verde de la casa',                precio: '8€',  destacado: false },
+    { nombre: 'CEVICHE DE CORVINA',      desc: 'Corvina fresca marinada en limón canario, ají amarillo y cilantro',                           precio: '14€', destacado: true  },
+    { nombre: 'TATAKI DE ATÚN ROJO',     desc: 'Atún rojo del Atlántico sellado con sésamo negro, aguacate y salsa ponzu',                    precio: '16€', destacado: false },
+    { nombre: 'TABLA DE QUESOS CANARIOS',desc: 'Selección de quesos de las islas con miel de palma y membrillo',                              precio: '12€', destacado: false },
+    { nombre: 'PAPAS ARRUGADAS CON MOJO',desc: 'Patatas canarias tradicionales con mojo rojo y mojo verde de la casa',                        precio: '8€',  destacado: false },
   ],
   principales: [
-    { nombre: 'LUBINA A LA SAL NEGRA',   desc: 'Lubina entera a la sal volcánica negra con aceite de oliva virgen y hierbas frescas', precio: '26€', destacado: true  },
-    { nombre: 'SOLOMILLO LANZAROTEÑO',   desc: 'Lomo de res madurado con reducción de vino tinto, patatas volcánicas y trufa',        precio: '28€', destacado: false },
-    { nombre: 'ROPA VIEJA CANARIA',      desc: 'Garbanzo, pollo y ternera estofados. Receta tradicional de las islas',               precio: '16€', destacado: false },
-    { nombre: 'RISOTTO DE MARISCOS',     desc: 'Arroz cremoso con gambas, almejas y azafrán canario',                                 precio: '19€', destacado: false },
+    { nombre: 'LUBINA A LA SAL NEGRA',   desc: 'Lubina entera a la sal volcánica negra con aceite de oliva virgen y hierbas frescas',         precio: '26€', destacado: true  },
+    { nombre: 'SOLOMILLO LANZAROTEÑO',   desc: 'Lomo de res madurado con reducción de vino tinto, patatas volcánicas y trufa',                precio: '28€', destacado: false },
+    { nombre: 'ROPA VIEJA CANARIA',      desc: 'Garbanzo, pollo y ternera estofados. Receta tradicional de las islas',                       precio: '16€', destacado: false },
+    { nombre: 'RISOTTO DE MARISCOS',     desc: 'Arroz cremoso con gambas, almejas y azafrán canario',                                         precio: '19€', destacado: false },
   ],
   postres: [
-    { nombre: 'TARTA DE MANGO VOLCÁNICO',desc: 'Mousse de mango canario con base de bizcocho de almendra y coulis de maracuyá',       precio: '9€',  destacado: true  },
-    { nombre: 'COULANT DE CHOCOLATE',    desc: 'Coulant chocolate negro 70% con helado de vainilla bourbon y sal volcánica',          precio: '8€',  destacado: false },
-    { nombre: 'BIENMESABE',              desc: 'Crema tradicional canaria de almendra, canela y limón con helado artesanal',           precio: '7€',  destacado: false },
+    { nombre: 'TARTA DE MANGO VOLCÁNICO',desc: 'Mousse de mango canario con base de bizcocho de almendra y coulis de maracuyá',               precio: '9€',  destacado: true  },
+    { nombre: 'COULANT DE CHOCOLATE',    desc: 'Coulant de chocolate negro 70% con helado de vainilla bourbon y sal volcánica',               precio: '8€',  destacado: false },
+    { nombre: 'BIENMESABE',              desc: 'Crema tradicional canaria de almendra, canela y limón con helado artesanal',                   precio: '7€',  destacado: false },
   ],
 }
 
-const tabs = [
-  { id: 'entrantes',   label: 'ENTRANTES'   },
-  { id: 'principales', label: 'PRINCIPALES' },
-  { id: 'postres',     label: 'POSTRES'     },
-]
+const categorias = [
+  { key: 'entrantes',   label: 'ENTRANTES'   },
+  { key: 'principales', label: 'PRINCIPALES' },
+  { key: 'postres',     label: 'POSTRES'     },
+] as const
 
-type TabKey = 'entrantes' | 'principales' | 'postres'
+type CatKey = typeof categorias[number]['key']
 
-// ── Componente principal ──────────────────────────────────────
+const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
+  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+  fontSize: '11px',
+  letterSpacing: '0.2em',
+  padding: '10px 28px',
+  border: 'none',
+  borderRadius: '1px',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  background: active ? '#D4982E' : 'transparent',
+  color:      active ? '#1A0E05' : '#A07850',
+})
+
 export default function MenuSection() {
-  const [flipped, setFlipped]     = useState(false)
-  const [tabActiva, setTabActiva] = useState<TabKey>('entrantes')
-  const platos = menuData[tabActiva]
+  const [modo, setModo] = useState<'imagen' | 'carta'>('imagen')
 
   return (
-    <section id="carta" style={{ background: '#1A0E05', padding: '6rem 4rem 4rem' }}>
-      <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+    <section id="carta" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+      <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-        {/* TEXTO ENCIMA — centrado, grande */}
+        {/* HEADER */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <p style={{
             fontFamily: 'var(--font-cinzel, Cinzel, serif)',
@@ -54,163 +64,177 @@ export default function MenuSection() {
           </p>
           <h2 style={{
             fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-            fontSize: 'clamp(32px, 5vw, 72px)',
-            color: '#D4982E', letterSpacing: '0.08em',
-            lineHeight: 1.0, marginBottom: '1.25rem',
+            fontSize: 'clamp(28px, 4vw, 48px)',
+            color: '#D4982E', letterSpacing: '0.08em', marginBottom: '0.5rem',
           }}>
-            GASTRONOMÍA<br />CANARIA
+            GASTRONOMÍA CANARIA
           </h2>
           <p style={{
             fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
             fontStyle: 'italic',
-            fontSize: 'clamp(16px, 1.5vw, 20px)',
+            fontSize: 'clamp(15px, 1.4vw, 19px)',
             color: '#D4B896', margin: 0,
           }}>
             Sabores de las islas con un toque moderno y creativo.
           </p>
         </div>
 
-        {/* FLIP CARD — ancho completo */}
-        <div style={{ perspective: '1400px', width: '100%', aspectRatio: '4/3', maxHeight: '70vh' }}>
-          <motion.div
-            animate={{ rotateY: flipped ? 180 : 0 }}
-            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            style={{
-              width: '100%', height: '100%',
-              position: 'relative', transformStyle: 'preserve-3d',
-            }}
-          >
+        {/* TOGGLE */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+          <div style={{
+            display: 'flex',
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(212,152,46,0.2)',
+            borderRadius: '2px',
+            padding: '3px', gap: '3px',
+          }}>
+            <button onClick={() => setModo('imagen')} style={toggleBtnStyle(modo === 'imagen')}>🖼 VER MENÚ</button>
+            <button onClick={() => setModo('carta')}  style={toggleBtnStyle(modo === 'carta')}>📋 LEER CARTA</button>
+          </div>
+        </div>
 
-            {/* CARA DELANTERA — imagen menú Canva completa */}
-            <div
-              onClick={() => setFlipped(true)}
-              style={{
-                position: 'absolute', inset: 0,
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden' as React.CSSProperties['WebkitBackfaceVisibility'],
-                overflow: 'hidden',
-                border: '1px solid rgba(212,152,46,0.3)',
-                cursor: 'pointer',
-                background: '#1A0E05',
-              }}
-            >
+        {/* MODO: VER MENÚ — imagen Canva */}
+        {modo === 'imagen' && (
+          <div style={{ display: 'flex', justifyContent: 'center', animation: 'fadeIn 0.3s ease' }}>
+            <div style={{
+              position: 'relative', maxWidth: '900px', width: '100%',
+              border: '1px solid rgba(212,152,46,0.3)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+            }}>
               <img
                 src="/menus/menu-comida.png"
                 alt="Carta SOKKO Lounge"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+              <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
+                <a
+                  href="/menus/menu-comida.png"
+                  download="carta-sokko-lounge.png"
+                  style={{
+                    fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                    fontSize: '10px', letterSpacing: '0.2em',
+                    color: '#1A0E05', background: 'rgba(212,152,46,0.9)',
+                    padding: '8px 16px', textDecoration: 'none', display: 'inline-block',
+                  }}
+                >
+                  DESCARGAR ↓
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* MODO: LEER CARTA — thumbnail izq + tabs derecha */}
+        {modo === 'carta' && (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '280px 1fr',
+            gap: '3rem',
+            alignItems: 'start',
+            animation: 'fadeIn 0.3s ease',
+          }}>
+            {/* Thumbnail sticky */}
+            <div style={{ position: 'sticky', top: '100px' }}>
+              <img
+                src="/menus/menu-comida.png"
+                alt="Carta SOKKO"
                 style={{
-                  width: '100%', height: '100%',
-                  objectFit: 'contain',    // toda la imagen visible
-                  objectPosition: 'center',
-                  display: 'block',
+                  width: '100%', height: 'auto',
+                  border: '1px solid rgba(212,152,46,0.25)', opacity: 0.85,
                 }}
               />
-              <div style={{
-                position: 'absolute', bottom: '1rem', right: '1rem',
-                fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                fontSize: '10px', color: '#D4982E', letterSpacing: '0.2em',
-                background: 'rgba(10,5,2,0.8)', padding: '6px 14px',
-                border: '1px solid rgba(212,152,46,0.3)',
-                backdropFilter: 'blur(4px)',
+              <p style={{
+                fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                fontStyle: 'italic', fontSize: '13px', color: '#A07850',
+                textAlign: 'center', marginTop: '0.75rem',
               }}>
-                LEER CARTA →
-              </div>
+                Carta sujeta a temporada
+              </p>
             </div>
 
-            {/* CARA TRASERA — AnimatedTabs + lista */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden' as React.CSSProperties['WebkitBackfaceVisibility'],
-              transform: 'rotateY(180deg)',
-              border: '1px solid rgba(212,152,46,0.3)',
-              overflow: 'hidden',
-              background: '#2C1A08',
-              display: 'flex', flexDirection: 'column',
-              padding: '2.5rem',
-            }}>
-              {/* Header */}
-              <div style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                marginBottom: '1.5rem', paddingBottom: '1rem',
-                borderBottom: '1px solid rgba(212,152,46,0.15)', flexShrink: 0,
+            {/* Tabs shadcn */}
+            <Tabs defaultValue="entrantes">
+              <TabsList style={{
+                background: 'transparent',
+                borderBottom: '1px solid rgba(212,152,46,0.2)',
+                borderRadius: 0, padding: 0, height: 'auto',
+                marginBottom: '2rem', width: '100%',
+                justifyContent: 'flex-start', gap: 0,
               }}>
-                <p style={{
-                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                  fontSize: '16px', color: '#D4982E',
-                  letterSpacing: '0.15em', margin: 0,
-                }}>NUESTRA CARTA</p>
-                <button onClick={() => setFlipped(false)} style={{
-                  fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                  fontSize: '10px', color: '#A07850', letterSpacing: '0.15em',
-                  background: 'none', border: '1px solid rgba(160,120,80,0.3)',
-                  padding: '6px 16px', cursor: 'pointer',
-                }}>← VOLVER</button>
-              </div>
+                {categorias.map(cat => (
+                  <TabsTrigger
+                    key={cat.key}
+                    value={cat.key}
+                    style={{
+                      fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                      fontSize: '11px', letterSpacing: '0.2em',
+                      borderRadius: 0, padding: '0.75rem 1.5rem',
+                      background: 'transparent', border: 'none',
+                      borderBottom: '2px solid transparent',
+                      marginBottom: '-1px',
+                    }}
+                    className="text-[#A07850] data-[state=active]:text-[#D4982E] data-[state=active]:border-b-[#D4982E] data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                  >
+                    {cat.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
 
-              {/* AnimatedTabs SmoothUI — pill */}
-              <div style={{ flexShrink: 0, marginBottom: '1.5rem' }}>
-                <AnimatedTabs
-                  tabs={tabs}
-                  defaultTab="entrantes"
-                  variant="pill"
-                  onChange={(id) => setTabActiva(id as TabKey)}
-                />
-              </div>
-
-              {/* Lista scrollable */}
-              <div style={{ flex: 1, overflowY: 'auto' }}>
-                {platos.map((plato, i) => (
-                  <div key={i} style={{
-                    display: 'grid', gridTemplateColumns: '1fr auto', gap: '1rem',
-                    padding: '0.9rem 0',
-                    borderBottom: '1px solid rgba(212,152,46,0.08)',
-                    alignItems: 'start',
-                  }}>
-                    <div>
-                      {plato.destacado && (
-                        <span style={{
+              {categorias.map(cat => (
+                <TabsContent key={cat.key} value={cat.key}>
+                  {menuData[cat.key].map((plato, i) => (
+                    <div key={i} style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr auto',
+                      gap: '1.5rem',
+                      padding: '1.5rem 0',
+                      borderBottom: '1px solid rgba(212,152,46,0.08)',
+                      alignItems: 'start',
+                    }}>
+                      <div>
+                        {plato.destacado && (
+                          <span style={{
+                            fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+                            fontSize: '9px', color: '#1A0E05',
+                            background: '#D4982E', padding: '2px 10px',
+                            letterSpacing: '0.2em', marginBottom: '6px',
+                            display: 'inline-block',
+                          }}>
+                            RECOMENDADO
+                          </span>
+                        )}
+                        <p style={{
                           fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                          fontSize: '8px', color: '#1A0E05',
-                          background: '#D4982E', padding: '2px 8px',
-                          letterSpacing: '0.2em', marginBottom: '4px',
-                          display: 'inline-block',
-                        }}>RECOMENDADO</span>
-                      )}
+                          fontSize: 'clamp(13px, 1.2vw, 15px)',
+                          color: '#F4EDD8', letterSpacing: '0.05em',
+                          margin: plato.destacado ? '4px 0 4px' : '0 0 4px',
+                          lineHeight: 1.3,
+                        }}>
+                          {plato.nombre}
+                        </p>
+                        <p style={{
+                          fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
+                          fontStyle: 'italic', fontSize: '15px',
+                          color: '#D4B896', margin: 0, lineHeight: 1.5,
+                        }}>
+                          {plato.desc}
+                        </p>
+                      </div>
                       <p style={{
                         fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                        fontSize: 'clamp(12px, 1.1vw, 15px)', color: '#F4EDD8',
-                        letterSpacing: '0.04em',
-                        margin: plato.destacado ? '3px 0 3px' : '0 0 3px', lineHeight: 1.2,
-                      }}>{plato.nombre}</p>
-                      <p style={{
-                        fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
-                        fontStyle: 'italic', fontSize: 'clamp(13px, 1vw, 15px)',
-                        color: '#D4B896', margin: 0, lineHeight: 1.4,
-                      }}>{plato.desc}</p>
+                        fontSize: '15px', color: '#D4982E', margin: 0,
+                        whiteSpace: 'nowrap',
+                        paddingTop: plato.destacado ? '20px' : '0',
+                      }}>
+                        {plato.precio}
+                      </p>
                     </div>
-                    <p style={{
-                      fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                      fontSize: 'clamp(13px, 1vw, 15px)', color: '#D4982E',
-                      margin: 0, whiteSpace: 'nowrap',
-                      paddingTop: plato.destacado ? '18px' : '0',
-                    }}>{plato.precio}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </motion.div>
-        </div>
-
-        {/* Descarga */}
-        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-          <a href="/menus/menu-comida.png" download="carta-sokko-lounge.png" style={{
-            fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-            fontSize: '10px', letterSpacing: '0.2em', color: '#A07850',
-            textDecoration: 'none', borderBottom: '1px solid rgba(160,120,80,0.3)',
-            paddingBottom: '2px',
-          }}>DESCARGAR CARTA ↓</a>
-        </div>
+                  ))}
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        )}
 
       </div>
     </section>

@@ -17,8 +17,6 @@ const NAV_COLS = [
     links: [
       { label: 'Instagram', href: '#' },
       { label: 'Facebook',  href: '#' },
-      { label: 'TikTok',    href: '#' },
-      { label: 'YouTube',   href: '#' },
     ],
   },
 ];
@@ -26,7 +24,7 @@ const NAV_COLS = [
 export default function Footer() {
   return (
     <footer style={{
-      background: '#0D0802',
+      background: '#1A0E05',
       borderTop: '1px solid rgba(200,146,42,0.15)',
       padding: 'clamp(4rem,7vw,6rem) clamp(1.5rem,5vw,4rem) 0',
       position: 'relative',
@@ -43,13 +41,16 @@ export default function Footer() {
 
         {/* Columna 1 — Logo + descripción */}
         <div>
-          <p style={{
-            fontFamily: 'var(--font-cinzel)',
-            fontSize: '17px', color: '#C8922A',
-            letterSpacing: '.22em', margin: '0 0 .5rem',
+          <span style={{
+            fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+            fontSize: '22px',
+            color: '#E8B84B',
+            letterSpacing: '0.25em',
+            display: 'block',
+            marginBottom: '0.5rem',
           }}>
             SOKKO LOUNGE
-          </p>
+          </span>
           <p style={{
             fontFamily: 'var(--font-cormorant)', fontStyle: 'italic',
             fontSize: '14px', color: '#C4A882',

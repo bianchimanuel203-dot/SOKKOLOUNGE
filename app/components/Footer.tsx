@@ -15,8 +15,8 @@ const NAV_COLS = [
   {
     titulo: 'REDES',
     links: [
-      { label: 'Instagram', href: '#' },
-      { label: 'Facebook',  href: '#' },
+      { label: 'Instagram', href: 'https://www.instagram.com/sokkolounge.ftv/', target: '_blank', rel: 'noopener noreferrer' },
+      { label: 'Facebook',  href: 'https://www.facebook.com/profile.php?id=61590424587799&locale=es_ES', target: '_blank', rel: 'noopener noreferrer' },
     ],
   },
 ];
@@ -77,10 +77,12 @@ export default function Footer() {
             }}>
               {col.titulo}
             </h4>
-            {col.links.map(({ label, href }) => (
+            {col.links.map(({ label, href, target, rel }: { label: string; href: string; target?: string; rel?: string }) => (
               <a
                 key={label}
                 href={href}
+                target={target}
+                rel={rel}
                 style={{
                   display: 'block',
                   fontFamily: 'var(--font-raleway)', fontWeight: 300,

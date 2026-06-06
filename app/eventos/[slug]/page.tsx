@@ -1,6 +1,15 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import {
+  getEventoBySlug,
+  getEventos,
+  formatFechaACF,
+  getDiaSemana,
+  getLabelCategoria,
+  formatPrecioEvento,
+  getImagenUrl,
+} from '@/app/lib/wordpress'
 
 // ── Tipos ────────────────────────────────────────────────────────
 type ProgramaItem = { hora: string; acto: string; desc: string }
@@ -20,8 +29,8 @@ type EventoData = {
   color: string
 }
 
-// ── Datos estáticos ───────────────────────────────────────────────
-const eventosData: Record<string, EventoData> = {
+// ── Datos estáticos de fallback (eventos de apertura) ─────────────
+const eventosEstaticos: Record<string, EventoData> = {
   'apertura-general': {
     slug: 'apertura-general',
     badge: 'APERTURA GENERAL',
@@ -104,7 +113,16 @@ export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params
-  const e = eventosData[slug]
+
+  const wpEvento = await getEventoBySlug(slug)
+  if (wpEvento) {
+    return {
+      title: `${wpEvento.title.rendered} · ${formatFechaACF(wpEvento.acf.fecha_evento)} — SOKKO Lounge`,
+      description: wpEvento.acf.description,
+    }
+  }
+
+  const e = eventosEstaticos[slug]
   if (!e) return { title: 'Evento — SOKKO Lounge' }
   return {
     title: `${e.titulo} · ${e.fecha} — SOKKO Lounge`,
@@ -112,9 +130,19 @@ export async function generateMetadata(
   }
 }
 
-// ── Rutas estáticas ───────────────────────────────────────────────
-export function generateStaticParams() {
-  return Object.keys(eventosData).map(slug => ({ slug }))
+// ── Rutas estáticas — combinar WP + estáticos ─────────────────────
+export async function generateStaticParams() {
+  try {
+    const eventosWP = await getEventos()
+    const slugsWP = eventosWP.map(e => ({ slug: e.slug }))
+    const slugsEstaticos = Object.keys(eventosEstaticos).map(s => ({ slug: s }))
+    const todos = [...slugsWP, ...slugsEstaticos]
+    return todos.filter((item, index) =>
+      todos.findIndex(t => t.slug === item.slug) === index
+    )
+  } catch {
+    return Object.keys(eventosEstaticos).map(s => ({ slug: s }))
+  }
 }
 
 // ── Página ────────────────────────────────────────────────────────
@@ -122,8 +150,33 @@ export default async function EventoPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params
-  const e = eventosData[slug]
-  if (!e) notFound()
+
+  // Intentar obtener de WordPress primero
+  const wpEvento = await getEventoBySlug(slug)
+
+  let evento: EventoData
+
+  if (wpEvento) {
+    evento = {
+      slug: wpEvento.slug,
+      badge: getLabelCategoria(wpEvento.acf.categoria),
+      titulo: wpEvento.title.rendered,
+      subtitulo: wpEvento.acf.hora_evento,
+      fecha: `${getDiaSemana(wpEvento.acf.fecha_evento)} ${formatFechaACF(wpEvento.acf.fecha_evento)}`,
+      horario: wpEvento.acf.hora_evento,
+      precio: formatPrecioEvento(wpEvento.acf.precio),
+      lugar: 'SOKKO Lounge · Caleta de Fuste, Fuerteventura',
+      descripcion: wpEvento.acf.description,
+      imagen: getImagenUrl(wpEvento.acf.imagen_evento),
+      color: '#D4982E',
+      programa: [],
+    }
+  } else {
+    // Fallback a datos estáticos
+    const estatico = eventosEstaticos[slug]
+    if (!estatico) notFound()
+    evento = estatico
+  }
 
   return (
     <main style={{ background: '#100804', minHeight: '100vh' }}>
@@ -160,12 +213,12 @@ export default async function EventoPage(
         {/* FLYER COMPLETO */}
         <div style={{ maxWidth: '680px', margin: '3rem auto 0', padding: '0 2rem' }}>
           <img
-            src={e.imagen}
-            alt={e.titulo}
+            src={evento.imagen}
+            alt={evento.titulo}
             style={{
               width: '100%', height: 'auto', display: 'block',
-              border: `1px solid ${e.color}35`,
-              boxShadow: `0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px ${e.color}20`,
+              border: `1px solid ${evento.color}35`,
+              boxShadow: `0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px ${evento.color}20`,
             }}
           />
         </div>
@@ -175,36 +228,36 @@ export default async function EventoPage(
 
           <span style={{
             fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-            fontSize: '10px', color: e.color,
+            fontSize: '10px', color: evento.color,
             letterSpacing: '0.4em', display: 'block', marginBottom: '0.75rem',
-          }}>{e.badge}</span>
+          }}>{evento.badge}</span>
 
           <h1 style={{
             fontFamily: 'var(--font-cinzel, Cinzel, serif)',
             fontSize: 'clamp(28px, 5vw, 56px)',
             color: '#D4982E', lineHeight: 1.0,
             letterSpacing: '0.05em', marginBottom: '0.5rem',
-          }}>{e.titulo}</h1>
+          }}>{evento.titulo}</h1>
 
           <p style={{
             fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
             fontStyle: 'italic', fontSize: 'clamp(16px, 2vw, 22px)',
             color: '#F4EDD8', marginBottom: '2.5rem',
-          }}>{e.subtitulo}</p>
+          }}>{evento.subtitulo}</p>
 
           {/* Info grid */}
           <div style={{
             background: 'rgba(44,26,8,0.5)',
-            border: `1px solid ${e.color}25`,
+            border: `1px solid ${evento.color}25`,
             padding: '1.5rem 2rem',
             display: 'grid', gridTemplateColumns: '1fr 1fr',
             gap: '1.25rem', marginBottom: '2.5rem',
           }}>
             {[
-              { label: 'FECHA',   valor: e.fecha   },
-              { label: 'HORARIO', valor: e.horario },
-              { label: 'PRECIO',  valor: e.precio  },
-              { label: 'LUGAR',   valor: e.lugar   },
+              { label: 'FECHA',   valor: evento.fecha   },
+              { label: 'HORARIO', valor: evento.horario },
+              { label: 'PRECIO',  valor: evento.precio  },
+              { label: 'LUGAR',   valor: evento.lugar   },
             ].map(({ label, valor }) => (
               <div key={label}>
                 <p style={{
@@ -226,19 +279,19 @@ export default async function EventoPage(
             fontStyle: 'italic', fontSize: '18px',
             color: '#D4B896', lineHeight: 1.75,
             marginBottom: '2.5rem',
-            borderLeft: `2px solid ${e.color}50`,
+            borderLeft: `2px solid ${evento.color}50`,
             paddingLeft: '1.25rem',
-          }}>{e.descripcion}</p>
+          }}>{evento.descripcion}</p>
 
           {/* Programa */}
-          {e.programa.length > 0 && (
+          {evento.programa.length > 0 && (
             <div style={{ marginBottom: '2.5rem' }}>
               <h2 style={{
                 fontFamily: 'var(--font-cinzel, Cinzel, serif)',
                 fontSize: '13px', color: '#D4982E',
                 letterSpacing: '0.35em', marginBottom: '1.25rem',
               }}>PROGRAMA</h2>
-              {e.programa.map((p, i) => (
+              {evento.programa.map((p, i) => (
                 <div key={i} style={{
                   display: 'grid', gridTemplateColumns: '150px 1fr',
                   gap: '1rem', padding: '0.85rem 0',
@@ -247,7 +300,7 @@ export default async function EventoPage(
                 }}>
                   <span style={{
                     fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                    fontSize: '12px', color: e.color, letterSpacing: '0.08em',
+                    fontSize: '12px', color: evento.color, letterSpacing: '0.08em',
                   }}>{p.hora}</span>
                   <div>
                     <span style={{

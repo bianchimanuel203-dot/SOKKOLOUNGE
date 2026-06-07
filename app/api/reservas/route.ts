@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         title: `Reserva — ${nombre} — ${fecha}`,
         status: 'publish',
-        acf: {
+        fields: {
           nombre,
           correo:       email,
           telefono:     '',

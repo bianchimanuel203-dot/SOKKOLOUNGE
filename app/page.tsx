@@ -5,7 +5,6 @@ import IslasCardStack     from './components/IslasCardStack';
 import EventosSection        from './components/EventosSection';
 import MenuSection           from './components/MenuSection';
 import CocteleSection        from './components/CocteleSection';
-import MenuCartaSection      from '../components/MenuCartaSection';
 import HorariosSection       from './components/HorariosSection';
 import ProgramacionSection   from './components/ProgramacionSection';
 import ContactoSection    from './components/ContactoSection';
@@ -49,8 +48,11 @@ export default async function Home() {
       {/* 9 */}
       <HorizontalMarquee text="COCINA CANARIA · CÓCTELES PREMIUM · SABORES AUTÉNTICOS · " speed={36} />
 
-      {/* 12 — Carta y cócteles lado a lado */}
-      <MenuCartaSection />
+      {/* 12 — Carta (toggle imagen/lista) */}
+      <MenuSection />
+
+      {/* 13 — Cócteles (toggle imagen/lista) */}
+      <CocteleSection />
 
       {/* 14 */}
       <HorizontalMarquee text="CUÁNDO VISITARNOS · HORARIOS · FUERTEVENTURA · EL RESGUARDO DEL VIENTO · " speed={40} />

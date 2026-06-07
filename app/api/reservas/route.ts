@@ -33,9 +33,8 @@ export async function POST(req: NextRequest) {
           telefono:     '',
           fecha,
           num_personas: parseInt(String(personas)) || 2,
-          zona_reserva: 'General',
+          zona_reserva: mensaje || '',
           estado:       'pendiente',
-          nota:         mensaje || '',
         },
       }),
     })

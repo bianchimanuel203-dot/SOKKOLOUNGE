@@ -47,21 +47,22 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
             border: '1px solid rgba(212,152,46,0.2)',
             borderRadius: '2px', padding: '3px', gap: '3px',
           }}>
-            {[
-              { key: 'imagen', label: 'VER CARTA',  icon: '🖼' },
-              { key: 'carta',  label: 'LEER LISTA', icon: '📋' },
-            ].map(btn => (
-              <button key={btn.key} onClick={() => setModo(btn.key as 'imagen' | 'carta')} style={{
-                fontFamily: 'var(--font-cinzel, Cinzel, serif)',
-                fontSize: '11px', letterSpacing: '0.2em',
-                padding: '10px 28px', border: 'none', borderRadius: '1px',
-                cursor: 'pointer', transition: 'all 0.2s ease',
-                background: modo === btn.key ? '#D4982E' : 'transparent',
-                color: modo === btn.key ? '#1A0E05' : '#A07850',
-              }}>
-                {btn.icon} {btn.label}
-              </button>
-            ))}
+            <button onClick={() => setModo('imagen')} style={{
+              fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+              fontSize: '11px', letterSpacing: '0.2em',
+              padding: '10px 28px', border: 'none', borderRadius: '1px',
+              cursor: 'pointer', transition: 'all 0.2s ease',
+              background: modo === 'imagen' ? '#D4982E' : 'transparent',
+              color: modo === 'imagen' ? '#1A0E05' : '#A07850',
+            }}>🖼 VER CARTA</button>
+            <button onClick={() => setModo('carta')} style={{
+              fontFamily: 'var(--font-cinzel, Cinzel, serif)',
+              fontSize: '11px', letterSpacing: '0.2em',
+              padding: '10px 28px', border: 'none', borderRadius: '1px',
+              cursor: 'pointer', transition: 'all 0.2s ease',
+              background: modo === 'carta' ? '#D4982E' : 'transparent',
+              color: modo === 'carta' ? '#1A0E05' : '#A07850',
+            }}>📋 LEER LISTA</button>
           </div>
         </div>
 

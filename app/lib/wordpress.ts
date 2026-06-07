@@ -101,16 +101,13 @@ export interface WPMenu {
   slug: string
   title: { rendered: string }
   acf: {
-    precio: number
+    precio: number | string
     descripcion: string
-    categoria: 'entrante' | 'principal' | 'postre' | 'coctel'
-    tipo: 'comida' | 'coctel'
+    categoria: 'entrante' | 'principal' | 'postre' | 'bebida' | 'cocktail'
+    tipo: 'comida' | 'bebida'
     destacado: boolean
     disponible: boolean
-    imagen: {
-      url: string
-      alt: string
-    } | null
+    imagen: { url: string; alt: string } | string | null
   }
 }
 
@@ -136,13 +133,18 @@ export async function getMenuByCategoria(
   const todos = await getMenu()
   return todos.filter(p =>
     p.acf?.tipo === 'comida' &&
-    p.acf?.categoria === categoria
+    p.acf?.categoria === categoria &&
+    p.acf?.disponible === true
   )
 }
 
 export async function getCocteles(): Promise<WPMenu[]> {
   const todos = await getMenu()
-  return todos.filter(p => p.acf?.tipo === 'coctel')
+  return todos.filter(p =>
+    p.acf?.tipo === 'bebida' &&
+    p.acf?.categoria === 'cocktail' &&
+    p.acf?.disponible === true
+  )
 }
 
 // ── TIPOS — HORARIOS ─────────────────────────────────────────────

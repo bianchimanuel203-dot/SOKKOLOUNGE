@@ -116,17 +116,25 @@ export async function generateMetadata(
 
   const wpEvento = await getEventoBySlug(slug)
   if (wpEvento) {
+    const title = `${wpEvento.title.rendered} · ${formatFechaACF(wpEvento.acf.fecha_evento)} — SOKKO Lounge`
+    const description = wpEvento.acf.description
+    const imagen = getImagenUrl(wpEvento.acf.imagen_evento)
     return {
-      title: `${wpEvento.title.rendered} · ${formatFechaACF(wpEvento.acf.fecha_evento)} — SOKKO Lounge`,
-      description: wpEvento.acf.description,
+      title,
+      description,
+      openGraph: { title, description, images: [imagen] },
+      twitter: { card: 'summary_large_image', title, description, images: [imagen] },
     }
   }
 
   const e = eventosEstaticos[slug]
   if (!e) return { title: 'Evento — SOKKO Lounge' }
+  const title = `${e.titulo} · ${e.fecha} — SOKKO Lounge`
   return {
-    title: `${e.titulo} · ${e.fecha} — SOKKO Lounge`,
+    title,
     description: e.descripcion,
+    openGraph: { title, description: e.descripcion, images: [e.imagen] },
+    twitter: { card: 'summary_large_image', title, description: e.descripcion, images: [e.imagen] },
   }
 }
 

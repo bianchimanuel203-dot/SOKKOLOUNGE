@@ -1,4 +1,4 @@
-const WP_API = process.env.NEXT_PUBLIC_WP_API || 'http://sokko-admin.local/wp-json/wp/v2'
+const WP_API = process.env.WP_API_URL || 'http://sokko-admin.local/wp-json/wp/v2'
 
 // ── HELPER — fetch con revalidación ─────────────────────────────
 async function wpFetch<T>(endpoint: string, revalidate = 300): Promise<T> {
@@ -36,7 +36,7 @@ export async function getZonas(): Promise<Zona[]> {
 
 export async function getZonaBySlug(slug: string): Promise<Zona | null> {
   try {
-    const data = await wpFetch<Zona[]>(`/zonas?slug=${slug}&_fields=id,slug,title,acf`, 3600)
+    const data = await wpFetch<Zona[]>(`/zonas?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,acf`, 3600)
     return data[0] ?? null
   } catch {
     return null
@@ -79,7 +79,7 @@ export async function getEventos(): Promise<WPEvento[]> {
 export async function getEventoBySlug(slug: string): Promise<WPEvento | null> {
   try {
     const data = await wpFetch<WPEvento[]>(
-      `/eventos?slug=${slug}&acf_format=standard&_fields=id,slug,title,acf`
+      `/eventos?slug=${encodeURIComponent(slug)}&acf_format=standard&_fields=id,slug,title,acf`
     )
     return data[0] || null
   } catch {

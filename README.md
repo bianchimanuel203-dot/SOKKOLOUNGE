@@ -44,7 +44,7 @@ git clone https://github.com/bianchimanuel203-dot/SOKKOLOUNGE.git
 cd SOKKOLOUNGE
 npm install
 cp .env.local.example .env.local
-# Configura WORDPRESS_API_URL en .env.local
+# Configura WP_API_URL, WP_USERNAME y WP_APP_PASSWORD en .env.local
 npm run dev
 ```
 

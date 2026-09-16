@@ -151,7 +151,12 @@ export default function IslaPageClient({ islaSlug }: { islaSlug: string }) {
     <div style={{ background: '#1A0E05', minHeight: '100vh' }}>
 
       {/* NAV */}
-      <nav style={{
+      <style>{`
+        @media (max-width: 768px) {
+          .isla-nav { padding: 1rem 1rem !important; }
+        }
+      `}</style>
+      <nav className="isla-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '1.2rem 3rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',

@@ -126,9 +126,10 @@ export default function Navbar() {
             aria-label="Menú"
             style={{
               background: 'transparent', border: 'none',
-              padding: '4px', cursor: 'pointer',
+              width: '48px', height: '48px',
+              cursor: 'pointer',
               display: 'flex', flexDirection: 'column',
-              gap: '5px', alignItems: 'flex-end',
+              gap: '5px', alignItems: 'flex-end', justifyContent: 'center',
             }}
           >
             {[22, 16, 22].map((w, i) => (
@@ -160,7 +161,7 @@ export default function Navbar() {
           />
           <div style={{
             position: 'fixed', top: 0, right: 0, bottom: 0,
-            zIndex: 995, width: '78vw', maxWidth: '300px',
+            zIndex: 995, width: '100vw', maxWidth: '100vw',
             background: 'rgba(26,14,5,0.98)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
@@ -185,12 +186,14 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: 'var(--font-raleway)', fontWeight: 300,
-                  fontSize: '.75rem', letterSpacing: '.25em',
+                  fontSize: '.85rem', letterSpacing: '.25em',
                   textTransform: 'uppercase',
                   color: '#C4A882', textDecoration: 'none',
                   padding: '1rem 0',
+                  minHeight: '48px',
                   borderBottom: '1px solid rgba(200,146,42,0.08)',
-                  display: 'block',
+                  display: 'flex',
+                  alignItems: 'center',
                   opacity: mobileOpen ? 1 : 0,
                   transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
                   transition: `opacity .3s ease ${i * 0.05 + 0.1}s, transform .3s ease ${i * 0.05 + 0.1}s`,
@@ -208,7 +211,9 @@ export default function Navbar() {
                 letterSpacing: '.2em', color: '#C8922A',
                 border: '1px solid rgba(200,146,42,0.6)',
                 padding: '.9rem', textAlign: 'center',
-                textDecoration: 'none', display: 'block',
+                minHeight: '48px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                textDecoration: 'none',
               }}
             >
               RESERVAR

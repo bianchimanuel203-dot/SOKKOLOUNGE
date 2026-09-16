@@ -145,7 +145,7 @@ function ColumnaEvento({ icono, titulo, horario, color, eventos, destacada = fal
   proximamente?: string
 }) {
   return (
-    <div style={{
+    <div className="eventos-columna" style={{
       display: 'flex', flexDirection: 'column',
       borderRight: '1px solid rgba(212,152,46,0.08)',
     }}>
@@ -230,10 +230,17 @@ function ColumnaEvento({ icono, titulo, horario, color, eventos, destacada = fal
 // ── Componente principal (client) ──────────────────────────────
 export default function EventosSectionClient({ talleres, shows, artistas }: Props) {
   return (
-    <section id="eventos" style={{ background: '#100804', padding: '8rem 0' }}>
+    <section id="eventos" className="eventos-section" style={{ background: '#100804', padding: '8rem 0' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .eventos-header, .eventos-nota { padding-left: 1rem !important; padding-right: 1rem !important; }
+          .eventos-grid { grid-template-columns: 1fr !important; }
+          .eventos-columna { border-right: none !important; border-bottom: 1px solid rgba(212,152,46,0.08); }
+        }
+      `}</style>
 
       {/* HEADER */}
-      <div style={{ textAlign: 'center', padding: '0 4rem', marginBottom: '4rem' }}>
+      <div className="eventos-header" style={{ textAlign: 'center', padding: '0 4rem', marginBottom: '4rem' }}>
         <p style={{
           fontFamily: 'var(--font-cinzel, Cinzel, serif)',
           fontSize: '11px', color: '#8A6940',
@@ -262,7 +269,7 @@ export default function EventosSectionClient({ talleres, shows, artistas }: Prop
       </div>
 
       {/* GRID 3 COLUMNAS */}
-      <div style={{
+      <div className="eventos-grid" style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1.4fr 1fr',
         maxWidth: '1400px',
@@ -298,7 +305,7 @@ export default function EventosSectionClient({ talleres, shows, artistas }: Prop
       </div>
 
       {/* Nota Instagram */}
-      <p style={{
+      <p className="eventos-nota" style={{
         fontFamily: 'var(--font-cormorant, "Cormorant Garamond", serif)',
         fontStyle: 'italic', fontSize: '14px',
         color: '#5A3A20', textAlign: 'center',

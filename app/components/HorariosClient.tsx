@@ -58,12 +58,20 @@ export default function HorariosClient({ diasHorario }: Props) {
 
   return (
     <SokkoBackgroundPaths>
-      <section ref={sectionRef} id="horarios" style={{
+      <section ref={sectionRef} id="horarios" className="horarios-section" style={{
         position: 'relative',
         backgroundImage: 'url(/hero/hero-madera.jpg)',
         backgroundSize: 'cover', backgroundPosition: 'center',
         padding: '8rem 4rem',
       }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .horarios-section { padding: 4rem 1rem !important; }
+            .franjas-horario-grid { grid-template-columns: 1fr !important; }
+            .horarios-dias-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+            .servicios-horario-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,5,2,0.9)', zIndex: 0 }} />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '1100px', margin: '0 auto' }}>
@@ -96,7 +104,7 @@ export default function HorariosClient({ diasHorario }: Props) {
           </div>
 
           {/* Tabla días + texto lateral */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginBottom: '4rem' }}>
+          <div className="horarios-dias-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginBottom: '4rem' }}>
             <div>
               <h3 style={{ fontFamily: 'var(--font-cinzel)', fontSize: '13px', color: '#C8922A', letterSpacing: '.3em', margin: '0 0 1.5rem' }}>DÍAS Y HORARIOS</h3>
               <div className="dias-horario-table" style={{ border: '1px solid rgba(200,146,42,0.12)' }}>

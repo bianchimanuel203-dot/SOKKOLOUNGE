@@ -29,7 +29,14 @@ export default function MenuSectionClient({ menuData }: { menuData: MenuData }) 
   const platos = menuData[tabActiva]
 
   return (
-    <section id="carta" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+    <section id="carta" className="menu-section" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .menu-section { padding: 4rem 1rem !important; }
+          .menu-carta-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .menu-carta-thumb { position: static !important; max-width: 220px; margin: 0 auto; }
+        }
+      `}</style>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* HEADER */}
@@ -109,12 +116,12 @@ export default function MenuSectionClient({ menuData }: { menuData: MenuData }) 
         {/* MODO: LEER CARTA */}
         {modo === 'carta' && (
           <div style={{ animation: 'fadeIn 0.3s ease' }}>
-            <div style={{
+            <div className="menu-carta-grid" style={{
               display: 'grid', gridTemplateColumns: '300px 1fr',
               gap: '3rem', alignItems: 'start',
             }}>
               {/* Thumbnail izquierda */}
-              <div style={{ position: 'sticky', top: '100px' }}>
+              <div className="menu-carta-thumb" style={{ position: 'sticky', top: '100px' }}>
                 <img src="/menus/menu-comida.png" alt="Carta SOKKO" style={{
                   width: '100%', height: 'auto',
                   border: '1px solid rgba(212,152,46,0.25)', opacity: 0.85,

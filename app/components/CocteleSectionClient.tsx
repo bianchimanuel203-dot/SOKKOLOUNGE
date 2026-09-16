@@ -18,7 +18,15 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
   const [modo, setModo] = useState<'imagen' | 'carta'>('imagen')
 
   return (
-    <section style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+    <section className="coctel-section" style={{ background: '#1A0E05', padding: '8rem 4rem' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .coctel-section { padding: 4rem 1rem !important; }
+          .coctel-carta-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .coctel-carta-thumb { position: static !important; max-width: 220px; margin: 0 auto; }
+          .coctel-listas-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* HEADER */}
@@ -94,12 +102,12 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
 
         {/* MODO: LEER LISTA — dos columnas */}
         {modo === 'carta' && (
-          <div style={{
+          <div className="coctel-carta-grid" style={{
             display: 'grid', gridTemplateColumns: '300px 1fr',
             gap: '3rem', alignItems: 'start', animation: 'fadeIn 0.3s ease',
           }}>
             {/* Thumbnail */}
-            <div style={{ position: 'sticky', top: '100px' }}>
+            <div className="coctel-carta-thumb" style={{ position: 'sticky', top: '100px' }}>
               <img src="/menus/menu-cocteles.png" alt="Cócteles SOKKO" style={{
                 width: '100%', height: 'auto',
                 border: '1px solid rgba(212,152,46,0.25)', opacity: 0.85,
@@ -112,7 +120,7 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
             </div>
 
             {/* Dos columnas */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
+            <div className="coctel-listas-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
               {[
                 { titulo: 'FIRMA SOKKO', items: coctelesData.firma    },
                 { titulo: 'CLÁSICOS',   items: coctelesData.clasicos  },

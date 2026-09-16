@@ -31,10 +31,25 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     // Refresh después de mount
     ScrollTrigger.refresh();
 
+    // Las imágenes sin dimensiones reservadas desplazan el layout al cargar,
+    // dejando desactualizadas las posiciones de los triggers (contenido que
+    // se queda en opacity:0 al no disparar la animación de entrada).
+    const refresh = () => ScrollTrigger.refresh();
+    if (document.readyState === 'complete') refresh();
+    else window.addEventListener('load', refresh);
+    window.addEventListener('resize', refresh);
+    const images = Array.from(document.images).filter(img => !img.complete);
+    images.forEach(img => img.addEventListener('load', refresh, { once: true }));
+    const safetyTimers = [300, 1000, 2500].map(ms => setTimeout(refresh, ms));
+
     return () => {
       lenis.destroy();
       gsap.ticker.remove(ticker);
       (window as any).__lenis = null;
+      window.removeEventListener('load', refresh);
+      window.removeEventListener('resize', refresh);
+      images.forEach(img => img.removeEventListener('load', refresh));
+      safetyTimers.forEach(clearTimeout);
     };
   }, []);
 

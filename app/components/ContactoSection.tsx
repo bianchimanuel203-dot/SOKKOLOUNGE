@@ -108,6 +108,7 @@ export default function ContactoSection() {
     <SokkoSpotlight>
       <section
         id="reservar"
+        className="contacto-section"
         style={{
           background: '#3A2210',
           padding: '8rem 4rem',
@@ -116,6 +117,14 @@ export default function ContactoSection() {
           overflow: 'hidden',
         }}
       >
+        <style>{`
+          @media (max-width: 768px) {
+            .contacto-section { padding: 4rem 1rem !important; }
+            .contacto-grid { grid-template-columns: 1fr !important; }
+            .contacto-form-row { grid-template-columns: 1fr !important; }
+            .contacto-form-card { padding: 1.75rem 1.25rem !important; }
+          }
+        `}</style>
         {/* FONDO ETHERAL — z-index 0, absoluto, no interfiere con clicks */}
         <EtherealShadow
           color="rgba(212, 152, 46, 0.22)"
@@ -162,7 +171,7 @@ export default function ContactoSection() {
           </p>
         </motion.div>
 
-        <div style={{
+        <div className="contacto-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr clamp(320px, 36%, 400px)',
           gap: '1.5rem',
@@ -177,6 +186,7 @@ export default function ContactoSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             viewport={{ once: true }}
+            className="contacto-form-card"
             style={{
               background: 'rgba(255,255,255,0.07)',
               backdropFilter: 'blur(12px)',
@@ -214,7 +224,7 @@ export default function ContactoSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                <div className="contacto-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                   <div>
                     <label style={labelStyle}>NOMBRE</label>
                     <input
@@ -241,7 +251,7 @@ export default function ContactoSection() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                <div className="contacto-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                   <div>
                     <label style={labelStyle}>FECHA</label>
                     <input

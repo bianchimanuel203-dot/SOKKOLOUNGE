@@ -283,6 +283,7 @@ export default function HeroThreeJS() {
         {/* SOKKO */}
         <h1
           ref={sokkoRef}
+          className="hero-sokko-title"
           style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(80px, 12vw, 160px)',
@@ -299,6 +300,7 @@ export default function HeroThreeJS() {
         {/* ·LOUNGE· */}
         <p
           ref={loungRef}
+          className="hero-lounge-title"
           style={{
             fontFamily: 'var(--font-cinzel)',
             fontSize: 'clamp(20px, 3vw, 40px)',
@@ -352,6 +354,7 @@ export default function HeroThreeJS() {
         <a
           ref={btnRef}
           href="#origen"
+          className="hero-cta-btn"
           style={{
             fontFamily: 'var(--font-raleway)',
             fontWeight: 400,
@@ -405,6 +408,16 @@ export default function HeroThreeJS() {
           50%  { transform: scaleY(1); transform-origin: top; }
           50.01% { transform: scaleY(1); transform-origin: bottom; }
           100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+        @media (max-width: 768px) {
+          .hero-sokko-title { font-size: 56px !important; }
+          .hero-lounge-title { font-size: 18px !important; letter-spacing: .6em !important; }
+          .hero-cta-btn { padding: .9rem 1.75rem !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-sokko-title { font-size: 32px !important; letter-spacing: .08em !important; }
+          .hero-lounge-title { font-size: 14px !important; letter-spacing: .4em !important; }
+          .hero-cta-btn { font-size: 10px !important; letter-spacing: .2em !important; padding: .85rem 1.25rem !important; }
         }
       `}</style>
     </section>

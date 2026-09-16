@@ -188,9 +188,19 @@ export default async function EventoPage(
 
   return (
     <main style={{ background: '#100804', minHeight: '100vh' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .evento-nav { padding: 0 1rem !important; }
+          .evento-info-grid { grid-template-columns: 1fr !important; }
+          .evento-programa-item { grid-template-columns: 100px 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .evento-nav-title { display: none; }
+        }
+      `}</style>
 
       {/* Navbar mínimo */}
-      <nav style={{
+      <nav className="evento-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         background: 'rgba(16,8,4,0.95)',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
@@ -203,7 +213,7 @@ export default async function EventoPage(
           fontSize: '12px', color: '#D4982E',
           letterSpacing: '0.2em', textDecoration: 'none',
         }}>← EVENTOS</Link>
-        <Link href="/" style={{
+        <Link href="/" className="evento-nav-title" style={{
           fontFamily: 'var(--font-cinzel, Cinzel, serif)',
           fontSize: '14px', color: '#D4982E',
           letterSpacing: '0.3em', textDecoration: 'none',
@@ -254,7 +264,7 @@ export default async function EventoPage(
           }}>{evento.subtitulo}</p>
 
           {/* Info grid */}
-          <div style={{
+          <div className="evento-info-grid" style={{
             background: 'rgba(44,26,8,0.5)',
             border: `1px solid ${evento.color}25`,
             padding: '1.5rem 2rem',
@@ -300,7 +310,7 @@ export default async function EventoPage(
                 letterSpacing: '0.35em', marginBottom: '1.25rem',
               }}>PROGRAMA</h2>
               {evento.programa.map((p, i) => (
-                <div key={i} style={{
+                <div key={i} className="evento-programa-item" style={{
                   display: 'grid', gridTemplateColumns: '150px 1fr',
                   gap: '1rem', padding: '0.85rem 0',
                   borderBottom: '1px solid rgba(212,152,46,0.08)',

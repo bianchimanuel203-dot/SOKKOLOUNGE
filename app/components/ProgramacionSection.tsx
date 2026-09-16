@@ -30,7 +30,15 @@ export default function ProgramacionSection() {
   const diaSeleccionado = diaActivo !== null ? PROGRAMACION[diaActivo] : null;
 
   return (
-    <section ref={sectionRef} id="programacion" style={{ background: '#1A0E05', padding: '8rem 4rem', position: 'relative', overflow: 'hidden' }}>
+    <section ref={sectionRef} id="programacion" className="programacion-section" style={{ background: '#1A0E05', padding: '8rem 4rem', position: 'relative', overflow: 'hidden' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .programacion-section { padding: 4rem 1rem !important; }
+          .prog-grid { grid-template-columns: 1fr !important; }
+          .prog-dia-card { min-height: 120px !important; padding: 1.25rem 1rem !important; }
+          .prog-panel { grid-template-columns: 1fr !important; text-align: center; padding: 1.5rem 1rem !important; }
+        }
+      `}</style>
 
       {/* Fondo sutil */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/zonas/zona-terraza.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.06, pointerEvents: 'none' }} />
@@ -78,7 +86,7 @@ export default function ProgramacionSection() {
 
         {/* Panel expandido */}
         {diaSeleccionado && diaSeleccionado.abierto && (
-          <div style={{
+          <div className="prog-panel" style={{
             border: `1px solid ${diaSeleccionado.color}40`, borderTop: 'none',
             background: `linear-gradient(to right, ${diaSeleccionado.color}08, rgba(10,5,2,0.9))`,
             backdropFilter: 'blur(12px)', padding: '2rem 2.5rem',

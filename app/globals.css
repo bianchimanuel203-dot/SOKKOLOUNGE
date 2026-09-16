@@ -1,14 +1,32 @@
 @import "tailwindcss";
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
 body {
   background: #100804;
   color: #F4EDD8;
   font-family: var(--font-raleway), sans-serif;
   font-weight: 300;
   overflow-x: hidden;
+  max-width: 100vw;
   cursor: none;
+}
+img, video, canvas { max-width: 100%; }
+
+/* ── MÓVIL — inputs a 16px mínimo (evita zoom automático en iOS) ── */
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* ── MÓVIL — desactivar animaciones de aparición por scroll (GSAP
+   ScrollTrigger) que en layouts móviles más altos pueden quedar
+   desincronizadas y dejar contenido en opacity:0 de forma permanente ── */
+@media (max-width: 768px) {
+  .origen-intro, .origen-bloque, .origen-tagline,
+  .prog-dia-card, .franja-horario, .dia-horario-row, .servicio-horario {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 body::before {
   content: '';

@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { CardStack, CardStackItem } from './ui/card-stack';
 
 const islasData: CardStackItem[] = [
@@ -14,12 +15,21 @@ const islasData: CardStackItem[] = [
 ];
 
 export default function IslasCardStack() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section
       id="islas"
       style={{
         background: '#1A0E05',
-        padding: '8rem 2rem',
+        padding: isMobile ? '4rem 1rem' : '8rem 2rem',
         borderTop: '1px solid rgba(200,146,42,0.15)',
       }}
     >
@@ -61,13 +71,13 @@ export default function IslasCardStack() {
       {/* CardStack 3D fan con glow dorado */}
       <CardStack
         items={islasData}
-        cardWidth={480}
-        cardHeight={360}
-        overlap={0.52}
-        spreadDeg={50}
-        depthPx={120}
-        tiltXDeg={10}
-        activeLiftPx={28}
+        cardWidth={isMobile ? 240 : 480}
+        cardHeight={isMobile ? 300 : 360}
+        overlap={isMobile ? 0.68 : 0.52}
+        spreadDeg={isMobile ? 16 : 50}
+        depthPx={isMobile ? 60 : 120}
+        tiltXDeg={isMobile ? 5 : 10}
+        activeLiftPx={isMobile ? 16 : 28}
         activeScale={1.04}
         inactiveScale={0.92}
         autoAdvance={true}
@@ -77,7 +87,7 @@ export default function IslasCardStack() {
         loop={true}
         springStiffness={260}
         springDamping={26}
-        maxVisible={7}
+        maxVisible={isMobile ? 5 : 7}
       />
     </section>
   );

@@ -58,7 +58,8 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
             <button onClick={() => setModo('imagen')} style={{
               fontFamily: 'var(--font-cinzel, Cinzel, serif)',
               fontSize: '11px', letterSpacing: '0.2em',
-              padding: '10px 28px', border: 'none', borderRadius: '1px',
+              padding: '10px 28px', minHeight: '44px', border: 'none', borderRadius: '1px',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               cursor: 'pointer', transition: 'all 0.2s ease',
               background: modo === 'imagen' ? '#D4982E' : 'transparent',
               color: modo === 'imagen' ? '#1A0E05' : '#A07850',
@@ -66,7 +67,8 @@ export default function CocteleSectionClient({ coctelesData }: { coctelesData: C
             <button onClick={() => setModo('carta')} style={{
               fontFamily: 'var(--font-cinzel, Cinzel, serif)',
               fontSize: '11px', letterSpacing: '0.2em',
-              padding: '10px 28px', border: 'none', borderRadius: '1px',
+              padding: '10px 28px', minHeight: '44px', border: 'none', borderRadius: '1px',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               cursor: 'pointer', transition: 'all 0.2s ease',
               background: modo === 'carta' ? '#D4982E' : 'transparent',
               color: modo === 'carta' ? '#1A0E05' : '#A07850',

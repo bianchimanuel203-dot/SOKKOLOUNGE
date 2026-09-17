@@ -381,7 +381,9 @@ export default function ContactoSection() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '8px',
+                  minHeight: '44px',
                   fontFamily: 'var(--font-cinzel, Cinzel, serif)',
                   fontSize: '11px',
                   color: '#1A0E05',

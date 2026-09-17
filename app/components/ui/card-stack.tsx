@@ -341,7 +341,10 @@ function DefaultFanCard({ item, active }: { item: CardStackItem; active: boolean
           <a
             href={item.href}
             style={{
-              display: "inline-block",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "44px",
               marginTop: "1rem",
               fontFamily: "var(--font-raleway, Raleway, sans-serif)",
               fontSize: "10px",

@@ -21,14 +21,22 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
   ];
 
   return (
-    <div style={{
+    <div className="sokko-calendario" style={{
       background: 'rgba(200,146,42,.03)',
       border: '1px solid rgba(200,146,42,.15)',
       borderRadius: '4px', padding: '1.5rem',
       maxWidth: '360px'
     }}>
+      <style>{`
+        @media (max-width: 480px) {
+          .sokko-calendario { padding: .75rem !important; }
+          .sokko-calendario .cal-nav-btn { width: 44px !important; height: 44px !important; }
+          .sokko-calendario .cal-day-grid { gap: 2px !important; }
+        }
+      `}</style>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <button
+          className="cal-nav-btn"
           onClick={() => setMes(new Date(mes.getFullYear(), mes.getMonth() - 1, 1))}
           style={{
             background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
@@ -40,6 +48,7 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
           {MESES_LARGO[mes.getMonth()]} {mes.getFullYear()}
         </p>
         <button
+          className="cal-nav-btn"
           onClick={() => setMes(new Date(mes.getFullYear(), mes.getMonth() + 1, 1))}
           style={{
             background: 'transparent', border: '1px solid rgba(200,146,42,.2)',
@@ -61,7 +70,7 @@ function CalendarioSOKKO({ fecha, onSelect }: { fecha: Date | null; onSelect: (d
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
+      <div className="cal-day-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
         {celdas.map((dia, i) => {
           if (!dia) return <div key={`empty-${i}`} />;
           const pasado = dia < hoy;
@@ -217,7 +226,12 @@ export default function IslaPageClient({ islaSlug }: { islaSlug: string }) {
       </div>
 
       {/* RESERVA */}
-      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '4rem 2rem' }}>
+      <style>{`
+        @media (max-width: 480px) {
+          .isla-reserva { padding: 4rem 1rem !important; }
+        }
+      `}</style>
+      <div className="isla-reserva" style={{ maxWidth: '700px', margin: '0 auto', padding: '4rem 2rem' }}>
 
         {enviado ? (
           <div style={{ textAlign: 'center', padding: '4rem 0' }}>
